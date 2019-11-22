@@ -1,5 +1,7 @@
-# Hello World
-个人简历和个人论文网站  
-通过markdownpad直接导出html格式  
-通过pdf转html  
-将个人论文和一些比赛代码，代码重写放置在该博客中。  
+# Hello World  个人博客主页
+###作用
+陈列github项目
+用以练习使用html/css,markdown等  
+###项目文件夹构成
+./paper:论文  
+./postgraduate_lession: 研究生课程中部分代码
