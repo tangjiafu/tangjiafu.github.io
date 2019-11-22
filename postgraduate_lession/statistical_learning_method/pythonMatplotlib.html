@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>pythonMatplotlib</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+</head>
+<body>
+<h1><strong># python matplotlib绘图   #</strong></h1>
+<hr />
+<pre><code># -*- coding: utf-8 -*-
+&quot;&quot;&quot;
+绘制登高线图
+&quot;&quot;&quot;
+import matplotlib.pyplot as plt
+import numpy as np
+from mpl_toolkits.mplot3d import Axes3D
+
+
+# 定义等高线高度函数
+def f(x, y):
+return (1 - x / 2 + x ** 5 + y ** 3) * np.exp(- x ** 2 - y ** 2)
+
+
+# 数据数目
+n = 256
+# 定义x, y
+x = np.linspace(-3, 3, n)
+y = np.linspace(-3, 3, n)
+
+# 生成网格数据
+X, Y = np.meshgrid(x, y)
+
+# 填充等高线的颜色, 8是等高线分为几部分
+plt.contourf(X, Y, f(X, Y), 8, alpha=0.75, cmap='hot')
+# 绘制等高线
+C = plt.contour(X, Y, f(X, Y), 8, colors='black', linewidth=0.5)
+# 绘制等高线数据
+plt.clabel(C, inline=True, fontsize=10)
+
+# 去除坐标轴
+plt.xticks(())
+plt.yticks(())
+plt.show()
+################################################################
+# 定义figure
+fig = plt.figure()
+# 将figure变为3d
+ax = Axes3D(fig)
+
+# 数据数目
+n = 256
+# 定义x, y
+x = np.arange(-4, 4, 0.25)
+y = np.arange(-4, 4, 0.25)
+
+# 生成网格数据
+X, Y = np.meshgrid(x, y)
+
+# 计算每个点对的长度
+R = np.sqrt(X ** 2 + Y ** 2)
+# 计算Z轴的高度
+Z = np.sin(R)
+
+# 绘制3D曲面
+ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap=plt.get_cmap('rainbow'))
+# 绘制从3D曲面到底部的投影
+ax.contour(X, Y, Z, zdim='z', offset=-2, cmap='rainbow')
+
+# 设置z轴的维度
+ax.set_zlim(-2, 2)
+
+plt.show()
+</code></pre>
+
+<hr />
+<pre><code>from mpl_toolkits.mplot3d import Axes3D
+import matplotlib.pyplot as plt
+import numpy as np
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+x, y = np.random.rand(2, 100) * 4
+hist, xedges, yedges = np.histogram2d(x, y, bins=4, range=[[0, 4], [0, 4]])
+
+xpos, ypos = np.meshgrid(xedges[:-1] + 0.25, yedges[:-1] + 0.25)
+xpos = xpos.flatten('F')
+ypos = ypos.flatten('F')
+zpos = np.zeros_like(xpos)
+
+dx = 0.5 * np.ones_like(zpos)
+dy = dx.copy()
+dz = hist.flatten()
+
+ax.bar3d(xpos, ypos, zpos, dx, dy, dz, color='b', zsort='average')
+#####################################################################
+# 空间曲线和散点
+fig = plt.figure()
+ax1 = Axes3D(fig)
+z = np.linspace(0, 13, 1000)
+x = 5 * np.sin(z)
+y = 5 * np.cos(z)
+zd = 13 * np.random.random(100)
+xd = 5 * np.sin(zd)
+yd = 5 * np.cos(zd)
+ax1.scatter3D(xd, yd, zd, cmap='Blues')  # 绘制散点图
+ax1.plot3D(x, y, z, 'gray')  # 绘制空间曲线
+
+##################################################################
+# 空间曲面
+ig = plt.figure()  # 定义新的三维坐标轴
+ax3 = plt.axes(projection='3d')
+# 定义三维数据
+xx = np.arange(-10, 10, 100)
+yy = np.arange(-10, 10, 100)
+X, Y = np.meshgrid(x, y)
+Z = np.sin(X) + np.cos(Y)
+# 作图
+ax3.plot_surface(X, Y, Z, cmap='rainbow')
+# ax3.contour(X,Y,Z, zdim='z',offset=-2，cmap='rainbow)   #等高线图，要设置offset，为Z的最小值
+
+########################################################################
+# 定义figure
+fig = plt.figure()
+# 将figure变为3d
+ax2 = Axes3D(fig)
+# 数据数目
+n = 256
+# 定义x, y
+x = np.arange(-4, 4, 0.25)
+y = np.arange(-4, 4, 0.25)
+# 生成网格数据
+X, Y = np.meshgrid(x, y)
+# 计算每个点对的长度
+R = np.sqrt(X ** 2 + Y ** 2)
+# 计算Z轴的高度
+Z = np.sin(R)
+# 绘制3D曲面
+ax2.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap=plt.get_cmap('rainbow'))
+# 绘制从3D曲面到底部的投影
+ax2.contour(X, Y, Z, zdim='z', offset=-2, cmap='rainbow')
+# 设置z轴的维度
+ax2.set_zlim(-2, 2)
+plt.show()
+###################################################################################
+</code></pre>
+
+<hr />
+<pre><code># -*- coding: utf-8 -*-
+&quot;&quot;&quot;
+绘制Image
+&quot;&quot;&quot;
+import matplotlib.pyplot as plt
+import numpy as np
+
+# 定义图像数据
+a = np.linspace(0, 1, 9).reshape(3, 3)
+# 显示图像数据
+plt.imshow(a, interpolation='nearest', cmap='bone', origin='lower')
+# 添加颜色条
+plt.colorbar()
+# 去掉坐标轴
+plt.xticks(())
+plt.yticks(())
+plt.show()
+#################################
+&quot;&quot;&quot;
+绘制散点图
+&quot;&quot;&quot;
+# 数据个数
+n = 1024
+# 均值为0, 方差为1的随机数
+x = np.random.normal(0, 1, n)
+y = np.random.normal(0, 1, n)
+
+# 计算颜色值
+color = np.arctan2(y, x)
+# 绘制散点图
+plt.scatter(x, y, s=75, c=color, alpha=0.5)
+# 设置坐标轴范围
+plt.xlim((-1.5, 1.5))
+plt.ylim((-1.5, 1.5))
+
+# 不显示坐标轴的值
+plt.xticks(())
+plt.yticks(())
+
+plt.show()
+</code></pre>
+
+<hr />
+<hr />
+<pre><code>import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+n_angles = 1000  # 曲面衔接角度（平滑度）
+n_radii = 20  # 鞍部半径（1：锐角，20：平滑角）
+radii = np.linspace(0.125, 1.0, n_radii)
+angles = np.linspace(0, 2 * np.pi, n_angles, endpoint=False)
+angles = np.repeat(angles[..., np.newaxis], n_radii, axis=1)
+
+x = np.append(0, (radii * np.cos(angles)).flatten())
+y = np.append(0, (radii * np.sin(angles)).flatten())
+
+z = np.sin(-x * y)
+fig1 = plt.figure()
+ax = Axes3D(fig1)
+ax.plot_trisurf(x, y, z,
+                cmap='jet',  # 曲面颜色
+                linewidth=0.2)
+
+fig2 = plt.figure()
+ax = Axes3D(fig2)
+x, y = np.mgrid[-2:2:100j, -2:2:100j]  # 100j为设置曲面平滑度
+z = x * np.exp(-x ** 2 - y ** 2)
+
+ax.set_title('山区图')
+ax.plot_surface(x, y, z, rstride=2, cstride=1, cmap='jet')
+ax.set_xlabel('X')  # 设置坐标轴标签
+ax.set_ylabel('Y')
+ax.set_zlabel('Z')
+plt.show()
+</code></pre>
+
+<hr />
+<pre><code>&quot;&quot;&quot;
+figure(num=None, figsize=None, dpi=None, facecolor=None, edgecolor=None, frameon=True)
+    num:图像编号或名称，数字为编号 ，字符串为名称
+    figsize:指定figure的宽和高，单位为英寸；
+    dpi参数指定绘图对象的分辨率，即每英寸多少个像素，缺省值为80
+    facecolor:背景颜色
+    edgecolor:边框颜色
+    frameon:是否显示边框
+
+################################################################################
+plt.text(-3, 40, &quot;function: y = x * x&quot;, size = 15,\
+         family = &quot;fantasy&quot;, color = &quot;r&quot;, style = &quot;italic&quot;, weight = &quot;light&quot;,\
+         bbox = dict(facecolor = &quot;r&quot;, alpha = 0.2))
+# 第一个参数是x轴坐标
+# 第二个参数是y轴坐标
+# 第三个参数是要显式的内容
+# alpha 设置字体的透明度
+# family 设置字体
+# size 设置字体的大小
+# style 设置字体的风格
+# wight 字体的粗细
+# bbox 给字体添加框，对方框的设置，alpha 设置框体的透明度， facecolor 设置框体的颜色
+###################################################################################
+带箭头标注
+ax.annotate('local max', xy=(2,1), xytext=(3,1.5),
+            arrowprops=dict(facecolor='black', shrink=0.05))
+    第一个参数为标注内容
+    xy=(横坐标，纵坐标)  箭头尖端
+    xytext=(横坐标，纵坐标) 文字的坐标，指的是最左边的坐标
+    arrowprops= {
+        facecolor= '颜色',
+        shrink = '数字' &lt;1  收缩箭头,箭头粗细
+    }
+&quot;&quot;&quot;
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+fig = plt.figure('Figure Object 1', facecolor='lightgray')
+t = np.arange(0.0, 2.0, 0.01)
+s = np.sin(2 * np.pi * t)
+
+plt.plot(t, s)
+
+plt.title(r'$f(x) = \frac{1}{{\sqrt {2\pi } }}{{\rm e}^{ - \frac{{{{(x - \mu )}^2}}}{{2{\sigma ^2}}}}}$', fontsize=16,verticalalignment='bottom')
+plt.text(1, -0.6, r'$\sum_{i=0}^\infty x_i$', fontsize=20)
+plt.text(0.6, 0.6, r'$\mathcal{A}\mathrm{sin}(2 \omega t)$',
+         fontsize=20)
+plt.xlabel('time (s)')
+plt.ylabel('volts (mV)')
+#坐标轴设置
+ax = plt.gca()
+ax.spines['right'].set_color('none')
+ax.spines['top'].set_color('none')
+
+plt.show()
+</code></pre>
+
+<hr />
+<pre><code># -*- coding: utf-8 -*-
+&quot;&quot;&quot;
+子图：一共三种布局
+&quot;&quot;&quot;
+import matplotlib.pyplot as plt
+import matplotlib.gridspec as mg  # 布局二
+
+plt.figure('Figure Object 1', facecolor='lightgray')
+
+# 子图： 缺省布局
+for i in range(2):
+    for j in range(3):
+        k = i * 3 + j + 1
+        plt.subplot(2, 3, k)  # 子图  几行几列，第几个图表
+        plt.xticks(())
+        plt.yticks(())
+        plt.text(0.5, 0.5, str(k), ha='center', va='center',
+                 size=36, alpha=0.5)
+
+    #######################################################################
+# 子图： 栅格布局  更加灵活的布局分配
+'''
+gs = mg.GridSpec(行数，列数)
+plt.subplot(gs[行,列])
+'''
+
+plt.figure('Figure Object 2', facecolor='lightgray')
+gs = mg.GridSpec(3, 3)  # 3行3列的栅格
+# 第一个图：占两个位置
+plt.subplot(gs[0, :2])
+plt.xticks(())
+plt.yticks(())
+plt.text(0.5, 0.5, 1, ha='center', va='center', size=36, alpha=0.5)
+
+plt.subplot(gs[1:, 0])
+plt.xticks(())
+plt.yticks(())
+plt.text(0.5, 0.5, 2, ha='center', va='center', size=36, alpha=0.5)
+
+plt.subplot(gs[2, 1:])
+plt.xticks(())
+plt.yticks(())
+plt.text(0.5, 0.5, 3, ha='center', va='center', size=36, alpha=0.5)
+
+plt.subplot(gs[:2, 2])
+plt.xticks(())
+plt.yticks(())
+plt.text(0.5, 0.5, 4, ha='center', va='center', size=36, alpha=0.5)
+
+plt.subplot(gs[1, 1])
+plt.xticks(())
+plt.yticks(())
+plt.text(0.5, 0.5, 5, ha='center', va='center', size=36, alpha=0.5)
+
+##################################################################
+# 子图： 自由布局 (可以实现嵌套图)
+# 新建figure
+fig3 = plt.figure('Figure Object 3', facecolor='lightgray')
+# 定义数据
+x = [1, 2, 3, 4, 5, 6, 7]
+y = [1, 3, 4, 2, 5, 8, 6]
+
+# 新建区域ax1
+# figure的百分比,从figure 10%的位置开始绘制, 宽高是figure的80%
+left, bottom, width, height = 0.1, 0.1, 0.8, 0.8
+# 获得绘制的句柄
+ax1 = fig3.add_axes([left, bottom, width, height])
+ax1.plot(x, y, 'r')
+ax1.set_title('area1')
+
+# 新增区域ax2,嵌套在ax1内
+left, bottom, width, height = 0.2, 0.6, 0.25, 0.25
+# 获得绘制的句柄
+ax2 = fig3.add_axes([left, bottom, width, height])
+ax2.plot(x, y, 'b')
+ax2.set_title('area2')
+plt.show()
+</code></pre>
+
+<hr />
+<hr />
+<pre><code>import matplotlib.pyplot as plt
+import numpy as np
+
+fig = plt.figure()
+ax1 = fig.add_subplot(221)
+ax2 = fig.add_subplot(222)
+ax3 = fig.add_subplot(224)
+
+x = np.linspace(0, np.pi)
+y_sin = np.sin(x)
+y_cos = np.cos(x)
+
+ax1.plot(x, y_sin)
+ax2.plot(x, y_sin, 'go--', linewidth=2, markersize=12)
+ax3.plot(x, y_cos, color='red', marker='+', linestyle='dashed')
+plt.show()
+##############################################################################
+# 通过关键字参数的方式绘图
+x = np.linspace(0, 10, 200)
+data_obj = {'x': x,
+            'y1': 2 * x + 1,
+            'y2': 3 * x + 1.2,
+            'mean': 0.5 * x * np.cos(2 * x) + 2.5 * x + 1.1}
+
+fig1, ax = plt.subplots()
+# 填充两条线之间的颜色
+ax.fill_between('x', 'y1', 'y2', color='yellow', data=data_obj)
+# Plot the &quot;centerline&quot; with `plot`
+ax.plot('x', 'mean', color='black', data=data_obj)
+plt.show()
+#############################################################################
+# 散点图
+x = np.arange(10)
+y = np.random.randn(10)
+plt.scatter(x, y, color='red', marker='+')
+plt.show()
+#############################################################################
+# 条形图
+np.random.seed(1)
+x = np.arange(5)
+y = np.random.randn(5)
+
+fig2, axes = plt.subplots(ncols=2, figsize=plt.figaspect(1. / 2))
+
+vert_bars = axes[0].bar(x, y, color='lightblue', align='center')
+horiz_bars = axes[1].barh(x, y, color='lightblue', align='center')
+# 在水平或者垂直方向上画线
+axes[0].axhline(0, color='gray', linewidth=2)
+axes[1].axvline(0, color='gray', linewidth=2)
+plt.show()
+############################################################################
+# 条形图2
+fig, ax = plt.subplots()
+vert_bars1 = ax.bar(x, y, color='lightblue', align='center')
+# We could have also done this with two separate calls to `ax.bar` and numpy boolean indexing.
+for bar, height in zip(vert_bars1, y):
+    if height &lt; 0:
+        bar.set(edgecolor='darkred', color='salmon', linewidth=3)
+plt.show()
+############################################################################
+# 直方图
+np.random.seed(19680801)
+
+n_bins = 10
+x = np.random.randn(1000, 3)
+
+fig, axes = plt.subplots(nrows=2, ncols=2)
+ax0, ax1, ax2, ax3 = axes.flatten()
+
+colors = ['red', 'tan', 'lime']
+ax0.hist(x, n_bins, density=True, histtype='bar', color=colors, label=colors)
+ax0.legend(prop={'size': 10})
+ax0.set_title('bars with legend')
+
+ax1.hist(x, n_bins, density=True, histtype='barstacked')
+ax1.set_title('stacked bar')
+ax2.hist(x, histtype='barstacked', rwidth=0.9)
+ax3.hist(x[:, 0], rwidth=0.9)
+ax3.set_title('different sample sizes')
+
+fig.tight_layout()
+plt.show()
+###########################################################################
+# 饼图
+labels = 'Frogs', 'Hogs', 'Dogs', 'Logs'
+sizes = [15, 30, 45, 10]
+explode = (0, 0.1, 0, 0)  # only &quot;explode&quot; the 2nd slice (i.e. 'Hogs')
+
+fig1, (ax_B1, ax_B2) = plt.subplots(2)
+ax_B1.pie(sizes, labels=labels, autopct='%1.1f%%', shadow=True)
+ax_B1.axis('equal')
+ax_B2.pie(sizes, autopct='%1.2f%%', shadow=True, startangle=90, explode=explode,
+          pctdistance=1.12)
+ax_B2.axis('equal')
+ax_B2.legend(labels=labels, loc='upper right')
+plt.show()
+###########################################################################
+# 箱型图
+# fig, (ax1, ax2) = plt.subplots(2)
+# ax1.boxplot(data)
+# ax2.boxplot(data2, vert=False) #控制方向
+###########################################################################
+# 等高线图
+fig, (ax1, ax2) = plt.subplots(2)
+x = np.arange(-5, 5, 0.1)
+y = np.arange(-5, 5, 0.1)
+xx, yy = np.meshgrid(x, y, sparse=True)
+z = np.sin(xx ** 2 + yy ** 2) / (xx ** 2 + yy ** 2)
+ax1.contourf(x, y, z)
+ax2.contour(x, y, z)
+plt.show()
+###########################################################################
+#定义坐标轴
+fig3d = plt.figure()
+ax1 = plt.axes(projection='3d')
+z = np.linspace(0,13,1000)
+x = 5*np.sin(z)
+y = 5*np.cos(z)
+zd = 13*np.random.random(100)
+xd = 5*np.sin(zd)
+yd = 5*np.cos(zd)
+ax1.scatter3D(xd,yd,zd, cmap='Blues')  #绘制散点图
+ax1.plot3D(x,y,z,'gray')    #绘制空间曲线
+plt.show()
+</code></pre>
+
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

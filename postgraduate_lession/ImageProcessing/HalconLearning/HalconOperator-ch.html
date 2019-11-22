@@ -1,0 +1,5778 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>HalconOperator-ch</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* Solarized (Dark) */
+/* Authors: Ethan Schoonover: http://ethanschoonover.com/solarized, CodeCatalyst: http://codecatalyst.com/ */
+/* Version: d9a83f4e7a47432baff86e1e7946d9e066cf3d1b (modified) */
+/* https://github.com/CodeCatalyst/mou-theme-solarized */
+
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+ol,
+ul,
+li,
+img {
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+html * {
+  font-family: "ff-din-web-pro-1", "ff-din-web-pro-2", sans-serif;
+  font-size: 16px;
+  line-height: 19.2px;
+  color-profile: sRGB;
+}
+body {
+  min-width: 32em;
+  max-width: 52em;
+  margin: 10px  400px;
+}
+p {
+  font-weight: lighter;
+  margin-bottom: 20px;
+}
+strong {
+  font-weight: bold;
+}
+ol,
+ul {
+  margin-left: 2em;
+  margin-bottom: 20px;
+}
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+  margin-top: 10px;
+}
+li {
+  margin-bottom: 10px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: lighter;
+  text-transform: capitalize;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+h1 {
+  font-size: 24.624px;
+  line-height: 29.548799999999996px;
+}
+h2 {
+  font-size: 24.624px;
+  line-height: 29.548799999999996px;
+}
+h3 {
+  font-size: 23.44px;
+  line-height: 28.128px;
+}
+h4 {
+  font-size: 22.16px;
+  line-height: 26.592px;
+}
+h5 {
+  font-size: 22.16px;
+  line-height: 26.592px;
+}
+h6 {
+  font-size: 22.16px;
+  line-height: 26.592px;
+}
+img {
+  margin-bottom: 20px;
+}
+h1 img,
+h2 img,
+h3 img,
+h4 img,
+h5 img,
+h6 img,
+p img {
+  margin-bottom: 0;
+}
+pre {
+  margin-bottom: 20px;
+}
+pre,
+code {
+  font-family: monospace;
+}
+pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  padding: 15px;
+}
+h1 {
+  text-transform: uppercase;
+  font-weight: bold;
+  border-bottom: 1px solid;
+}
+h2 {
+  border-bottom: 1px solid;
+}
+h3,
+h4,
+h5,
+h6 {
+  border-bottom: none;
+}
+html * {
+  color: #839496;
+}
+html body {
+  background-color: #002b36;
+}
+html h1,
+html h2,
+html h3,
+html h4,
+html h5,
+html h6 {
+  color: #93a1a1;
+  border-color: #839496;
+}
+html a,
+html a:active,
+html a:visited {
+  color: #93a1a1;
+}
+html a:hover {
+  background-color: #073642;
+}
+html pre {
+  color: #93a1a1;
+  background-color: #073642;
+}
+html a,
+html a:active,
+html a:visited,
+html code.url {
+  color: #b58900;
+}
+html h1 {
+  color: #b58900;
+}
+html h2,
+html h3,
+html h4,
+html h5,
+html h6 {
+  color: #b58900;
+}
+
+/*
+LICENSE
+
+Solarized Theme for Mou
+
+Copyright (c) 2012 CodeCatalyst, LLC
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Solarized
+
+Copyright (c) 2011 Ethan Schoonover
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+</style>
+</head>
+<body>
+<h1>Chapter 1 :Classification</h1>
+<h2>1.1 Gaussian-Mixture-Models</h2>
+<p>1.add_sample_class_gmm</p>
+<p>功能：把一个训练样本添加到一个高斯混合模型的训练数据上。</p>
+<p>2.classify_class_gmm</p>
+<p>功能：通过一个高斯混合模型来计算一个特征向量的类。</p>
+<p>3.clear_all_class_gmm</p>
+<p>  功能：清除所有高斯混合模型。</p>
+<p>4.clear_class_gmm</p>
+<p>  功能：清除一个高斯混合模型。</p>
+<p>5.clear_samples_class_gmm</p>
+<p>  功能：清除一个高斯混合模型的训练数据。</p>
+<p>6.create_class_gmm</p>
+<p>功能：为分类创建一个高斯混合模型。</p>
+<p>7.evaluate_class_gmm</p>
+<p>  功能：通过一个高斯混合模型评价一个特征向量。</p>
+<p>8.get_params_class_gmm</p>
+<p>功能：返回一个高斯混合模型的参数。</p>
+<p>9.get_prep_info_class_gmm</p>
+<p>  功能：计算一个高斯混合模型的预处理特征向量的信息内容。</p>
+<p>10.get_sample_class_gmm</p>
+<p>   功能：从一个高斯混合模型的训练数据返回训练样本。</p>
+<p>11.get_sample_num_class_gmm</p>
+<p>   功能：返回存储在一个高斯混合模型的训练数据中的训练样本的数量。</p>
+<p>12.read_class_gmm</p>
+<p>   功能：从一个文件中读取一个高斯混合模型。</p>
+<p>13.read_samples_class_gmm</p>
+<p>   功能：从一个文件中读取一个高斯混合模型的训练数据。</p>
+<p>14.train_class_gmm</p>
+<p>   功能：训练一个高斯混合模型。</p>
+<p>15.write_class_gmm</p>
+<p>   功能：向文件中写入一个高斯混合模型。</p>
+<p>16.write_samples_class_gmm</p>
+<p>   功能：向文件中写入一个高斯混合模型的训练数据。</p>
+<p> </p>
+<h2>1.2 Hyperboxes</h2>
+<p>1.clear_sampset</p>
+<p>  功能：释放一个数据集的内存。</p>
+<p>2.close_all_class_box</p>
+<p>  功能：清除所有分类器。</p>
+<p>3.close_class_box</p>
+<p>  功能：清除分类器。</p>
+<p>4.create_class_box</p>
+<p>  功能：创建一个新的分类器。</p>
+<p>5.descript_class_box</p>
+<p>  功能：分类器的描述。</p>
+<p>6.enquire_class_box</p>
+<p>  功能：为一组属性分类。</p>
+<p>7.enquire_reject_class_box</p>
+<p>  功能：为一组带抑制类的属性分类。</p>
+<p>8.get_class_box_param</p>
+<p>  功能：获取关于现在参数的信息。</p>
+<p>9.learn_class_box</p>
+<p>  功能：训练分类器。</p>
+<p>10.learn_sampset_box</p>
+<p>   功能：用数据组训练分类器。</p>
+<p>11.read_class_box</p>
+<p>   功能：从一个文件中读取分类器。</p>
+<p>12.read_sampset</p>
+<p>   功能：从一个文件中读取一个训练数据组。</p>
+<p>13.set_class_box_param</p>
+<p>   功能：为分类器设计系统参数。</p>
+<p>14.test_sampset_box</p>
+<p>   功能：为一组数组分类。</p>
+<p>15.write_class_box</p>
+<p>   功能：在一个文件中保存分类器。</p>
+<p> </p>
+<h2>1.3 Neural-Nets</h2>
+<p>1.add_sample_class_mlp</p>
+<p>  功能：把一个训练样本添加到一个多层感知器的训练数据中。</p>
+<p>2.classify_class_mlp</p>
+<p>  功能：通过一个多层感知器计算一个特征向量的类。</p>
+<p>3.clear_all_class_mlp</p>
+<p>  功能：清除所有多层感知器。</p>
+<p>4.clear_class_mlp</p>
+<p>  功能：清除一个多层感知器。</p>
+<p>5.clear_samples_class_mlp</p>
+<p>  功能：清除一个多层感知器的训练数据。</p>
+<p>6.create_class_mlp</p>
+<p>  功能：为分类或者回归创建一个多层感知器。</p>
+<p>7.evaluate_class_mlp</p>
+<p>  功能：通过一个多层感知器计算一个特征向量的评估。</p>
+<p>8.get_params_class_mlp</p>
+<p>  功能：返回一个多层感知器的参数。</p>
+<p>9.get_prep_info_class_mlp</p>
+<p>  功能：计算一个多层感知器的预处理特征向量的信息内容。</p>
+<p>10.get_sample_class_mlp</p>
+<p>   功能：从一个多层感知器的训练数据返回一个训练样本。</p>
+<p>11.get_sample_num_class_mlp</p>
+<p>   功能：返回存储在一个多层感知器的训练数据中的训练样本的数量。</p>
+<p>12.read_class_mlp</p>
+<p>   功能：从一个文件中读取一个多层感知器。</p>
+<p>13.read_samples_class_mlp</p>
+<p>   功能：从一个文件中读取一个多层感知器的训练数据。</p>
+<p>14.train_class_mlp、</p>
+<p>   功能：训练一个多层感知器。</p>
+<p>15.write_class_mlp</p>
+<p>   功能：向一个文件中写入一个多层感知器。</p>
+<p>16.write_samples_class_mlp</p>
+<p>   功能：向一个文件中写入一个多层感知器的训练数据。</p>
+<p> </p>
+<h2>1.4 Support-Vector-Machines</h2>
+<ol>
+<li>add_sample_class_svm</li>
+</ol>
+<p>  功能：把一个训练样本添加到一个支持向量机的训练数据上。</p>
+<ol>
+<li>classify_class_svm</li>
+</ol>
+<p>  功能：通过一个支持向量机为一个特征向量分类。</p>
+<ol>
+<li>clear_all_class_svm</li>
+</ol>
+<p>  功能：清除所有支持向量机。</p>
+<ol>
+<li>clear_class_svm</li>
+</ol>
+<p>  功能：清除一个支持向量机。</p>
+<ol>
+<li>clear_samples_class_svm</li>
+</ol>
+<p>  功能：清除一个支持向量机的训练数据。</p>
+<ol>
+<li>create_class_svm</li>
+</ol>
+<p>  功能：为模式分类创建一个支持向量机。</p>
+<ol>
+<li>get_params_class_svm</li>
+</ol>
+<p>  功能：返回一个支持向量机的参数。</p>
+<ol>
+<li>get_prep_info_class_svm</li>
+</ol>
+<p>  功能：计算一个支持向量机的预处理特征向量的信息内容。</p>
+<ol>
+<li>get_sample_class_svm</li>
+</ol>
+<p>  功能：从一个支持向量机的训练数据返回一个训练样本。</p>
+<ol>
+<li>get_sample_num_class_svm</li>
+</ol>
+<p>   功能：返回存储在一个支持向量机训练数据中的训练样本的数量。</p>
+<ol>
+<li>get_support_vector_class_svm</li>
+</ol>
+<p>   功能：从一个训练过的支持向量机返回一个支持向量的索引。</p>
+<ol>
+<li>get_support_vector_num_class_svm</li>
+</ol>
+<p>   功能：返回一个支持向量机的支持向量的数量。</p>
+<ol>
+<li>read_class_svm</li>
+</ol>
+<p>   功能：从一个文件中读取一个支持向量机。</p>
+<ol>
+<li>read_samples_class_svm</li>
+</ol>
+<p>   功能：从一个文件中读取一个支持向量机的训练数据。</p>
+<ol>
+<li>reduce_class_svm</li>
+</ol>
+<p>   功能：为了更快分类，用一个降低的支持向量机近似一个训练过的支持向量机。</p>
+<p>16. train_class_svm</p>
+<p>   功能：训练一个支持向量机。</p>
+<ol>
+<li>write_class_svm</li>
+</ol>
+<p>   功能：向一个文件中写入一个支持向量机。</p>
+<p>18.write_samples_class_svm</p>
+<p>   功能：向一个文件中写入一个支持向量机的训练数据。</p>
+<p> </p>
+<h1>Chapter 2  Control</h1>
+<p>1.assign</p>
+<p>功能：为一个控制变量分配一个新值。</p>
+<p>2.break</p>
+<p>  功能：终止循环执行。</p>
+<ol>
+<li>comment</li>
+</ol>
+<p>  功能：向程序添加一行注释。</p>
+<ol>
+<li>continue</li>
+</ol>
+<p>  功能：跳过现在的循环执行。</p>
+<ol>
+<li>else</li>
+</ol>
+<p>  功能：条件语句的替换。</p>
+<ol>
+<li>elseif</li>
+</ol>
+<p>  功能：可选择的条件语句。</p>
+<ol>
+<li>endfor</li>
+</ol>
+<p>  功能：for循环的终止。</p>
+<ol>
+<li>endif</li>
+</ol>
+<p>  功能：if命令的终止。</p>
+<ol>
+<li>endwhile</li>
+</ol>
+<p>  功能：while循环的终止。</p>
+<ol>
+<li>exit</li>
+</ol>
+<p>   功能：终止HDevelop。</p>
+<ol>
+<li>for</li>
+</ol>
+<p>   功能：执行一定数量的主体。</p>
+<ol>
+<li>if</li>
+</ol>
+<p>   功能：条件语句。</p>
+<p>13.ifelse</p>
+<p>   功能：有选择的条件语句。</p>
+<ol>
+<li>insert</li>
+</ol>
+<p>   功能：向一个元组分配一个量。</p>
+<p>15.repeat</p>
+<p>   功能：repeat..until循环的开始。</p>
+<ol>
+<li>return</li>
+</ol>
+<p>   功能：终止程序调用。</p>
+<ol>
+<li>stop</li>
+</ol>
+<p>   功能：停止程序执行。</p>
+<p>18.until</p>
+<p>   功能：继续执行主体，只要条件是不真实的。</p>
+<ol>
+<li>while</li>
+</ol>
+<p>   功能：继续执行主体，只要条件是真实的。</p>
+<p> </p>
+<h1>Chapter3  :Develop</h1>
+<p>1.dev_clear_obj</p>
+<p>功能：从HALCON数据库中删除一个图标。</p>
+<ol>
+<li>dev_clear_window</li>
+</ol>
+<p>  功能：清除活动图形窗口。</p>
+<ol>
+<li>dev_close_inspect_ctrl</li>
+</ol>
+<p>  功能：关闭一个控制变量的监视窗口。</p>
+<ol>
+<li>dev_close_window</li>
+</ol>
+<p>  功能：关闭活动图形窗口。</p>
+<ol>
+<li>dev_display</li>
+</ol>
+<p>  功能：在现有图形窗口中显示图像目标。</p>
+<ol>
+<li>dev_error_var</li>
+</ol>
+<p>  功能：定义或者不定义一个错误变量。</p>
+<ol>
+<li>dev_get_preferences</li>
+</ol>
+<p>  功能：通过设计查询HDevelop的参数选择。</p>
+<ol>
+<li>dev_inspect_ctrl</li>
+</ol>
+<p>  功能：打开一个窗口来检查一个控制变量。</p>
+<ol>
+<li>dev_map_par</li>
+</ol>
+<p>  功能：打开一个对话框来指定显示参数。</p>
+<ol>
+<li>dev_map_prog</li>
+</ol>
+<p>   功能：使HDevelop的主窗口可视化。</p>
+<ol>
+<li>dev_map_var</li>
+</ol>
+<p>   功能：在屏幕上绘制可视化窗口。</p>
+<ol>
+<li>dev_open_window</li>
+</ol>
+<p>   功能：打开一个图形窗口。</p>
+<ol>
+<li>dev_set_check</li>
+</ol>
+<p>   功能：指定错误处理。</p>
+<ol>
+<li>dev_set_color</li>
+</ol>
+<p>   功能：设置一个或更多输出颜色。</p>
+<ol>
+<li>dev_set_colored</li>
+</ol>
+<p>   功能：设置混合输出颜色。</p>
+<ol>
+<li>dev_set_draw</li>
+</ol>
+<p>   功能：定义区域填充模式。</p>
+<ol>
+<li>dev_set_line_width</li>
+</ol>
+<p>   功能：定义区域轮廓输出的线宽。</p>
+<ol>
+<li>dev_set_lut</li>
+</ol>
+<p>   功能：设置查询表(lut).</p>
+<ol>
+<li>dev_set_paint</li>
+</ol>
+<p>   功能：定义灰度值输出模式。</p>
+<ol>
+<li>dev_set_part</li>
+</ol>
+<p>   功能：修改显示图像部分。</p>
+<ol>
+<li>dev_set_preferences</li>
+</ol>
+<p>   功能：通过设计设置HDevelop的参数选择。</p>
+<ol>
+<li>dev_set_shape</li>
+</ol>
+<p>   功能：定义区域输出形状。</p>
+<ol>
+<li>dev_set_window</li>
+</ol>
+<p>   功能：激活一个图形窗口。</p>
+<ol>
+<li>dev_set_window_extents</li>
+</ol>
+<p>   功能：改变一个图形窗口的位置和大小。</p>
+<ol>
+<li>dev_unmap_par </li>
+</ol>
+<p>   功能：为图形参数隐藏窗口。</p>
+<ol>
+<li>dev_unmap_prog</li>
+</ol>
+<p>   功能：隐藏主窗口。</p>
+<ol>
+<li>dev_unmap_var</li>
+</ol>
+<p>   功能：隐藏变量窗口。</p>
+<ol>
+<li>dev_update_pc</li>
+</ol>
+<p>   功能：在程序执行中指定PC的行为。</p>
+<ol>
+<li>dev_update_time</li>
+</ol>
+<p>   功能：为操作符打开或关闭切换时间测量。</p>
+<ol>
+<li>dev_update_var</li>
+</ol>
+<p>   功能：在程序执行中指定活动窗口的行为。</p>
+<ol>
+<li>dev_update_window</li>
+</ol>
+<p>   功能：在程序执行中指定输出行为。</p>
+<p> </p>
+<h1>Chapter 4 :File</h1>
+<h2>4.1 Images</h2>
+<ol>
+<li>read_image</li>
+</ol>
+<p>  功能：读取有不同文件格式的图像。</p>
+<ol>
+<li>read_sequence</li>
+</ol>
+<p>  功能：读取图像。</p>
+<ol>
+<li>write_image</li>
+</ol>
+<p>  功能：用图形格式写图像。</p>
+<p> </p>
+<h2>4.2 Misc</h2>
+<ol>
+<li>delete_file</li>
+</ol>
+<p>  功能：删除一个文件。</p>
+<ol>
+<li>file_exists</li>
+</ol>
+<p>  功能：检查文件是否存在。</p>
+<ol>
+<li>list_files</li>
+</ol>
+<p>  功能：列出目录中的所有文件。</p>
+<ol>
+<li>read_world_file</li>
+</ol>
+<p>  功能：从一个ARC/INFO世界文件中读取地理编码。</p>
+<p> </p>
+<h2>4.3 Region</h2>
+<ol>
+<li>read_region</li>
+</ol>
+<p>  功能：读取二值图像或者HALCON区域。</p>
+<ol>
+<li>write_region</li>
+</ol>
+<p>  功能：在文件中写入地域。</p>
+<p> </p>
+<h2>4.4 Text</h2>
+<ol>
+<li>close_all_files</li>
+</ol>
+<p>  功能：关闭所有打开的文件。</p>
+<p>2.close_file</p>
+<p>  功能：关闭一个文本文件。</p>
+<ol>
+<li>fnew_line</li>
+</ol>
+<p>  功能：创建一个换行符。</p>
+<ol>
+<li>fread_char</li>
+</ol>
+<p>  功能：从一个文本文件中读取一个字符。</p>
+<ol>
+<li>fread_line</li>
+</ol>
+<p>  功能：从一个文本文件中读取一行。</p>
+<ol>
+<li>fread_string</li>
+</ol>
+<p>  功能：从一个文本文件中读取字符串。</p>
+<ol>
+<li>fwrite_string</li>
+</ol>
+<p>  功能：向一个文本文件中写入值。</p>
+<ol>
+<li>open_file</li>
+</ol>
+<p>  功能：打开文本文件。</p>
+<p> </p>
+<h2>4.5 Tuple</h2>
+<ol>
+<li>read_tuple</li>
+</ol>
+<p>  功能：从一个文件中读取一个数组。</p>
+<ol>
+<li>write_tuple</li>
+</ol>
+<p>  功能：向一个文件中写入一个数组。</p>
+<h2>4.6 XLD</h2>
+<ol>
+<li>read_contour_xld_arc_info</li>
+</ol>
+<p>  功能：从用ARC/INFO生成格式表示的文件读取XLD轮廓。</p>
+<ol>
+<li>read_contour_xld_dxf</li>
+</ol>
+<p>  功能：从一个DXF文件中读取 XLD轮廓。</p>
+<ol>
+<li>read_polygon_xld_arc_info</li>
+</ol>
+<p>  功能：从用ARC/INFO生成格式表示的文件读取XLD多边形。</p>
+<ol>
+<li>read_polygon_xld_dxf</li>
+</ol>
+<p>  功能：从一个DXF文件中读取 XLD多边形。</p>
+<ol>
+<li>write_contour_xld_arc_info</li>
+</ol>
+<p>  功能：向用ARC/INFO生成格式表示的文件写入XLD轮廓。</p>
+<ol>
+<li>write_contour_xld_dxf</li>
+</ol>
+<p>  功能：向一个DXF格式的文件中写入 XLD轮廓。</p>
+<ol>
+<li>write_polygon_xld_arc_info</li>
+</ol>
+<p>  功能：向用ARC/INFO生成格式表示的文件写入XLD多边形。</p>
+<ol>
+<li>write_polygon_xld_dxf</li>
+</ol>
+<p>  功能：向一个DXF格式的文件中写入 XLD多边形。</p>
+<p> </p>
+<h1>Chapter 5:Filter</h1>
+<h2>5.1 Arithmetic</h2>
+<ol>
+<li>abs_image</li>
+</ol>
+<p>  功能：计算一个图像的绝对值（模数）。</p>
+<ol>
+<li>add_image</li>
+</ol>
+<p>  功能：使两个图像相加。</p>
+<ol>
+<li>div_image</li>
+</ol>
+<p>  功能：使两个图像相除。</p>
+<ol>
+<li>invert_image</li>
+</ol>
+<p>  功能：使一个图像反像。</p>
+<ol>
+<li>max_image</li>
+</ol>
+<p>  功能：按像素计算两个图像的最大值。</p>
+<ol>
+<li>min_image</li>
+</ol>
+<p>  功能：按像素计算两个图像的最大小值。</p>
+<ol>
+<li>mult_image</li>
+</ol>
+<p>  功能：使两个图像相乘。</p>
+<ol>
+<li>scale_image</li>
+</ol>
+<p>  功能：为一个图像的灰度值分级。</p>
+<ol>
+<li>sqrt_image</li>
+</ol>
+<p>  功能：计算一个图像的平方根。</p>
+<ol>
+<li>sub_image</li>
+</ol>
+<p>   功能：使两个图像相减。</p>
+<p> </p>
+<h2>5.2 Bit</h2>
+<ol>
+<li>bit_and</li>
+</ol>
+<p>  功能：输入图像的所有像素的逐位与。</p>
+<ol>
+<li>bit_lshift</li>
+</ol>
+<p>  功能：图像的所有像素的左移。</p>
+<ol>
+<li>bit_mask</li>
+</ol>
+<p>  功能：使用位掩码的每个像素的逻辑与。</p>
+<ol>
+<li>bit_not</li>
+</ol>
+<p>  功能：对像素的所有位求补。</p>
+<ol>
+<li>bit_or</li>
+</ol>
+<p>  功能：输入图像的所有像素的逐位或。</p>
+<ol>
+<li>bit_rshift</li>
+</ol>
+<p>  功能：图像的所有像素的右移。</p>
+<ol>
+<li>bit_slice</li>
+</ol>
+<p>  功能：从像素中提取一位。</p>
+<ol>
+<li>bit_xor</li>
+</ol>
+<p>  功能：输入图像的所有像素的逐位异或。</p>
+<p> </p>
+<h2>5.3 Color</h2>
+<ol>
+<li>cfa_to_rgb</li>
+</ol>
+<p>  功能：把一个单通道颜色滤波阵列图像变成RGB图像。</p>
+<ol>
+<li>gen_principal_comp_trans</li>
+</ol>
+<p>  功能：计算多通道图像的主要部分分析的转换矩阵。</p>
+<ol>
+<li>linear_trans_color</li>
+</ol>
+<p>  功能：计算多通道图像的颜色值的一个仿射转换。</p>
+<ol>
+<li>principal_comp</li>
+</ol>
+<p>  功能：计算多通道图像的主要部分。</p>
+<ol>
+<li>rgb1_to_gray</li>
+</ol>
+<p>  功能：把一个RGB图像转变成一个灰度图像。</p>
+<ol>
+<li>rgb3_to_gray</li>
+</ol>
+<p>功能：把一个RGB图像转变成一个灰度图像。</p>
+<ol>
+<li>trans_from_rgb</li>
+</ol>
+<p>  功能：把一个图像从RGB颜色空间转变成任意颜色空间。</p>
+<ol>
+<li>trans_to_rgb</li>
+</ol>
+<p>  功能：把一个图像从任意颜色空间转变成RGB颜色空间。</p>
+<p> </p>
+<h2>5.4 Edges</h2>
+<p>1.close_edges</p>
+<p>  功能：使用边缘幅值图像消除边缘缺陷。</p>
+<ol>
+<li>close_edges_length</li>
+</ol>
+<p>  功能：使用边缘幅值图像消除边缘缺陷。</p>
+<ol>
+<li>derivate_gauss</li>
+</ol>
+<p>  功能：用高斯派生物对一个图像卷积。</p>
+<ol>
+<li>diff_of_gauss</li>
+</ol>
+<p>  功能：近似高斯的拉普拉斯算子。</p>
+<ol>
+<li>edges_color</li>
+</ol>
+<p>  功能：使用Canny、Deriche或者 Shen 滤波器提取颜色边缘。</p>
+<p>6. edges_color_sub_pix</p>
+<p>  功能：使用Canny、Deriche或者 Shen 滤波器提取子像素精确颜色边缘。</p>
+<p>7. edges_image</p>
+<p>  功能：使用Deriche、 Lanser、Shen或者 Canny滤波器提取边缘。</p>
+<p>8. edges_sub_pix</p>
+<p>  功能：使用Deriche、 Lanser、Shen或者 Canny滤波器提取子像素精确边缘。</p>
+<ol>
+<li>frei_amp</li>
+</ol>
+<p>  功能：使用Frei-Chen算子检测边缘（幅值）。</p>
+<ol>
+<li>frei_dir</li>
+</ol>
+<p>   功能：使用Frei-Chen算子检测边缘（幅值和相位）。</p>
+<ol>
+<li>highpass_image</li>
+</ol>
+<p>   功能：从一个图像提取高频成分。</p>
+<ol>
+<li>info_edges</li>
+</ol>
+<p>   功能：在edges_image估计滤波器的宽度。</p>
+<ol>
+<li>kirsch_amp</li>
+</ol>
+<p>   功能：使用Kirsch算子检测边缘（幅值）。</p>
+<ol>
+<li>kirsch_dir</li>
+</ol>
+<p>   功能：使用Kirsch算子检测边缘（幅值和相位）。</p>
+<ol>
+<li>laplace</li>
+</ol>
+<p>   功能：使用有限差计算拉普拉斯算子。</p>
+<ol>
+<li>laplace_of_gauss</li>
+</ol>
+<p>   功能：高斯的拉普拉斯算子。</p>
+<ol>
+<li>prewitt_amp</li>
+</ol>
+<p>   功能：使用Prewitt算子检测边缘（幅值）。</p>
+<ol>
+<li>prewitt_dir</li>
+</ol>
+<p>   功能：使用Prewitt算子检测边缘（幅值和相位）。</p>
+<ol>
+<li>roberts</li>
+</ol>
+<p>   功能：使用Roberts滤波器检测边缘。</p>
+<ol>
+<li>robinson_amp</li>
+</ol>
+<p>   功能：使用Robinson算子检测边缘（幅值）。</p>
+<ol>
+<li>robinson_dir</li>
+</ol>
+<p>   功能：使用Robinson算子检测边缘（幅值和相位）。</p>
+<ol>
+<li>sobel_amp</li>
+</ol>
+<p>   功能：使用Sobel算子检测边缘（幅值）。</p>
+<ol>
+<li>sobel_dir</li>
+</ol>
+<p>   功能：使用Sobel算子检测边缘（幅值和相位）。</p>
+<p> </p>
+<h2>5.5 Enhancement</h2>
+<p>1. adjust_mosaic_images</p>
+<p>  功能：全景图像的自动颜色更改。</p>
+<p>2. coherence_enhancing_diff</p>
+<p>  功能：执行一个图像的一个一致性增强扩散。</p>
+<ol>
+<li>emphasize</li>
+</ol>
+<p>  功能：增强图像对比度。</p>
+<ol>
+<li>equ_histo_image</li>
+</ol>
+<p>  功能：图像的柱状图线性化。</p>
+<ol>
+<li>illuminate</li>
+</ol>
+<p>  功能：增强图像对比度。</p>
+<ol>
+<li>mean_curvature_flow</li>
+</ol>
+<p>  功能：把平均曲率应用在一个图像中。</p>
+<ol>
+<li>scale_image_max</li>
+</ol>
+<p>  功能：最大灰度值在0到255范围内。</p>
+<p>8. shock_filter</p>
+<p>  功能：把一个冲击滤波器应用到一个图像中。</p>
+<p> </p>
+<h2>5.6 FFT</h2>
+<ol>
+<li>convol_fft</li>
+</ol>
+<p>  功能：用在频域内的滤波器使一个图像卷积。</p>
+<ol>
+<li>convol_gabor</li>
+</ol>
+<p>  功能：用在频域内的一个Gabor滤波器使一个图像卷积。</p>
+<p>3. correlation_fft</p>
+<p>  功能：计算在频域内的两个图像的相互关系。</p>
+<ol>
+<li>energy_gabor</li>
+</ol>
+<p>  功能：计算一个两通道图像的能量。</p>
+<ol>
+<li>fft_generic</li>
+</ol>
+<p>  功能：计算一个图像的快速傅里叶变换。</p>
+<p>6. fft_image</p>
+<p>  功能：计算一个图像的快速傅里叶变换。</p>
+<ol>
+<li>fft_image_inv</li>
+</ol>
+<p>  功能：计算一个图像的快速傅里叶逆变换。</p>
+<ol>
+<li>gen_bandfilter</li>
+</ol>
+<p>  功能：生成一个理想带通滤波器。</p>
+<ol>
+<li>gen_bandpass</li>
+</ol>
+<p>  功能：生成一个理想带通滤波器。</p>
+<ol>
+<li>gen_derivative_filter</li>
+</ol>
+<p>   功能：在频域内生成一个倒数滤波器。</p>
+<ol>
+<li>gen_filter_mask</li>
+</ol>
+<p>   功能：在空域内存储一个滤波器掩码作为实时图像。</p>
+<ol>
+<li>gen_gabor</li>
+</ol>
+<p>   功能：生成一个Gabor滤波器。</p>
+<ol>
+<li>gen_gauss_filter</li>
+</ol>
+<p>   功能：在频域内生成一个高斯滤波器。</p>
+<ol>
+<li>gen_highpass</li>
+</ol>
+<p>   功能：生成一个理想高通滤波器。</p>
+<ol>
+<li>gen_lowpass</li>
+</ol>
+<p>   功能：生成一个理想低通滤波器。</p>
+<ol>
+<li>gen_sin_bandpass</li>
+</ol>
+<p>   功能：用正弦形状生成一个带通滤波器。</p>
+<ol>
+<li>gen_std_bandpass</li>
+</ol>
+<p>   功能：用高斯或者正弦形状生成一个带通滤波器。</p>
+<p>18. optimize_fft_speed</p>
+<p>   功能：使FFT的运行时间最优化。</p>
+<p>19. optimize_rft_speed</p>
+<p>   功能：使实值的FFT的运行时间最优化。</p>
+<p>20. phase_deg</p>
+<p>   功能：返回用角度表示的一个复杂图像的相位。</p>
+<p>21. phase_rad</p>
+<p>   功能：返回用弧度表示的一个复杂图像的相位。</p>
+<p>22. power_byte</p>
+<p>   功能：返回一个复杂图像的功率谱。</p>
+<ol>
+<li>power_ln</li>
+</ol>
+<p>功能：返回一个复杂图像的功率谱。</p>
+<ol>
+<li>power_real</li>
+</ol>
+<p>功能：返回一个复杂图像的功率谱。</p>
+<ol>
+<li>read_fft_optimization_data</li>
+</ol>
+<p>   功能：从一个文件中下载FFT速度最优数据。</p>
+<ol>
+<li>rft_generic</li>
+</ol>
+<p>   功能：计算一个图像的实值快速傅里叶变换。</p>
+<ol>
+<li>write_fft_optimization_data</li>
+</ol>
+<p>   功能：把FFT速度最优数据存储在一个文件中。</p>
+<p> </p>
+<h2>5.7 Geometric-Transformations</h2>
+<ol>
+<li>affine_trans_image</li>
+</ol>
+<p>功能：把任意仿射2D变换应用在图像中。</p>
+<ol>
+<li>affine_trans_image_size</li>
+</ol>
+<p>  功能：把任意仿射2D变换应用在图像中并且指定输出图像大小。</p>
+<ol>
+<li>gen_bundle_adjusted_mosaic</li>
+</ol>
+<p>  功能：把多重图像合成一个马赛克图像。</p>
+<ol>
+<li>gen_cube_map_mosaic</li>
+</ol>
+<p>  功能：创建球形马赛克的6方位图像。</p>
+<ol>
+<li>gen_projective_mosaic</li>
+</ol>
+<p>  功能：把多重图像合成一个马赛克图像。</p>
+<ol>
+<li>gen_spherical_mosaic</li>
+</ol>
+<p>  功能：创建一个球形马赛克图像。</p>
+<ol>
+<li>map_image</li>
+</ol>
+<p>  功能：把一个一般变换应用于一个图像中。</p>
+<ol>
+<li>mirror_image</li>
+</ol>
+<p>  功能：镜像一个图像。</p>
+<ol>
+<li>polar_trans_image</li>
+</ol>
+<p>  功能：把一个图像转换成极坐标。</p>
+<ol>
+<li>polar_trans_image_ext</li>
+</ol>
+<p>   功能：把一个图像中的环形弧转变成极坐标。</p>
+<ol>
+<li>polar_trans_image_inv</li>
+</ol>
+<p>   功能：把极坐标中的图像转变成直角坐标。</p>
+<ol>
+<li>projective_trans_image</li>
+</ol>
+<p>   功能：把投影变换应用于一个图像中。</p>
+<ol>
+<li>projective_trans_image_size</li>
+</ol>
+<p>   功能：把投影变换应用于一个图像中并且指定输出图像的大小。</p>
+<ol>
+<li>rotate_image</li>
+</ol>
+<p>   功能：以一个图像的中心为圆心旋转。</p>
+<ol>
+<li>zoom_image_factor</li>
+</ol>
+<p>   功能：把一个图像缩放规定因子倍。</p>
+<ol>
+<li>zoom_image_size</li>
+</ol>
+<p>   功能：把一个图像缩放到规定大小。</p>
+<p> </p>
+<h2>5.8 Inpainting</h2>
+<ol>
+<li>harmonic_interpolation</li>
+</ol>
+<p>  功能：对一个图像区域执行谐波插值。</p>
+<ol>
+<li>inpainting_aniso</li>
+</ol>
+<p>  功能：通过各向异性扩散执行图像修复。</p>
+<ol>
+<li>inpainting_ced</li>
+</ol>
+<p>  功能：通过一致性增强扩散执行图像修复。</p>
+<ol>
+<li>inpainting_ct</li>
+</ol>
+<p>  功能：通过连贯传送执行图像修复。</p>
+<ol>
+<li>inpainting_mcf</li>
+</ol>
+<p>  功能：通过水平线平滑执行图像修复。</p>
+<ol>
+<li>inpainting_texture</li>
+</ol>
+<p>  功能：通过结构传导执行图像修复。</p>
+<p> </p>
+<h2>5.9 Lines</h2>
+<ol>
+<li>bandpass_image</li>
+</ol>
+<p>  功能：使用带通滤波器提取边缘。</p>
+<ol>
+<li>lines_color</li>
+</ol>
+<p>  功能：检测色线和它们的宽度。</p>
+<ol>
+<li>lines_facet</li>
+</ol>
+<p>  功能：使用面模型检测线。</p>
+<ol>
+<li>lines_gauss</li>
+</ol>
+<p>  功能：检测线和它们的宽度。</p>
+<p> </p>
+<h2>5.10 Match</h2>
+<ol>
+<li>exhaustive_match</li>
+</ol>
+<p>  功能：模板和图像的匹配。</p>
+<ol>
+<li>exhaustive_match_mg</li>
+</ol>
+<p>  功能：在一个分辨率塔式结构中匹配模板和图像。</p>
+<ol>
+<li>gen_gauss_pyramid</li>
+</ol>
+<p>  功能：计算一个高斯金字塔。</p>
+<ol>
+<li>monotony</li>
+</ol>
+<p>  功能：计算单一操作。</p>
+<p> </p>
+<h2>5.11 Misc</h2>
+<ol>
+<li>convol_image</li>
+</ol>
+<p>  功能：用一个任意滤波掩码对一个图像卷积。</p>
+<ol>
+<li>expand_domain_gray</li>
+</ol>
+<p>  功能：扩大图像区域并且在扩大的区域中设置灰度值。</p>
+<ol>
+<li>gray_inside</li>
+</ol>
+<p>  功能：对图像中的每一点在图像边界的任意路径计算尽可能低的灰度值。</p>
+<ol>
+<li>gray_skeleton</li>
+</ol>
+<p>  功能：灰度值图像的细化。</p>
+<ol>
+<li>lut_trans</li>
+</ol>
+<p>  功能：使用灰度值查询表转换一个图像。</p>
+<ol>
+<li>symmetry</li>
+</ol>
+<p>  功能：沿一行的灰度值的对称性。</p>
+<ol>
+<li>topographic_sketch</li>
+</ol>
+<p>  功能：计算一个图像的地理原始草图。</p>
+<p> </p>
+<h2>5.12 Noise</h2>
+<ol>
+<li>add_noise_distribution</li>
+</ol>
+<p>  功能：向一个图像添加噪声。</p>
+<ol>
+<li>add_noise_white</li>
+</ol>
+<p>  功能：向一个图像添加噪声。</p>
+<ol>
+<li>gauss_distribution</li>
+</ol>
+<p>  功能：产生一个高斯噪声分布。</p>
+<ol>
+<li>noise_distribution_mean</li>
+</ol>
+<p>  功能：测定一个图像的噪声分布。</p>
+<ol>
+<li>sp_distribution</li>
+</ol>
+<p>  功能：产生一个椒盐噪声分布。</p>
+<p> </p>
+<h2>5.13 Optical-Flow</h2>
+<ol>
+<li>optical_flow_mg</li>
+</ol>
+<p>  功能：计算两个图像之间的光流。</p>
+<ol>
+<li>unwarp_image_vector_field</li>
+</ol>
+<p>  功能：使用一个矢量场来展开一个图像。</p>
+<ol>
+<li>vector_field_length</li>
+</ol>
+<p>  功能：计算一个矢量场的矢量长度。</p>
+<p> </p>
+<h2>5.14 Points</h2>
+<ol>
+<li>corner_response</li>
+</ol>
+<p>  功能：在图像中寻找角点。</p>
+<ol>
+<li>dots_image</li>
+</ol>
+<p>  功能：在一个图像中增强圆形点。</p>
+<ol>
+<li>points_foerstner</li>
+</ol>
+<p>  功能：使用Förstner算子检测关注点。</p>
+<ol>
+<li>points_harris</li>
+</ol>
+<p>  功能：使用Harris算子检测关注点。</p>
+<ol>
+<li>points_sojka</li>
+</ol>
+<p>  功能：使用Sojka算子找出角点。</p>
+<p> </p>
+<h2>5.15 Smoothing</h2>
+<ol>
+<li>anisotrope_diff</li>
+</ol>
+<p>  功能：通过保边各向异性扩散平滑一个图像。</p>
+<ol>
+<li>anisotropic_diffusion</li>
+</ol>
+<p>  功能：对一个图像执行各向异性扩散。</p>
+<p>3. binomial_filter</p>
+<p>  功能：使用binomial滤波器平滑一个图像。</p>
+<p>4. eliminate_min_max</p>
+<p>  功能：在空域内平滑一个图像来抑制噪声。</p>
+<ol>
+<li>eliminate_sp</li>
+</ol>
+<p>  功能：用中值替代阀值外的值。</p>
+<ol>
+<li>fill_interlace</li>
+</ol>
+<p>  功能：插补两个半个视频图像。</p>
+<ol>
+<li>gauss_image</li>
+</ol>
+<p>  功能：使用离散高斯函数平滑图像。</p>
+<ol>
+<li>info_smooth</li>
+</ol>
+<p>   功能：平滑滤波器smooth_image的信息。</p>
+<p>11. isotropic_diffusion</p>
+<p>   功能：对一个图像执行各向同性扩散。</p>
+<ol>
+<li>mean_image</li>
+</ol>
+<p>   功能：通过平均平滑一个图像。</p>
+<ol>
+<li>mean_n</li>
+</ol>
+<p>   功能：几个通道的平均灰度值。</p>
+<ol>
+<li>mean_sp</li>
+</ol>
+<p>   功能：抑制椒盐噪声。</p>
+<ol>
+<li>median_image</li>
+</ol>
+<p>   功能：使用不同级别掩码的中值滤波。</p>
+<ol>
+<li>median_separate</li>
+</ol>
+<p>   功能：使用矩形掩码的离散中值滤波。</p>
+<ol>
+<li>median_weighted</li>
+</ol>
+<p>   功能：使用不同级别掩码的加权中值滤波。</p>
+<p>18. midrange_image</p>
+<p>   功能：计算掩码内最大和最小值的平均。</p>
+<ol>
+<li>rank_image</li>
+</ol>
+<p>   功能：通过一个任意等级掩码平滑一个图像。</p>
+<ol>
+<li>sigma_image</li>
+</ol>
+<p>   功能：使用sigma滤波器的非线性平滑。</p>
+<p>21. smooth_image</p>
+<p>   功能：使用递归滤波器平滑一个图像。</p>
+<ol>
+<li>trimmed_mean</li>
+</ol>
+<p>   功能：使用任意等级掩码平滑一个图像。</p>
+<p> </p>
+<h2>5.16 Texture</h2>
+<ol>
+<li>deviation_image</li>
+</ol>
+<p>  功能：计算矩形窗口内的灰度值的标准偏差。</p>
+<ol>
+<li>entropy_image</li>
+</ol>
+<p>  功能：计算矩形窗口内的灰度值的熵。</p>
+<ol>
+<li>texture_laws</li>
+</ol>
+<p>  功能：使用一个Laws文本滤波器过滤一个图像。</p>
+<p> </p>
+<h2>5.17 Wiener-Filter</h2>
+<ol>
+<li>gen_psf_defocus</li>
+</ol>
+<p>  功能：产生一个均匀散焦模糊的脉冲相应。</p>
+<ol>
+<li>gen_psf_motion</li>
+</ol>
+<p>  功能：产生一个（线性）运动模糊的脉冲相应。</p>
+<ol>
+<li>simulate_defocus</li>
+</ol>
+<p>  功能：对一个图像的均匀散焦模糊进行仿真。</p>
+<ol>
+<li>simulate_motion</li>
+</ol>
+<p>  功能：（线性）运动模糊的仿真。</p>
+<ol>
+<li>wiener_filter</li>
+</ol>
+<p>  功能：通过Wiener滤波进行图像恢复。</p>
+<ol>
+<li>wiener_filter_ni</li>
+</ol>
+<p>  功能：通过Wiener滤波进行图像恢复。</p>
+<p> </p>
+<h1>Chapter6  :Graphics</h1>
+<h2>6.1 Drawing</h2>
+<ol>
+<li>drag_region1</li>
+</ol>
+<p>  功能：一个区域的交互运动。</p>
+<ol>
+<li>drag_region2</li>
+</ol>
+<p>  功能：一个带有定点规格区域的交互运动。</p>
+<ol>
+<li>drag_region3</li>
+</ol>
+<p>  功能：一个带有限制位置区域的交互运动。</p>
+<ol>
+<li>draw_circle</li>
+</ol>
+<p>  功能：一个圆的交互绘图。</p>
+<ol>
+<li>draw_circle_mod</li>
+</ol>
+<p>  功能：一个圆的交互绘图。</p>
+<ol>
+<li>draw_ellipse</li>
+</ol>
+<p>  功能：一个椭圆的交互绘图。</p>
+<ol>
+<li>draw_ellipse_mod</li>
+</ol>
+<p>  功能：一个椭圆的交互绘图。</p>
+<ol>
+<li>draw_line</li>
+</ol>
+<p>  功能：画一根线。</p>
+<ol>
+<li>draw_line_mod</li>
+</ol>
+<p>  功能：画一根线。</p>
+<ol>
+<li>draw_nurbs</li>
+</ol>
+<p>功能：一个NURBS曲线的交互绘图。</p>
+<ol>
+<li>draw_nurbs_interp</li>
+</ol>
+<p>   功能：使用插值的一个NURBS曲线的交互绘图。</p>
+<ol>
+<li>draw_nurbs_interp_mod</li>
+</ol>
+<p>   功能：使用插值的一个NURBS曲线的交互修正。</p>
+<ol>
+<li>draw_nurbs_mod</li>
+</ol>
+<p>   功能：一个NURBS曲线的交互修正。</p>
+<ol>
+<li>draw_point</li>
+</ol>
+<p>   功能：画一个点。</p>
+<ol>
+<li>draw_point_mod</li>
+</ol>
+<p>   功能：画一个点。</p>
+<p>16.draw_polygon</p>
+<p>   功能：一个多边形的交互绘图。</p>
+<ol>
+<li>draw_rectangle1</li>
+</ol>
+<p>   功能：画一个与坐标轴平行的矩形。</p>
+<ol>
+<li>draw_rectangle1_mod</li>
+</ol>
+<p>   功能：画一个与坐标轴平行的矩形。</p>
+<ol>
+<li>draw_rectangle2</li>
+</ol>
+<p>   功能：任意定向矩形的交互绘图。</p>
+<ol>
+<li>draw_rectangle2_mod</li>
+</ol>
+<p>   功能：任意定向矩形的交互绘图。</p>
+<ol>
+<li>draw_region</li>
+</ol>
+<p>   功能：一个闭区域的交互绘图。</p>
+<ol>
+<li>draw_xld</li>
+</ol>
+<p>   功能：一个轮廓的交互绘图。</p>
+<ol>
+<li>draw_xld_mod</li>
+</ol>
+<p>   功能：一个轮廓的交互修正。</p>
+<p> </p>
+<h2>6.2 Gnuplot</h2>
+<ol>
+<li>gnuplot_close</li>
+</ol>
+<p>  功能：关闭所有打开的gnuplot文件或者终止一个活动的gnuplot子流程。</p>
+<ol>
+<li>gnuplot_open_file</li>
+</ol>
+<p>  功能：为图像和控制量的可视化打开一个gnuplot文件。</p>
+<ol>
+<li>gnuplot_open_pipe</li>
+</ol>
+<p>  功能：为图像和控制量的可视化打开一个通道的gnuplot流程。</p>
+<ol>
+<li>gnuplot_plot_ctrl</li>
+</ol>
+<p>  功能：使用gnuplot显示控制量。</p>
+<ol>
+<li>gnuplot_plot_funct_1d</li>
+</ol>
+<p>  功能：使用gnuplot显示控制量的功能。</p>
+<ol>
+<li>gnuplot_plot_image</li>
+</ol>
+<p>  功能：使用gnuplot使一个图像可视化。</p>
+<p> </p>
+<h2>6.3 LUT</h2>
+<ol>
+<li>disp_lut</li>
+</ol>
+<p>  功能：查询表的图解。</p>
+<ol>
+<li>draw_lut</li>
+</ol>
+<p>  功能：交互利用查询表。</p>
+<p>3. get_fixed_lut</p>
+<p>  功能：为实际彩色图像获取固定查询表。</p>
+<ol>
+<li>get_lut</li>
+</ol>
+<p>  功能：获取现在的查询表。</p>
+<ol>
+<li>get_lut_style</li>
+</ol>
+<p>  功能：获取查询表的修正参数。</p>
+<ol>
+<li>query_lut</li>
+</ol>
+<p>  功能：查询所有可得到的查询表。</p>
+<ol>
+<li>set_fixed_lut</li>
+</ol>
+<p>  功能：为实际彩色图像固定查询表。</p>
+<ol>
+<li>set_lut</li>
+</ol>
+<p>  功能：设置查询表。</p>
+<ol>
+<li>set_lut_style</li>
+</ol>
+<p>  功能：改变查询表。</p>
+<ol>
+<li>write_lut</li>
+</ol>
+<p>  功能：把查询表作为文件写入。</p>
+<p> </p>
+<h2>6.4 Mouse</h2>
+<ol>
+<li>get_mbutton</li>
+</ol>
+<p>  功能：等待直到一个鼠标键被按下。</p>
+<p>2. get_mposition</p>
+<p> 功能：查询鼠标位置。</p>
+<ol>
+<li>get_mshape</li>
+</ol>
+<p>  功能：查询现在鼠标指针形状。</p>
+<p>4. query_mshape</p>
+<p>  功能：查询所有可得到的鼠标指针形状。</p>
+<ol>
+<li>set_mshape</li>
+</ol>
+<p>  功能：设置现在鼠标指针形状。</p>
+<p> </p>
+<h2>6.5 Output</h2>
+<ol>
+<li>disp_arc</li>
+</ol>
+<p>  功能：在一个窗口中显示圆形弧。</p>
+<ol>
+<li>disp_arrow</li>
+</ol>
+<p>  功能：在一个窗口中显示箭头。</p>
+<ol>
+<li>disp_channel</li>
+</ol>
+<p>  功能：用几个通道显示图像。</p>
+<p>4. disp_circle</p>
+<p>  功能：在一个窗口中显示圆。</p>
+<ol>
+<li>disp_color</li>
+</ol>
+<p>  功能：显示一个彩色（RGB）图像。</p>
+<ol>
+<li>disp_cross</li>
+</ol>
+<p>  功能：在一个窗口中显示交叉。</p>
+<ol>
+<li>disp_distribution</li>
+</ol>
+<p>  功能：显示一个噪声分布。</p>
+<ol>
+<li>disp_ellipse</li>
+</ol>
+<p>  功能：显示椭圆。</p>
+<ol>
+<li>disp_image</li>
+</ol>
+<p>  功能：显示灰度值图像。</p>
+<ol>
+<li>disp_line</li>
+</ol>
+<p>   功能：在窗口中画一条线。</p>
+<ol>
+<li>disp_obj</li>
+</ol>
+<p>   功能：显示图像目标（图像，区域，XLD）。</p>
+<p>12. disp_polygon</p>
+<p>   功能：显示一个多叉线。</p>
+<ol>
+<li>disp_rectangle1</li>
+</ol>
+<p>   功能：显示和坐标轴对齐的矩形。</p>
+<ol>
+<li>disp_rectangle2</li>
+</ol>
+<p>   功能：显示任意方向的矩形。</p>
+<ol>
+<li>disp_region</li>
+</ol>
+<p>   功能：在一个窗口中显示区域。</p>
+<ol>
+<li>disp_xld</li>
+</ol>
+<p>   功能：显示一个XLD物体。</p>
+<p> </p>
+<h2>6.6 Parameters</h2>
+<ol>
+<li>get_comprise</li>
+</ol>
+<p>  功能：获取一个图像矩阵的输出处理。</p>
+<ol>
+<li>get_draw</li>
+</ol>
+<p>  功能：获取现在区域填充模式。</p>
+<ol>
+<li>get_fix</li>
+</ol>
+<p>  功能：获取现在查询表的固定模式。</p>
+<ol>
+<li>get_hsi</li>
+</ol>
+<p>  功能：获取现在颜色的HSI编码。</p>
+<ol>
+<li>get_icon</li>
+</ol>
+<p>  功能：查询区域输出的图标。</p>
+<p>6. get_insert</p>
+<p>  功能：获取现在显示模式。</p>
+<ol>
+<li>get_line_approx</li>
+</ol>
+<p>  功能：获取轮廓显示的现在近似误差。</p>
+<ol>
+<li>get_line_style</li>
+</ol>
+<p>  功能：获取轮廓的现在图解模式。</p>
+<ol>
+<li>get_line_width</li>
+</ol>
+<p>  功能：获取轮廓显示的现在线宽。</p>
+<ol>
+<li>get_paint</li>
+</ol>
+<p>   功能：获取灰度值的现在显示模式。</p>
+<ol>
+<li>get_part</li>
+</ol>
+<p>   功能：获取图像部分。</p>
+<ol>
+<li>get_part_style</li>
+</ol>
+<p>   功能：获取灰度值显示的现在插值模式。</p>
+<ol>
+<li>get_pixel</li>
+</ol>
+<p>   功能：获取查询表索引的现在颜色。</p>
+<ol>
+<li>get_rgb</li>
+</ol>
+<p>   功能：获取RGB编码中的现在颜色。</p>
+<ol>
+<li>get_shape</li>
+</ol>
+<p>   功能：获取现在区域输出形状。</p>
+<ol>
+<li>query_all_colors</li>
+</ol>
+<p>   功能：查询所有颜色名称。</p>
+<ol>
+<li>query_color</li>
+</ol>
+<p>   功能：查询窗口中显示的所有颜色名称。</p>
+<ol>
+<li>query_colored</li>
+</ol>
+<p>   功能：查询颜色输出的颜色数目。</p>
+<ol>
+<li>query_gray</li>
+</ol>
+<p>   功能：查询显示的灰度值。</p>
+<ol>
+<li>query_insert</li>
+</ol>
+<p>   功能：查询可能的图解模式。</p>
+<ol>
+<li>query_line_width</li>
+</ol>
+<p>   功能：查询可能的线宽。</p>
+<ol>
+<li>query_paint</li>
+</ol>
+<p>   功能：查询灰度值显示模式。</p>
+<ol>
+<li>query_shape</li>
+</ol>
+<p>   功能：查询区域显示模式。</p>
+<ol>
+<li>set_color</li>
+</ol>
+<p>   功能：设置输出颜色。</p>
+<ol>
+<li>set_colored</li>
+</ol>
+<p>   功能：设置多输出颜色。</p>
+<ol>
+<li>set_comprise</li>
+</ol>
+<p>   功能：定义图像矩阵输出剪辑。</p>
+<ol>
+<li>set_draw</li>
+</ol>
+<p>   功能：定义区域填充模式。</p>
+<ol>
+<li>set_fix</li>
+</ol>
+<p>   功能：设置固定的查询表。</p>
+<ol>
+<li>set_gray</li>
+</ol>
+<p>   功能：定义区域输出的灰度值。</p>
+<ol>
+<li>set_hsi</li>
+</ol>
+<p>   功能：定义输出颜色（HSI编码）。</p>
+<ol>
+<li>set_icon</li>
+</ol>
+<p>   功能：区域输出的图标定义。</p>
+<ol>
+<li>set_insert</li>
+</ol>
+<p>   功能：定义图像输出功能。</p>
+<ol>
+<li>set_line_approx</li>
+</ol>
+<p>   功能：定义输出显示的近似误差。</p>
+<ol>
+<li>set_line_style</li>
+</ol>
+<p>   功能：定义一个轮廓输出模式。</p>
+<ol>
+<li>set_line_width</li>
+</ol>
+<p>   功能：定义区域轮廓输出的线宽。</p>
+<ol>
+<li>set_paint</li>
+</ol>
+<p>   功能：定义灰度值输出模式。</p>
+<ol>
+<li>set_part</li>
+</ol>
+<p>   功能：修正显示图像部分。</p>
+<ol>
+<li>set_part_style</li>
+</ol>
+<p>   功能：为灰度值输出定义一个插值方法。</p>
+<ol>
+<li>set_pixel</li>
+</ol>
+<p>   功能：定义一个颜色查询表索引。</p>
+<ol>
+<li>set_rgb</li>
+</ol>
+<p>   功能：通过RGB值设置颜色定义。</p>
+<ol>
+<li>set_shape</li>
+</ol>
+<p>   功能：定义区域输出轮廓。</p>
+<p> </p>
+<h2>6.7 Text</h2>
+<ol>
+<li>get_font</li>
+</ol>
+<p>  功能：获取现在字体。</p>
+<ol>
+<li>get_string_extents</li>
+</ol>
+<p>  功能：获取一个字符串的空间大小。</p>
+<ol>
+<li>get_tposition</li>
+</ol>
+<p>  功能：获取光标位置。</p>
+<ol>
+<li>get_tshape</li>
+</ol>
+<p>  功能：获取文本光标的形状。</p>
+<ol>
+<li>new_line</li>
+</ol>
+<p>  功能：设置下一行的开始文本光标的位置。</p>
+<ol>
+<li>query_font</li>
+</ol>
+<p>  功能：查询可得到的字体。</p>
+<ol>
+<li>query_tshape</li>
+</ol>
+<p>  功能：查询文本光标的所有可得到的形状。</p>
+<ol>
+<li>read_char</li>
+</ol>
+<p>  功能：从一个文本窗口读取一个字符。</p>
+<ol>
+<li>read_string</li>
+</ol>
+<p>  功能：从一个文本窗口读取一个字符串。</p>
+<ol>
+<li>set_font</li>
+</ol>
+<p>   功能：设置文本输出的字体。</p>
+<ol>
+<li>set_tposition</li>
+</ol>
+<p>   功能：设置文本光标的位置。</p>
+<ol>
+<li>set_tshape</li>
+</ol>
+<p>   功能：设置文本光标的形状。</p>
+<ol>
+<li>write_string</li>
+</ol>
+<p>  功能：在一个窗口中打印文本。</p>
+<p> </p>
+<h2>6.8 Window</h2>
+<ol>
+<li>clear_rectangle</li>
+</ol>
+<p>  功能：在输出窗口中删除一个矩形。</p>
+<ol>
+<li>clear_window</li>
+</ol>
+<p>  功能：删除一个输出窗口。</p>
+<ol>
+<li>close_window</li>
+</ol>
+<p>  功能：关闭一个输出窗口。</p>
+<ol>
+<li>copy_rectangle</li>
+</ol>
+<p>  功能：在输出窗口间复制矩形内所有像素。</p>
+<ol>
+<li>dump_window</li>
+</ol>
+<p>  功能：把窗口内容写入一个文件。</p>
+<ol>
+<li>dump_window_image</li>
+</ol>
+<p>  功能：在一个图像目标中写窗口内容。</p>
+<ol>
+<li>get_os_window_handle</li>
+</ol>
+<p>  功能：获取操作系统图像处理。</p>
+<ol>
+<li>get_window_attr</li>
+</ol>
+<p>  功能：获取窗口特征。</p>
+<ol>
+<li>get_window_extents</li>
+</ol>
+<p>  功能：一个窗口大小和位置的信息。</p>
+<ol>
+<li>get_window_pointer3</li>
+</ol>
+<p>   功能：一个窗口像素数据的通道。</p>
+<ol>
+<li>get_window_type</li>
+</ol>
+<p>   功能：获取窗口类型。</p>
+<ol>
+<li>move_rectangle</li>
+</ol>
+<p>   功能：在一个输出窗口内部复制。</p>
+<ol>
+<li>new_extern_window</li>
+</ol>
+<p>   功能：在Windows NT下创建一个虚拟图形窗口。</p>
+<ol>
+<li>open_textwindow</li>
+</ol>
+<p>   功能：打开一个文本窗口。</p>
+<ol>
+<li>open_window</li>
+</ol>
+<p>   功能：打开一个图形窗口。</p>
+<ol>
+<li>query_window_type</li>
+</ol>
+<p>   功能：查询所有可得到的窗口类型。</p>
+<ol>
+<li>set_window_attr</li>
+</ol>
+<p>   功能：设置窗口特征。</p>
+<ol>
+<li>set_window_dc</li>
+</ol>
+<p>   功能：设置一个虚拟图形窗口（WindowsNT）的设计背景。</p>
+<ol>
+<li>set_window_extents</li>
+</ol>
+<p>   功能：修正一个窗口的位置和大小。</p>
+<ol>
+<li>set_window_type</li>
+</ol>
+<p>   功能：指定一个窗口类型。</p>
+<ol>
+<li>slide_image</li>
+</ol>
+<p>   功能：两个窗口缓冲区的交互输出。</p>
+<p> </p>
+<h1>Chapter 7 :Image</h1>
+<h2>7.1 Access</h2>
+<ol>
+<li>get_grayval</li>
+</ol>
+<p>  功能：获取一个图像目标的灰度值。</p>
+<ol>
+<li>get_image_pointer1</li>
+</ol>
+<p>  功能：获取一个通道的指针。</p>
+<ol>
+<li>get_image_pointer1_rect</li>
+</ol>
+<p>  功能：获取图像数据指针和输入图像区域内最小矩形内部的图像数据。</p>
+<ol>
+<li>get_image_pointer3</li>
+</ol>
+<p>  功能：获取一个彩色图像的指针。</p>
+<ol>
+<li>get_image_time</li>
+</ol>
+<p>  功能：查找图像被创建的时间。</p>
+<p> </p>
+<h2>7.2 Acquisition</h2>
+<ol>
+<li>close_all_framegrabbers</li>
+</ol>
+<p>  功能：关闭所有图像获取设备。</p>
+<ol>
+<li>close_framegrabber</li>
+</ol>
+<p>  功能：关闭指定的图像获取设备。</p>
+<ol>
+<li>get_framegrabber_lut</li>
+</ol>
+<p>  功能：查找图像获取设备的查询表。</p>
+<ol>
+<li>get_framegrabber_param</li>
+</ol>
+<p>  功能：查找一个图像获取设备的指定参数。</p>
+<ol>
+<li>grab_data</li>
+</ol>
+<p>  功能：从指定的图像获取设备获取图像和预处理图像数据。</p>
+<ol>
+<li>grab_data_async</li>
+</ol>
+<p>  功能：从指定的图像获取设备获取图像和预处理图像数据并且开始下一个异步获取。</p>
+<ol>
+<li>grab_image</li>
+</ol>
+<p>  功能：从指定的图像获取设备获取一个图像。</p>
+<ol>
+<li>grab_image_async</li>
+</ol>
+<p>  功能：从指定的图像获取设备获取一个图像并且开始下一个异步获取。</p>
+<ol>
+<li>grab_image_start</li>
+</ol>
+<p>  功能：从指定的图像获取设备开始下一个异步获取。</p>
+<ol>
+<li>info_framegrabber</li>
+</ol>
+<p>   功能：从指定的图像获取设备查找信息。</p>
+<ol>
+<li>open_framegrabber</li>
+</ol>
+<p>   功能：打开并配置一个图像获取设备。</p>
+<ol>
+<li>set_framegrabber_lut</li>
+</ol>
+<p>   功能：设置图像获取设备查询表。</p>
+<ol>
+<li>set_framegrabber_param</li>
+</ol>
+<p>   功能：设置一个图像获取设备的指定参数。</p>
+<p> </p>
+<h2>7.3 Channel</h2>
+<ol>
+<li>access_channel</li>
+</ol>
+<p>  功能：获取一个多通道图像的一个通道。</p>
+<ol>
+<li>append_channel</li>
+</ol>
+<p>  功能：把附加模型（通道）添加到图像上。</p>
+<ol>
+<li>channels_to_image</li>
+</ol>
+<p>  功能：把单通道图像转变为一个多通道图像。</p>
+<ol>
+<li>compose2</li>
+</ol>
+<p>  功能：把两个图像转变为一个两通道图像。</p>
+<ol>
+<li>compose3</li>
+</ol>
+<p>  功能：把三个图像转变为一个三通道图像。</p>
+<ol>
+<li>compose4</li>
+</ol>
+<p>  功能：把四个图像转变为一个四通道图像。</p>
+<ol>
+<li>compose5</li>
+</ol>
+<p>功能：把五个图像转变为一个五通道图像。</p>
+<ol>
+<li>compose6</li>
+</ol>
+<p>功能：把六个图像转变为一个六通道图像。</p>
+<ol>
+<li>compose7</li>
+</ol>
+<p>功能：把七个图像转变为一个七通道图像。</p>
+<ol>
+<li>count_channels</li>
+</ol>
+<p>   功能：计算图像的通道。</p>
+<ol>
+<li>decompose2</li>
+</ol>
+<p>   功能：把一个两通道图像转变为两个图像。</p>
+<ol>
+<li>decompose3</li>
+</ol>
+<p>功能：把一个三通道图像转变为三个图像。</p>
+<ol>
+<li>decompose4</li>
+</ol>
+<p>功能：把一个四通道图像转变为四个图像。</p>
+<ol>
+<li>decompose5</li>
+</ol>
+<p>功能：把一个五通道图像转变为五个图像。</p>
+<ol>
+<li>decompose6</li>
+</ol>
+<p>功能：把一个六通道图像转变为六个图像。</p>
+<ol>
+<li>decompose7</li>
+</ol>
+<p>功能：把一个七通道图像转变为七个图像。</p>
+<ol>
+<li>image_to_channels</li>
+</ol>
+<p>   功能：把一个多通道图像转变为一个通道图像。</p>
+<p> </p>
+<h2>7.4 Creation</h2>
+<ol>
+<li>copy_image</li>
+</ol>
+<p>  功能：复制一个图像并为它分配新内存。</p>
+<ol>
+<li>gen_image1</li>
+</ol>
+<p>  功能：从像素的一个指针创建一个图像。</p>
+<ol>
+<li>gen_image1_extern</li>
+</ol>
+<p>功能：从带存储管理的像素的一个指针创建一个图像。</p>
+<ol>
+<li>gen_image1_rect</li>
+</ol>
+<p>  功能：从像素（带存储管理）的指针创建一个矩形区域的图像。</p>
+<ol>
+<li>gen_image3</li>
+</ol>
+<p>  功能：从像素（红、绿、蓝）的三个指针创建一个图像。</p>
+<ol>
+<li>gen_image_const</li>
+</ol>
+<p>  功能：创建一个固定灰度值的图像。</p>
+<ol>
+<li>gen_image_gray_ramp</li>
+</ol>
+<p>  功能：创建一个灰度值阶梯。</p>
+<ol>
+<li>gen_image_interleaved</li>
+</ol>
+<p>  功能：从交叉像素的一个指针创建一个三通道图像。</p>
+<ol>
+<li>gen_image_proto</li>
+</ol>
+<p>  功能：创建一个指定的固定灰度值的图像。</p>
+<ol>
+<li>gen_image_surface_first_order</li>
+</ol>
+<p>   功能：创建一阶多项式的一个弯曲灰度表面。</p>
+<ol>
+<li>gen_image_surface_second_order</li>
+</ol>
+<p>   功能：创建二阶多项式的一个弯曲灰度表面。</p>
+<ol>
+<li>region_to_bin</li>
+</ol>
+<p>   功能：把一个区域转变为一个二进制字节图像。</p>
+<ol>
+<li>region_to_label</li>
+</ol>
+<p>   功能：把区域转变为一个标签图像。</p>
+<ol>
+<li>region_to_mean</li>
+</ol>
+<p>   功能：用它们的平均灰度值绘制区域。</p>
+<p> </p>
+<h2>7.5 Domain</h2>
+<ol>
+<li>add_channels</li>
+</ol>
+<p>  功能：把两个灰度值添加到区域中。</p>
+<ol>
+<li>change_domain</li>
+</ol>
+<p>  功能：改变一个图像的定义区间。</p>
+<ol>
+<li>full_domain</li>
+</ol>
+<p>  功能：把一个图像的区域扩大到最大值。</p>
+<ol>
+<li>get_domain</li>
+</ol>
+<p>  功能：获取一个图像的区域。</p>
+<ol>
+<li>rectangle1_domain</li>
+</ol>
+<p>  功能：把一个图像的区域缩小到一个矩形。</p>
+<ol>
+<li>reduce_domain</li>
+</ol>
+<p>  功能：缩小一个图像的区域。</p>
+<p> </p>
+<h2>7.6 Features</h2>
+<ol>
+<li>area_center_gray</li>
+</ol>
+<p>  功能：计算一个灰度值图像的区域面积和重心。</p>
+<ol>
+<li>cooc_feature_image</li>
+</ol>
+<p>  功能：计算一个同时出现的矩阵并得出相关灰度值特征。</p>
+<ol>
+<li>cooc_feature_matrix</li>
+</ol>
+<p>  功能：从一个同时出现的矩阵计算灰度值特征。</p>
+<ol>
+<li>elliptic_axis_gray</li>
+</ol>
+<p>  功能：在一个灰度值图像中计算一个区域的方位和主轴。</p>
+<ol>
+<li>entropy_gray</li>
+</ol>
+<p>  功能：确定一个图像的熵和各向异性。</p>
+<ol>
+<li>estimate_noise</li>
+</ol>
+<p>  功能：从一个单一图像估计图像噪声。</p>
+<ol>
+<li>fit_surface_first_order</li>
+</ol>
+<p>  功能：通过一个一阶表面（平面）计算灰度值力矩和近似值。</p>
+<ol>
+<li>fit_surface_second_order</li>
+</ol>
+<p>  功能：通过一个二阶表面（平面）计算灰度值力矩和近似值。</p>
+<ol>
+<li>fuzzy_entropy</li>
+</ol>
+<p>  功能：确定区域的模糊熵。</p>
+<ol>
+<li>fuzzy_perimeter</li>
+</ol>
+<p>   功能：计算一个区域的模糊周长。</p>
+<ol>
+<li>gen_cooc_matrix</li>
+</ol>
+<p>   功能：在一个图像中计算一个区域中同时出现的矩阵。</p>
+<ol>
+<li>gray_histo</li>
+</ol>
+<p>   功能：计算灰度值分布。</p>
+<ol>
+<li>gray_histo_abs</li>
+</ol>
+<p>   功能：计算灰度值分布。</p>
+<ol>
+<li>gray_projections</li>
+</ol>
+<p>   功能：计算水平和垂直灰度值预测。</p>
+<ol>
+<li>histo_2dim</li>
+</ol>
+<p>   功能：计算两通道灰度值图像的直方图。</p>
+<ol>
+<li>intensity</li>
+</ol>
+<p>   功能：计算灰度值的平均值和偏差。</p>
+<ol>
+<li>min_max_gray</li>
+</ol>
+<p>   功能：计算区域内的最大和最小灰度值。</p>
+<ol>
+<li>moments_gray_plane</li>
+</ol>
+<p>   功能：通过一个平面计算灰度值力矩和近似值。</p>
+<ol>
+<li>plane_deviation</li>
+</ol>
+<p>   功能：从近似像平面计算灰度值的偏差。</p>
+<ol>
+<li>select_gray</li>
+</ol>
+<p>   功能：选择基于灰度值特征的区域。</p>
+<ol>
+<li>shape_histo_all</li>
+</ol>
+<p>   功能：用极限值确定特征的一个直方图。</p>
+<ol>
+<li>shape_histo_point</li>
+</ol>
+<p>   功能：用极限值确定特征的一个直方图。</p>
+<p> </p>
+<h2>7.7 Format</h2>
+<ol>
+<li>change_format</li>
+</ol>
+<p>  功能：改变图像大小。</p>
+<ol>
+<li>crop_domain</li>
+</ol>
+<p>  功能：去掉确定的灰度值。</p>
+<ol>
+<li>crop_domain_rel</li>
+</ol>
+<p>  功能：去掉和定义域有关的图像区域。</p>
+<ol>
+<li>crop_part</li>
+</ol>
+<p>  功能：去掉一个矩形图像区域。</p>
+<ol>
+<li>crop_rectangle1</li>
+</ol>
+<p>  功能：去掉一个矩形图像区域。</p>
+<ol>
+<li>tile_channels</li>
+</ol>
+<p>  功能：把多重图像拼成一个大图像。</p>
+<ol>
+<li>tile_images</li>
+</ol>
+<p>  功能：把多重图像目标拼成一个大图像。</p>
+<ol>
+<li>tile_images_offset</li>
+</ol>
+<p>  功能：把多重图像目标拼成一个有确定的位置信息的大图像。</p>
+<p> </p>
+<h2>7.8 Manipulation</h2>
+<ol>
+<li>overpaint_gray</li>
+</ol>
+<p>  功能：重新绘制一个图像的灰度值。</p>
+<ol>
+<li>overpaint_region</li>
+</ol>
+<p>  功能：重新绘制一个图像的区域。</p>
+<ol>
+<li>paint_gray</li>
+</ol>
+<p>  功能：把一个图像的灰度值画在另一个图像上。</p>
+<ol>
+<li>paint_region</li>
+</ol>
+<p>  功能：把区域画在一个图像中。</p>
+<ol>
+<li>paint_xld</li>
+</ol>
+<p>  功能：把XLD目标画在一个图像中。</p>
+<p>6. set_grayval</p>
+<p>  功能：在一个图像中设置单灰度值。</p>
+<p> </p>
+<h2>7.9 Type-Conversion</h2>
+<ol>
+<li>complex_to_real</li>
+</ol>
+<p>  功能：把一个复杂图像转变为两个实际图像。</p>
+<ol>
+<li>convert_image_type</li>
+</ol>
+<p>  功能：转变一个图像的类型。</p>
+<ol>
+<li>real_to_complex</li>
+</ol>
+<p>  功能：把两个实际图像转变为一个复杂图像。</p>
+<ol>
+<li>real_to_vector_field</li>
+</ol>
+<p>  功能：把两个实值图像转变为一个矢量域图像。</p>
+<ol>
+<li>vector_field_to_real</li>
+</ol>
+<p>  功能：把一个矢量域图像转变为两个实值图像。</p>
+<p> </p>
+<h1>Chapter 8 :Lines</h1>
+<h2>8.1 Access</h2>
+<ol>
+<li>approx_chain</li>
+</ol>
+<p>  功能：通过弧和线近似一个轮廓。</p>
+<ol>
+<li>approx_chain_simple</li>
+</ol>
+<p>  功能：通过弧和线近似一个轮廓。</p>
+<p> </p>
+<h2>8.2 Features</h2>
+<ol>
+<li>line_orientation</li>
+</ol>
+<p>  功能：计算线的方位。</p>
+<ol>
+<li>line_position</li>
+</ol>
+<p>  功能：计算一条线的重心、长度和方位。</p>
+<ol>
+<li>partition_lines</li>
+</ol>
+<p>  功能：通过各种标准区分线。</p>
+<ol>
+<li>select_lines</li>
+</ol>
+<p>功能：通过各种标准选择线。</p>
+<ol>
+<li>select_lines_longest</li>
+</ol>
+<p>  功能：选择最长输入线。</p>
+<p> </p>
+<h1>Chapter 9 :Matching</h1>
+<h2>9.1 Component-Based</h2>
+<ol>
+<li>clear_all_component_models</li>
+</ol>
+<p>  功能：释放所有组件模型的内存。</p>
+<ol>
+<li>clear_all_training_components</li>
+</ol>
+<p>  功能：释放所有组件训练结果的内存。</p>
+<ol>
+<li>clear_component_model</li>
+</ol>
+<p>  功能：释放一个组件模型的内存。</p>
+<ol>
+<li>clear_training_components</li>
+</ol>
+<p>  功能：释放一个组件训练结果的内存。</p>
+<ol>
+<li>cluster_model_components</li>
+</ol>
+<p>  功能：把用于创建模型组件的新参数用于训练结果。</p>
+<ol>
+<li>create_component_model</li>
+</ol>
+<p>  功能：基于确定的指定组件和关系准备一个匹配的组件模型。</p>
+<ol>
+<li>create_trained_component_model</li>
+</ol>
+<p>  功能：基于训练过的组件准备一个匹配的组件模型。</p>
+<ol>
+<li>find_component_model</li>
+</ol>
+<p>  功能：在一个图像中找出一个组件模型的最佳匹配。</p>
+<ol>
+<li>gen_initial_components</li>
+</ol>
+<p>  功能：提取一个组件模型的最初组件。</p>
+<ol>
+<li>get_component_model_params</li>
+</ol>
+<p>   功能：返回一个组件模型的参数。</p>
+<ol>
+<li>get_component_model_tree</li>
+</ol>
+<p>   功能：返回一个组件模型的查找树。</p>
+<ol>
+<li>get_component_relations</li>
+</ol>
+<p>   功能：返回包含在训练结果内的模型组件间的关系。</p>
+<ol>
+<li>get_found_component_model</li>
+</ol>
+<p>   功能：返回一个组件模型的一个创建例子的组件。</p>
+<ol>
+<li>get_training_components</li>
+</ol>
+<p>   功能：在一个特定的图像中返回初始值或者模型组件。</p>
+<ol>
+<li>inspect_clustered_components</li>
+</ol>
+<p>   功能：检查从训练获取的刚性的模型组件。</p>
+<ol>
+<li>modify_component_relations</li>
+</ol>
+<p>   功能：修改一个训练结果中的关系。</p>
+<ol>
+<li>read_component_model</li>
+</ol>
+<p>   功能：从一个文件中读取组件模型。</p>
+<ol>
+<li>read_training_components</li>
+</ol>
+<p>   功能：从一个文件中读取组件训练结果。</p>
+<ol>
+<li>train_model_components</li>
+</ol>
+<p>   功能：为基于组件的匹配训练组件和关系。</p>
+<ol>
+<li>write_component_model</li>
+</ol>
+<p>   功能：把一个组件模型写入一个文件中。</p>
+<ol>
+<li>write_training_components</li>
+</ol>
+<p>   功能：把一个组件训练结果写入一个文件中。</p>
+<p> </p>
+<h2>9.2 Correlation-Based</h2>
+<ol>
+<li>clear_all_ncc_models</li>
+</ol>
+<p>  功能：释放NCC模型的内存。</p>
+<ol>
+<li>clear_ncc_model</li>
+</ol>
+<p>  功能：释放NCC模型的内存。</p>
+<ol>
+<li>create_ncc_model</li>
+</ol>
+<p>  功能：为匹配准备一个NCC模型。</p>
+<ol>
+<li>find_ncc_model</li>
+</ol>
+<p>  功能：找出一个图像中的一个NCC模型的最佳匹配。</p>
+<ol>
+<li>get_ncc_model_origin</li>
+</ol>
+<p>  功能：返回一个NCC模型的原点（参考点）。</p>
+<ol>
+<li>get_ncc_model_params</li>
+</ol>
+<p>  功能：返回一个NCC模型的参数。</p>
+<ol>
+<li>read_ncc_model</li>
+</ol>
+<p>  功能：从一个文件中读取一个NCC模型。</p>
+<ol>
+<li>set_ncc_model_origin</li>
+</ol>
+<p>  功能：设置一个NCC模型的原点（参考点）。</p>
+<ol>
+<li>write_ncc_model</li>
+</ol>
+<p>  功能：向一个文件中写入NCC模型。</p>
+<p> </p>
+<h2>9.3 Gray-Value-Based</h2>
+<ol>
+<li>adapt_template</li>
+</ol>
+<p>  功能：把一个模板用于一个图像的大小。</p>
+<ol>
+<li>best_match</li>
+</ol>
+<p>  功能：寻找一个模板和一个图像的最佳匹配。</p>
+<ol>
+<li>best_match_mg</li>
+</ol>
+<p>  功能：在金字塔中寻找最佳灰度值匹配。</p>
+<ol>
+<li>best_match_pre_mg</li>
+</ol>
+<p>  功能：在预生成的金字塔中寻找最佳灰度值匹配。</p>
+<ol>
+<li>best_match_rot</li>
+</ol>
+<p>  功能：寻找一个模板和一个旋转图像的最佳匹配。</p>
+<ol>
+<li>best_match_rot_mg</li>
+</ol>
+<p>  功能：寻找一个模板和一个旋转金字塔的最佳匹配。</p>
+<ol>
+<li>clear_all_templates</li>
+</ol>
+<p>  功能：所有模板的内存分配。</p>
+<ol>
+<li>clear_template</li>
+</ol>
+<p>功能：一个模板的内存分配。</p>
+<ol>
+<li>create_template</li>
+</ol>
+<p>   功能：为模板匹配准备一个格式。</p>
+<ol>
+<li>create_template_rot</li>
+</ol>
+<p>   功能：为旋转模板匹配准备一个格式。</p>
+<ol>
+<li>fast_match</li>
+</ol>
+<p>   功能：寻找一个模板和一个图像的所有好的匹配。</p>
+<ol>
+<li>fast_match_mg</li>
+</ol>
+<p>   功能：在金字塔中寻找所有好的灰度值匹配。</p>
+<ol>
+<li>read_template</li>
+</ol>
+<p>   功能：从一个文件中读取一个模板。</p>
+<ol>
+<li>set_offset_template</li>
+</ol>
+<p>   功能：模板的灰度值偏差。</p>
+<ol>
+<li>set_reference_template</li>
+</ol>
+<p>   功能：为一个匹配模板定义参考位置。</p>
+<ol>
+<li>write_template</li>
+</ol>
+<p>   功能：向一个文件中写入模板。</p>
+<p> </p>
+<h2>9.4 Shape-Based</h2>
+<ol>
+<li>clear_all_shape_models</li>
+</ol>
+<p>  功能：释放所有轮廓模型的内存。</p>
+<ol>
+<li>clear_shape_model</li>
+</ol>
+<p>  功能：释放一个轮廓模型的内存。</p>
+<ol>
+<li>create_aniso_shape_model</li>
+</ol>
+<p>  功能：为各向异性尺度不变匹配准备一个轮廓模型。</p>
+<ol>
+<li>create_scaled_shape_model</li>
+</ol>
+<p>  功能：为尺度不变匹配准备一个轮廓模型。</p>
+<ol>
+<li>create_shape_model</li>
+</ol>
+<p>  功能：为匹配准备一个轮廓模型。</p>
+<ol>
+<li>determine_shape_model_params</li>
+</ol>
+<p>  功能：确定一个轮廓模型的参数。</p>
+<ol>
+<li>find_aniso_shape_model</li>
+</ol>
+<p>  功能：在一个图像中找出一个各向异性尺度不变轮廓的最佳匹配。</p>
+<ol>
+<li>find_aniso_shape_models</li>
+</ol>
+<p>  功能：找出多重各向异性尺度不变轮廓模型的最佳匹配。</p>
+<ol>
+<li>find_scaled_shape_model</li>
+</ol>
+<p>  功能：在一个图像中找出一个尺度不变轮廓模型的最佳匹配。</p>
+<ol>
+<li>find_scaled_shape_models</li>
+</ol>
+<p>   功能：找出多重尺度不变轮廓模型的最佳匹配。</p>
+<ol>
+<li>find_shape_model</li>
+</ol>
+<p>   功能：在一个图像中找出一个轮廓模型的最佳匹配。</p>
+<p>12. find_shape_models</p>
+<p>   功能：找出多重轮廓模型的最佳匹配。</p>
+<ol>
+<li>get_shape_model_contours</li>
+</ol>
+<p>   功能：返回一个轮廓模型的轮廓表示。</p>
+<ol>
+<li>get_shape_model_origin</li>
+</ol>
+<p>   功能：返回一个轮廓模型的原点（参考点）。</p>
+<ol>
+<li>get_shape_model_params</li>
+</ol>
+<p>   功能：返回一个轮廓模型的参数。</p>
+<p>16. inspect_shape_model</p>
+<p>   功能：创建一个轮廓模型的表示。</p>
+<p>17. read_shape_model</p>
+<p>   功能：从一个文件中读取一个轮廓模型。</p>
+<ol>
+<li>set_shape_model_origin</li>
+</ol>
+<p>   功能：设置一个轮廓模型的原点（参考点）。</p>
+<ol>
+<li>write_shape_model</li>
+</ol>
+<p>   功能：向一个文件中写入一个轮廓模型（.shm）。</p>
+<p> </p>
+<h1>Chapter 10 :Matching-3D</h1>
+<ol>
+<li>affine_trans_object_model_3d</li>
+</ol>
+<p>功能：把一个任意有限3D变换用于一个3D目标模型。</p>
+<p>2. clear_all_object_model_3d</p>
+<p>  功能：释放所有3D目标模型的内存。</p>
+<p>3. clear_all_shape_model_3d</p>
+<p>  功能：释放所有3D轮廓模型的内存。</p>
+<p>4. clear_object_model_3d</p>
+<p>  功能：释放一个3D目标模型的内存。</p>
+<p>5. clear_shape_model_3d</p>
+<p>  功能：释放一个3D轮廓模型的内存。</p>
+<p>6. convert_point_3d_cart_to_spher</p>
+<p>  功能：把直角坐标系中的一个3D点转变为极坐标。</p>
+<p>7. convert_point_3d_spher_to_cart</p>
+<p>  功能：把极坐标中的一个3D点转变为直角坐标。</p>
+<p>8. create_cam_pose_look_at_point</p>
+<p>  功能：从摄像机中心和观察方向创建一个3D摄像机位置。</p>
+<ol>
+<li>create_shape_model_3d</li>
+</ol>
+<p>  功能：为匹配准备一个3D目标模型。</p>
+<ol>
+<li>find_shape_model_3d</li>
+</ol>
+<p>   功能：在一个图像中找出一个3D模型的最佳匹配。</p>
+<ol>
+<li>get_object_model_3d_params</li>
+</ol>
+<p>   功能：返回一个3D目标模型的参数。</p>
+<ol>
+<li>get_shape_model_3d_contours</li>
+</ol>
+<p>   功能：返回一个3D轮廓模型视图的轮廓表示。</p>
+<ol>
+<li>get_shape_model_3d_params</li>
+</ol>
+<p>   功能：返回一个3D轮廓模型的参数。</p>
+<ol>
+<li>project_object_model_3d</li>
+</ol>
+<p>   功能：把一个3D目标模型的边缘投影到图像坐标中。</p>
+<ol>
+<li>project_shape_model_3d</li>
+</ol>
+<p>   功能：把一个3D轮廓模型的边缘投影到图像坐标中。</p>
+<ol>
+<li>read_object_model_3d_dxf</li>
+</ol>
+<p>   功能：从一个DXF文件中读取一个3D目标模型。</p>
+<ol>
+<li>read_shape_model_3d</li>
+</ol>
+<p>   功能：从一个文件中读取一个3D轮廓模型。</p>
+<ol>
+<li>trans_pose_shape_model_3d</li>
+</ol>
+<p>   功能：把一个3D目标模型的坐标系中的位置转变为一个3D轮廓模型的参考坐标系中的位置，反之亦然。</p>
+<ol>
+<li>write_shape_model_3d</li>
+</ol>
+<p>   功能：向一个文件写入一个3D轮廓模型。</p>
+<p> </p>
+<h1>Chapter 11 :Morphology</h1>
+<h2>11.1 Gray-Values</h2>
+<ol>
+<li>dual_rank</li>
+</ol>
+<p>  功能：打开、取中值和关闭圆和矩形掩码。</p>
+<ol>
+<li>gen_disc_se</li>
+</ol>
+<p>  功能：为灰度形态学生成椭圆结构基础。</p>
+<ol>
+<li>gray_bothat</li>
+</ol>
+<p>  功能：执行一个图像的一个灰度值bottomhat变换（原图像和它的闭之间的差）。</p>
+<ol>
+<li>gray_closing</li>
+</ol>
+<p>  功能：关闭一个图像的一个灰度值。</p>
+<ol>
+<li>gray_closing_rect</li>
+</ol>
+<p>  功能：关闭带矩形掩码的灰度值。</p>
+<ol>
+<li>gray_cl osing_shape</li>
+</ol>
+<p>  功能：关闭带选择掩码的灰度值。</p>
+<ol>
+<li>gray_dilation</li>
+</ol>
+<p>  功能：扩大一个图像上的灰度值。</p>
+<ol>
+<li>gray_dilation_rect</li>
+</ol>
+<p>  功能：确定一个矩形的最小灰度值。</p>
+<ol>
+<li>gray_dilation_shape</li>
+</ol>
+<p>  功能：确定一个选择的掩码的最大灰度值。</p>
+<ol>
+<li>gray_erosion</li>
+</ol>
+<p>   功能：腐蚀一个图像的灰度值。</p>
+<ol>
+<li>gray_erosion_rect</li>
+</ol>
+<p>   功能：确定一个矩形的最小灰度值。</p>
+<ol>
+<li>gray_erosion_shape</li>
+</ol>
+<p>   功能：确定一个选择的掩码的最小灰度值。</p>
+<ol>
+<li>gray_opening</li>
+</ol>
+<p>   功能：打开一个图像的灰度值。</p>
+<ol>
+<li>gray_opening_rect</li>
+</ol>
+<p>   功能：打开一个矩形掩码的灰度值。</p>
+<ol>
+<li>gray_openin g_shape</li>
+</ol>
+<p>   功能：打开一个选择的掩码的灰度值。</p>
+<ol>
+<li>gray_range_rect</li>
+</ol>
+<p>   功能：确定一个矩形的灰度值范围。</p>
+<ol>
+<li>gray_tophat</li>
+</ol>
+<p>   功能：执行一个图像的一个灰度值tophat变换（原图像和它的开之间的差）。</p>
+<ol>
+<li>read_gray_se</li>
+</ol>
+<p>   功能：为灰度形态学下载一个结构基础。</p>
+<p> </p>
+<h2>11.2 Region</h2>
+<ol>
+<li>bottom_hat</li>
+</ol>
+<p>  功能：计算区域的bottomhat（原图像和它的闭之间的差）。</p>
+<ol>
+<li>boundary</li>
+</ol>
+<p>  功能：把一个区域减小到它的边界。</p>
+<ol>
+<li>closing</li>
+</ol>
+<p>  功能：关闭一个区域。</p>
+<ol>
+<li>closing_circle</li>
+</ol>
+<p>  功能：关闭一个圆形结构基础的一个区域。</p>
+<ol>
+<li>closing_golay</li>
+</ol>
+<p>  功能：关闭格雷字母表中的元素的一个区域。</p>
+<ol>
+<li>closing_rectangle1</li>
+</ol>
+<p>  功能：关闭一个矩形结构基础的一个区域。</p>
+<ol>
+<li>dilation1</li>
+</ol>
+<p>  功能：扩大一个区域。</p>
+<ol>
+<li>dilation2</li>
+</ol>
+<p>  功能：扩大一个区域（使用一个参考点）。</p>
+<ol>
+<li>dilation_circle</li>
+</ol>
+<p>  功能：扩大一个圆形结构基础的一个区域。</p>
+<ol>
+<li>dilation_golay</li>
+</ol>
+<p>   功能：扩大格雷字母表的元素的一个区域。</p>
+<ol>
+<li>dilation_rectangle1</li>
+</ol>
+<p>   功能：扩大一个矩形结构基础的一个区域。</p>
+<ol>
+<li>dilation_seq</li>
+</ol>
+<p>   功能：顺序地扩大一个区域。</p>
+<ol>
+<li>erosion1</li>
+</ol>
+<p>   功能：腐蚀一个区域。</p>
+<ol>
+<li>erosion2</li>
+</ol>
+<p>   功能：腐蚀一个区域（使用参考点）。</p>
+<ol>
+<li>erosion_circle</li>
+</ol>
+<p>   功能：腐蚀一个圆形结构基础的一个区域。</p>
+<ol>
+<li>erosion_golay</li>
+</ol>
+<p>   功能：腐蚀格雷字母表的一个元素的一个区域。</p>
+<ol>
+<li>erosion_rectangle1</li>
+</ol>
+<p>   功能：腐蚀一个矩形结构基础的一个区域。</p>
+<ol>
+<li>erosion_seq</li>
+</ol>
+<p>   功能：按顺序腐蚀一个区域。</p>
+<ol>
+<li>fitting</li>
+</ol>
+<p>   功能：执行多重结构基础的打开后关闭。</p>
+<ol>
+<li>gen_struct_elements</li>
+</ol>
+<p>   功能：生成一个标准结构基础。</p>
+<ol>
+<li>golay_elements</li>
+</ol>
+<p>   功能：生成格雷字母表的结构基础。</p>
+<ol>
+<li>hit_or_miss</li>
+</ol>
+<p>   功能：区域的Hit-or-miss运行。</p>
+<p>23. hit_or_miss_golay</p>
+<p>   功能：使用格雷字母表的区域的Hit-or-miss运行。</p>
+<ol>
+<li>hit_or_miss_seq</li>
+</ol>
+<p>   功能：使用格雷字母表的区域的Hit-or-miss运行（按顺序）。</p>
+<ol>
+<li>minkowski_add1</li>
+</ol>
+<p>   功能：执行一个区域的Minkowski添加。</p>
+<ol>
+<li>minkowski_add2</li>
+</ol>
+<p>   功能：扩大一个区域（使用参考点）。</p>
+<ol>
+<li>minkowski_sub1</li>
+</ol>
+<p>   功能：腐蚀一个区域。</p>
+<ol>
+<li>minkowski_sub2</li>
+</ol>
+<p>   功能：腐蚀一个区域（使用参考点）。</p>
+<ol>
+<li>morph_hat</li>
+</ol>
+<p>   功能：计算bottom_hat 和top_hat的联合。</p>
+<ol>
+<li>morph_skeleton</li>
+</ol>
+<p>   功能：计算一个区域的形态学框架。</p>
+<ol>
+<li>morph_skiz</li>
+</ol>
+<p>   功能：缩小一个区域。</p>
+<ol>
+<li>opening</li>
+</ol>
+<p>   功能：打开一个区域。</p>
+<ol>
+<li>opening_circle</li>
+</ol>
+<p>   功能：打开一个圆形结构基础的一个区域。</p>
+<ol>
+<li>opening_golay</li>
+</ol>
+<p>   功能：打开格雷字母表的一个元素的一个区域。</p>
+<ol>
+<li>opening_rectangle1</li>
+</ol>
+<p>   功能：打开一个矩形结构基础的一个区域。</p>
+<ol>
+<li>opening_seg</li>
+</ol>
+<p>   功能：分离重叠区域。</p>
+<ol>
+<li>pruning</li>
+</ol>
+<p>   功能：去掉一个区域的分支。</p>
+<ol>
+<li>thickening</li>
+</ol>
+<p>   功能：把一个Hit-or-miss运行的结果添加到一个区域。</p>
+<ol>
+<li>thickening_golay</li>
+</ol>
+<p>   功能：把一个Hit-or-miss运行的结果添加到一个区域中（使用一个Golay结构基础）。</p>
+<ol>
+<li>thickening_seq</li>
+</ol>
+<p>   功能：把一个Hit-or-miss运行的结果添加到一个区域中（按顺序）。</p>
+<ol>
+<li>thinning</li>
+</ol>
+<p>   功能：从一个区域移去一个Hit-or-miss运行的结果。</p>
+<ol>
+<li>thinning_golay</li>
+</ol>
+<p>   功能：从一个区域移去一个Hit-or-miss运行的结果（使用一个Golay结构基础）。</p>
+<ol>
+<li>thinning_seq</li>
+</ol>
+<p>   功能：从一个区域移去一个Hit-or-miss运行的结果（按顺序）。</p>
+<ol>
+<li>top_hat</li>
+</ol>
+<p>   功能：计算区域的tophat（原图像和它的开之间的差）。</p>
+<p> </p>
+<h1>Chapter 12:OCR（光字符识别）</h1>
+<h2>12.1 Hyperboxes</h2>
+<p>1. close_all_ocrs</p>
+<p>  功能：删除所有光字符，释放存储空间，但会丢失所有的测试数据。</p>
+<ol>
+<li>close_ocr</li>
+</ol>
+<p>  功能：重新分配拥有OcrHandle数目的分级器的存储，但所有相应的数据会丢失，不过这些数据可由write_ocr事先保存。</p>
+<ol>
+<li>create_ocr_class_box</li>
+</ol>
+<p>  功能：创建新的OCR分级器。</p>
+<ol>
+<li>do_ocr_multi</li>
+</ol>
+<p>  功能：给每一个Character（字符）分配一个类。</p>
+<ol>
+<li>do_ocr_single</li>
+</ol>
+<p>  功能：给一些Character（字符）分配一些类。</p>
+<ol>
+<li>info_ocr_class_box</li>
+</ol>
+<p>  功能：反馈ocr的有关信息。</p>
+<ol>
+<li>ocr_change_char</li>
+</ol>
+<p>  功能：为字符建立新的查阅表。</p>
+<ol>
+<li>ocr_get_features</li>
+</ol>
+<p>  功能：计算给定Character（字符）的特征参数。</p>
+<ol>
+<li>read_ocr</li>
+</ol>
+<p>  功能：从文件的FileName（文件名）读取OCR分级器。</p>
+<ol>
+<li>testd_ocr_class_box</li>
+</ol>
+<p>  功能：测试给定类中字符的置信度。</p>
+<ol>
+<li>traind_ocr_class_box</li>
+</ol>
+<p>  功能：通过一幅图像的特定区域直接测试分级器。</p>
+<ol>
+<li>trainf_ocr_class_box</li>
+</ol>
+<p>  功能：根据指定测试文件测试分级器的OCRHandle。</p>
+<ol>
+<li>write_ocr</li>
+</ol>
+<p>   功能：将OCR分级器的OCRHandle写入文件的FileName（文件名）。</p>
+<p> </p>
+<h2>12.2 Lexica</h2>
+<p>1.clear_all_lexica</p>
+<p>   功能：清除所有的词汇（词典），释放它们的资源。</p>
+<ol>
+<li>clear_lexicon</li>
+</ol>
+<p>   功能：清除一个词汇（词典），释放相应的资源。</p>
+<ol>
+<li>create_lexicon</li>
+</ol>
+<p>   功能：根据一些Words(单词)的元组创建一个新的词汇（词典）。</p>
+<p>4．Import_lexicon</p>
+<p>   功能：通过FileName(文件名)选定的文件中的一系列单词创建一个新的词典。</p>
+<ol>
+<li>inspect_lexicon</li>
+</ol>
+<p>   功能：返回Words参数的词典中所有单词的元组。</p>
+<ol>
+<li>lookup_lexicon</li>
+</ol>
+<p>   功能：检查Word（单词）是否在词典的LexiconHandle中，若在返回1否则返回0。</p>
+<ol>
+<li>suggest_lexicon</li>
+</ol>
+<p>   功能：将Word（单词）与词典中所有词汇相比较，计算出将Word从词典中导入单词中所需的足校的编辑操作符NUMcorrections。</p>
+<p> </p>
+<h2>12.3 Neural-Nets（神经网络）</h2>
+<p>1. clear_all_ocr_class_mlp</p>
+<p>   功能：清除所有的create_ocr_class_mlp创建的OCR分级器，释放分级器占据的存储空间。</p>
+<ol>
+<li>clear_ocr_class_mlp</li>
+</ol>
+<p>   功能：清除所有的由OCRHandle给定的且由create_ocr_class_mlp创建的OCR分级器，释放所有的分级器占据的存储空间。</p>
+<ol>
+<li>create_ocr_class_mlp</li>
+</ol>
+<p>   功能：利用MLP（多层感知器）创建一个新的OCR分级器。</p>
+<ol>
+<li>do_ocr_multi_class_mlp</li>
+</ol>
+<p>   功能：为根据给定区域字符和OCR分级器OCRHandle的灰度图像值而给定的每个字符计算出最好的类，将类返回到Class中，且将类的置信度返回到Confidence中。</p>
+<ol>
+<li>do_ocr_single_class_mlp</li>
+</ol>
+<p>   功能：为根据给定区域字符和OCR分级器OCRHandle的灰度图像值而给定的字符计算出最好的Num类，将类返回到Class中，且将类的置信度返回到Confidence中。</p>
+<ol>
+<li>do_ocr_word_mlp</li>
+</ol>
+<p>   功能：功能与do_ocr_multi_class_mlp相同，只是do_ocr_word_mlp将字符组作为一个实体。</p>
+<p>7.get_features_ocr_class_mlp</p>
+<p>   功能：为根据OCR分级器OCRHandle确定的字符计算其特征参数，并将它们返回到Features。</p>
+<ol>
+<li>get_params_ocr_class_mlp</li>
+</ol>
+<p>   功能：返回一个OCR分级器的参数只有当分级器由do_ocr_multi_class_mlp创建时。</p>
+<ol>
+<li>get_prep_info_ocr_class_mlp</li>
+</ol>
+<p>   功能：计算OCR分级器预设定矢量特性的信息。</p>
+<ol>
+<li>read_ocr_class_mlp</li>
+</ol>
+<p>   功能：从一个文件中读取OCR分级器。</p>
+<ol>
+<li>trainf_ocr_class_mlp</li>
+</ol>
+<p>   功能：测试OCR分级器的OCRHandle，根据存储在OCR文件中的测试特性。</p>
+<ol>
+<li>write_ocr_class_mlp</li>
+</ol>
+<p>   功能：将OCR分级器的OCRHandle写入由文件名确定的文件中。</p>
+<p> </p>
+<h2>12.4 Support-Vector-Machines （支持矢量机）</h2>
+<ol>
+<li>clear_all_ocr_class_svm</li>
+</ol>
+<p>   功能：清除所有的基于OCR分级器的SVM，释放相应的存储空间。</p>
+<ol>
+<li>clear_ocr_class_svm</li>
+</ol>
+<p>   功能：清除基于OCR分级器的一个SVM，释放相应的存储空间。</p>
+<ol>
+<li>create_ocr_class_svm</li>
+</ol>
+<p>   功能：利用支持向量机创建一个OCR分级器。</p>
+<ol>
+<li>do_ocr_multi_class_svm</li>
+</ol>
+<p>  功能：根据基于OCR分级器的SVM将大量字符分类。</p>
+<ol>
+<li>do_ocr_single_class_svm</li>
+</ol>
+<p>  功能：根据基于OCR分级器的SVM将单个字符分类。</p>
+<ol>
+<li>do_ocr_word_svm</li>
+</ol>
+<p>  功能：利用OCR分级器将一系列相关字符分类。</p>
+<ol>
+<li>get_features_ocr_class_svm</li>
+</ol>
+<p>  功能：计算一个字符的特征。</p>
+<ol>
+<li>get_params_ocr_class_svm</li>
+</ol>
+<p>  功能：返回一个OCR分级器的参数。</p>
+<ol>
+<li>get_prep_info_ocr_class_svm</li>
+</ol>
+<p>  功能：计算基于OCR分级器的SVM的预定义特征矢量的信息内容。</p>
+<ol>
+<li>get_support_vector_num_ocr_class_svm</li>
+</ol>
+<p>   功能：返回OCR分级器支持的矢量的数目。</p>
+<ol>
+<li>get_support_vector_ocr_class_svm</li>
+</ol>
+<p>   功能：返回基于支持向量机的已测试OCR分级器中支持向量的索引。</p>
+<ol>
+<li>read_ocr_class_svm</li>
+</ol>
+<p>   功能：从文件中读取基于OCR分级器的SVM。</p>
+<ol>
+<li>reduce_ocr_class_svm</li>
+</ol>
+<p>   功能：根据一个减小的SVM来接近一个基于OCR分级器的SVM。</p>
+<p>14．Trainf_ocr_class_svm</p>
+<p>功能：测试一个OCR分级器。</p>
+<ol>
+<li>write_ocr_class_svm</li>
+</ol>
+<p>   功能：将一个OCR分级器写入文件。</p>
+<p> </p>
+<h2>12.5 Tools</h2>
+<p>1．Segment_characters</p>
+<p>  功能：将一副图像给定区域的字符分割。</p>
+<ol>
+<li>select_characters</li>
+</ol>
+<p>  功能：从一个给定区域中选择字符。</p>
+<p>3．text_line_orientation</p>
+<p>   功能：决定一个文本行或段落的定向（定位）。</p>
+<p>4．text_line_slant</p>
+<p>  功能：决定一个文本行或段落的字符的倾斜。</p>
+<p> </p>
+<h2>12.6 Training-Files</h2>
+<p>1. append_ocr_trainf</p>
+<p>  功能：将字符添加到一个测试文件中。</p>
+<ol>
+<li>concat_ocr_trainf</li>
+</ol>
+<p>  功能：合并测试文件。</p>
+<p>3．read_ocr_trainf</p>
+<p>   功能：从文件中读取字符，将其转换到图像中。</p>
+<ol>
+<li>read_ocr_trainf_names</li>
+</ol>
+<p>  功能：查询哪些字符存储在测试文件中。</p>
+<p>5．read_ocr_trainf_select</p>
+<p>   功能：从文件中读取测试特定字符，将其转换到图像中。</p>
+<ol>
+<li>write_ocr_trainf</li>
+</ol>
+<p>  功能：将已测试的字符存储到文件中。</p>
+<ol>
+<li>write_ocr_trainf_image</li>
+</ol>
+<p>  功能：将字符写入正在测试的文件中。</p>
+<p> </p>
+<h1>Chapter 13:Object</h1>
+<h2>13.1 Information</h2>
+<ol>
+<li>count_obj</li>
+</ol>
+<p>  功能：统计一个元组中的对象。</p>
+<ol>
+<li>get_channel_info</li>
+</ol>
+<p>  功能：一幅目标图像组成部分的信息。</p>
+<ol>
+<li>get_obj_class</li>
+</ol>
+<p>  功能：一副目标图像类的名称。</p>
+<p>4．test_equal_obj</p>
+<p>   功能：比较目标图像的平等性。</p>
+<ol>
+<li>test_obj_def</li>
+</ol>
+<p>  功能：测试目标是否被删除。</p>
+<p> </p>
+<h2>13.2 Manipulation</h2>
+<p>1. clear_obj</p>
+<p>  功能：将一个对象的图标从HALCON数据库中删除。</p>
+<ol>
+<li>concat_obj</li>
+</ol>
+<p>  功能：连接两个目标元组的图标。</p>
+<ol>
+<li>copy_obj</li>
+</ol>
+<p>  功能：复制一个HALCON数据库中对象的图标。</p>
+<ol>
+<li>gen_empty_obj</li>
+</ol>
+<p>  功能：创建一个空的目标元组。</p>
+<p>5．integer_to_obj</p>
+<p>   功能：将一个整型数转换为一个图标。</p>
+<ol>
+<li>obj_to_integer</li>
+</ol>
+<p>  功能：将一个图标转换为一个整型数。</p>
+<ol>
+<li>select_obj</li>
+</ol>
+<p>  功能：从一个目标元组中选择目标。</p>
+<p> </p>
+<h1>Chapter 14:Regions</h1>
+<h2>14.1 Access</h2>
+<ol>
+<li>get_region_chain</li>
+</ol>
+<p>  功能：一个对象的轮廓(contour)作为链式码。</p>
+<ol>
+<li>get_region_contour</li>
+</ol>
+<p>  功能：查询一个目标的轮廓(contour)。</p>
+<ol>
+<li>get_region_convex</li>
+</ol>
+<p>  功能：查询突起的外表作为轮廓(contour)。</p>
+<ol>
+<li>get_region_points</li>
+</ol>
+<p>  功能：查询一个区域的像素数。</p>
+<ol>
+<li>get_region_polygon</li>
+</ol>
+<p>  功能：用一个多边形近似获取区域。</p>
+<ol>
+<li>get_region_runs</li>
+</ol>
+<p>  功能：查询一个区域的扫描宽度编码。</p>
+<p> </p>
+<h2>14.2 Creation</h2>
+<ol>
+<li>gen_checker_region</li>
+</ol>
+<p>  功能：创建一个方格式区域。</p>
+<ol>
+<li>gen_circle</li>
+</ol>
+<p>  功能：创建一个圆周。</p>
+<ol>
+<li>gen_ellipse</li>
+</ol>
+<p>  功能：创建一个椭圆。</p>
+<ol>
+<li>gen_empty_region</li>
+</ol>
+<p>  功能：创建一个空的区域。</p>
+<ol>
+<li>gen_grid_region</li>
+</ol>
+<p>  功能：根据行或像素数创建一个区域。</p>
+<ol>
+<li>gen_random_region</li>
+</ol>
+<p>  功能:创建一个随机区域。</p>
+<ol>
+<li>gen_random_regions</li>
+</ol>
+<p>  功能：创建随机区域如圆周，矩形和椭圆。</p>
+<ol>
+<li>gen_rectangle1</li>
+</ol>
+<p>  功能：创建一个与坐标轴平行的长方形。</p>
+<ol>
+<li>gen_rectangle2</li>
+</ol>
+<p>  功能：创建任意方向的矩形。</p>
+<ol>
+<li>gen_region_contour_xld</li>
+</ol>
+<p>   功能：从XLD元组中创建一个区域。</p>
+<ol>
+<li>gen_region_histo</li>
+</ol>
+<p>   功能：将一个直方图转换为一个区域。</p>
+<ol>
+<li>gen_region_hline</li>
+</ol>
+<p>   功能：将Hesse正规形状中描述的输入线存储为区域。</p>
+<ol>
+<li>gen_region_line</li>
+</ol>
+<p>   功能：将输入线以区域形式存储。</p>
+<ol>
+<li>gen_region_points</li>
+</ol>
+<p>   功能：将个别的像素存储为图像区域。</p>
+<ol>
+<li>gen_region_polygon</li>
+</ol>
+<p>   功能：将一个多边形存储为一个目标图像。</p>
+<ol>
+<li>gen_region_polygon_filled</li>
+</ol>
+<p>   功能：将一个多边形存储为一个已填充区域。</p>
+<ol>
+<li>gen_region_polygon_xld</li>
+</ol>
+<p>   功能：创建一个XLD多边形中的区域。</p>
+<ol>
+<li>gen_region_runs</li>
+</ol>
+<p>   功能：创建一个扫描宽度编码中的图像区域。</p>
+<ol>
+<li>label_to_region</li>
+</ol>
+<p>   功能：提取一幅图像中灰度值相同的区域。</p>
+<p> </p>
+<h2>14.3 Features</h2>
+<ol>
+<li>area_center</li>
+</ol>
+<p>  功能：一个区域的面积（大小）和中心。</p>
+<ol>
+<li>circularity</li>
+</ol>
+<p>  功能：影响一个区域与圆的相似度的形状系数。</p>
+<ol>
+<li>compactness</li>
+</ol>
+<p>  功能：影响一个区域致密度的形状系数。</p>
+<ol>
+<li>connect_and_holes</li>
+</ol>
+<p>  功能：连接部分和中断的数目。</p>
+<ol>
+<li>contlength</li>
+</ol>
+<p>  功能：描述一个区域轮廓(contour)的长度。</p>
+<ol>
+<li>convexity</li>
+</ol>
+<p>  功能：影响一个区域凸性的形状系数。</p>
+<ol>
+<li>diameter_region</li>
+</ol>
+<p>  功能：一个区域两个边界点的最大距离。</p>
+<ol>
+<li>eccentricity</li>
+</ol>
+<p>  功能：来源于椭圆参数的形状系数。</p>
+<ol>
+<li>elliptic_axis</li>
+</ol>
+<p>  功能：相似椭圆的参数。</p>
+<p>10．euler_number</p>
+<p>功能：计算Euler数目。</p>
+<ol>
+<li>find_neighbors</li>
+</ol>
+<p>   功能：搜寻直接邻域。</p>
+<ol>
+<li>get_region_index</li>
+</ol>
+<p>   功能：包括给定像素在内的所有的区域的索引。</p>
+<ol>
+<li>get_region_thickness</li>
+</ol>
+<p>   功能：查询主轴附近区域的宽度（厚度）。</p>
+<ol>
+<li>hamming_distance</li>
+</ol>
+<p>   功能：两个区域间的汉明距离。</p>
+<ol>
+<li>hamming_distance_norm</li>
+</ol>
+<p>   功能：两个区域间的归一化汉明距离。</p>
+<ol>
+<li>inner_circle</li>
+</ol>
+<p>   功能：一个区域内部最大的圆周。</p>
+<ol>
+<li>inner_rectangle1</li>
+</ol>
+<p>   功能：一个区域内部最大的矩形。</p>
+<ol>
+<li>moments_region_2nd</li>
+</ol>
+<p>   功能：区域的某时刻几何特性，。</p>
+<ol>
+<li>moments_region_2nd_invar</li>
+</ol>
+<p>   功能：区域的某时刻几何特性。</p>
+<ol>
+<li>moments_region_2nd_rel_invar</li>
+</ol>
+<p>   功能：计算相关时刻参数。</p>
+<ol>
+<li>moments_region_3rd</li>
+</ol>
+<p>   功能：区域的某时刻几何特性。</p>
+<ol>
+<li>moments_region_3rd_invar</li>
+</ol>
+<p>   功能：区域的某时刻几何特性。</p>
+<ol>
+<li>moments_region_central</li>
+</ol>
+<p>   功能：区域的某时刻几何特性。</p>
+<ol>
+<li>moments_region_central_invar</li>
+</ol>
+<p>   功能：区域的某时刻几何特性。</p>
+<ol>
+<li>orientation_region</li>
+</ol>
+<p>   功能：一个区域的定向。</p>
+<ol>
+<li>rectangularity</li>
+</ol>
+<p>   功能：影响一个区域矩形相似度的形状系数。</p>
+<ol>
+<li>roundness</li>
+</ol>
+<p>   功能：轮廓中获取的形状系数。</p>
+<p>28.runlength_distribution</p>
+<p>功能：一个区域扫描宽度编码所需的顺串的分配。</p>
+<ol>
+<li>runlength_features</li>
+</ol>
+<p>   功能：区域扫描宽度编码的特征值。</p>
+<ol>
+<li>select_region_point</li>
+</ol>
+<p>  功能：选择包括给定像素在内的所有区域。</p>
+<ol>
+<li>select_region_spatial</li>
+</ol>
+<p>   功能：讨论区域的关联性。</p>
+<ol>
+<li>select_shape</li>
+</ol>
+<p>   功能：根据图形特征选择区域。</p>
+<ol>
+<li>select_shape_proto</li>
+</ol>
+<p>   功能：选择彼此有某种关系的区域。</p>
+<ol>
+<li>select_shape_std</li>
+</ol>
+<p>   功能：选择给定形状的区域。</p>
+<ol>
+<li>smallest_circle</li>
+</ol>
+<p>   功能：一个区域的最小周长。</p>
+<ol>
+<li>smallest_rectangle1</li>
+</ol>
+<p>   功能：平行于坐标轴的包围某区域的矩形。</p>
+<ol>
+<li>smallest_rectangle2</li>
+</ol>
+<p>   功能：任意方向包围某区域的最小矩形。</p>
+<ol>
+<li>spatial_relation</li>
+</ol>
+<p>   功能：根据坐标轴方向左、右、上、下排列相关区域。</p>
+<p> </p>
+<h2>14.4 Geometric-Transformations</h2>
+<ol>
+<li>affine_trans_region</li>
+</ol>
+<p>  功能：对区域进行任意的二维变换。</p>
+<ol>
+<li>mirror_region</li>
+</ol>
+<p>  功能：反馈一个平行于X或Y坐标轴的区域。</p>
+<ol>
+<li>move_region</li>
+</ol>
+<p>  功能：对区域进行变换。</p>
+<ol>
+<li>polar_trans_region</li>
+</ol>
+<p>  功能：将一个环状弧内的区域转换为极坐标。</p>
+<ol>
+<li>polar_trans_region_inv</li>
+</ol>
+<p>  功能：将极坐标中的区域转换为笛卡尔坐标中的区域。</p>
+<ol>
+<li>projective_trans_region</li>
+</ol>
+<p>  功能：对一个区域进行射影变换。</p>
+<ol>
+<li>transpose_region</li>
+</ol>
+<p>  功能：翻译关于一个点的一个区域。</p>
+<ol>
+<li>zoom_region</li>
+</ol>
+<p>  功能：缩放一个区域。</p>
+<p> </p>
+<h2>14.5 Sets</h2>
+<ol>
+<li>complement</li>
+</ol>
+<p>  功能：返回一个区域的补码。</p>
+<ol>
+<li>difference</li>
+</ol>
+<p>  功能：计算两个区域的差距（不同）。</p>
+<ol>
+<li>intersection</li>
+</ol>
+<p>   功能：计算两个区域的交集。</p>
+<ol>
+<li>symm_difference</li>
+</ol>
+<p>  功能：计算两个区域对称差异。</p>
+<ol>
+<li>union1</li>
+</ol>
+<p>  功能：返回所有输入区域的并集。</p>
+<ol>
+<li>union2</li>
+</ol>
+<p>  功能：返回两个区域的并集。</p>
+<p> </p>
+<h2>14.6 Tests</h2>
+<ol>
+<li>test_equal_region</li>
+</ol>
+<p>  功能：检测两个目标区域是否相同。</p>
+<ol>
+<li>test_subset_region</li>
+</ol>
+<p>  功能：检测一个区域是否包含在另一个区域中。</p>
+<p> </p>
+<h2>14.7 Transformation</h2>
+<ol>
+<li>background_seg</li>
+</ol>
+<p>  功能：决定给定区域背景相连的部分。</p>
+<ol>
+<li>clip_region</li>
+</ol>
+<p>  功能：将一个区域修改为矩形。</p>
+<ol>
+<li>clip_region_rel</li>
+</ol>
+<p>  功能：根据大小修改一个区域。</p>
+<ol>
+<li>connection</li>
+</ol>
+<p>  功能：计算一个区域相连接的部分。</p>
+<ol>
+<li>distance_transform</li>
+</ol>
+<p>  功能：计算一个区域的距离变换。</p>
+<ol>
+<li>eliminate_runs</li>
+</ol>
+<p>  功能：消除一个给定宽度的顺串。</p>
+<ol>
+<li>expand_region</li>
+</ol>
+<p>  功能：填充区域间的间隙或分离互相重叠的区域。</p>
+<p>8．fill_up</p>
+<p>   功能：填充区域中的中断（裂缝等）。</p>
+<ol>
+<li>fill_up_shape</li>
+</ol>
+<p>  功能：填充拥有给定图形特征区域的中断。</p>
+<ol>
+<li>hamming_change_region</li>
+</ol>
+<p>   功能：创建一个有给定汉明距离的区域。</p>
+<ol>
+<li>interjacent</li>
+</ol>
+<p>   功能：利用给定区域分割图像。</p>
+<ol>
+<li>junctions_skeleton</li>
+</ol>
+<p>   功能：找到框架中的结点和终点。</p>
+<ol>
+<li>merge_regions_line_scan</li>
+</ol>
+<p>   功能：从行扫描图像合并区域。</p>
+<p>14．partition_dynamic</p>
+<p>   功能：在较小垂直范围的位置水平分割一个区域。</p>
+<ol>
+<li>partition_dynamic</li>
+</ol>
+<p>   功能：将一个区域分割为等大的矩形。</p>
+<ol>
+<li>rank_region</li>
+</ol>
+<p>   功能：给对区域的操作归类。</p>
+<ol>
+<li>remove_noise_region</li>
+</ol>
+<p>   功能：去除一个区域内的噪声。</p>
+<ol>
+<li>shape_trans</li>
+</ol>
+<p>   功能：改变一个区域的形状。</p>
+<ol>
+<li>skeleton</li>
+</ol>
+<p>   功能：计算一个区域的框架。</p>
+<ol>
+<li>sort_region</li>
+</ol>
+<p>   功能：根据相邻位置归类区域。</p>
+<ol>
+<li>split_skeleton_lines</li>
+</ol>
+<p>   功能：用一个像素宽，没有分支的线来分离线。</p>
+<ol>
+<li>split_skeleton_region</li>
+</ol>
+<p>   功能：用一个像素宽，没有分支的区域来分离线。</p>
+<p> </p>
+<h1>Chapter 15:Segmentation</h1>
+<h2>15.1 Classiﬁcation</h2>
+<ol>
+<li>add_samples_image_class_gmm</li>
+</ol>
+<p>  功能：将从图像中获取的测试样本添加到高斯混合模型的测试数据库中。</p>
+<p>2．add_samples_image_class_mlp</p>
+<p>   功能：将从图像中获取的测试样本添加到多层视感控器的测试数据库中。</p>
+<ol>
+<li>add_samples_image_class_svm</li>
+</ol>
+<p>  功能：将从图像中获取的测试样本添加到一个支持向量机的测试数据库中。</p>
+<ol>
+<li>class_2dim_sup</li>
+</ol>
+<p>  功能：采用二维空间像素分类分割图像。</p>
+<ol>
+<li>class_2dim_unsup</li>
+</ol>
+<p>  功能：将两幅图像以聚类分割。</p>
+<p>6.class_ndim_box</p>
+<p>   功能：利用立方体将像素分类。</p>
+<ol>
+<li>class_ndim_norm</li>
+</ol>
+<p>  功能：利用球体或立方体将像素分类。</p>
+<ol>
+<li>classify_image_class_gmm</li>
+</ol>
+<p>  功能：根据高斯混合模式分类图像。</p>
+<ol>
+<li>classify_image_class_mlp</li>
+</ol>
+<p>  功能：根据多层视感控器分类图像。</p>
+<ol>
+<li>classify_image_class_svm</li>
+</ol>
+<p>  功能：根据支持向量机分类图像。</p>
+<ol>
+<li>learn_ndim_box</li>
+</ol>
+<p>   功能：利用多通道图像测试一个分级器。</p>
+<ol>
+<li>learn_ndim_norm</li>
+</ol>
+<p>   功能：为class_ndim_norm构建类。</p>
+<p> </p>
+<h2>15.2 Edges</h2>
+<ol>
+<li>detect_edge_segments</li>
+</ol>
+<p>  功能：检测直线边缘分割。</p>
+<ol>
+<li>hysteresis_threshold</li>
+</ol>
+<p>  功能：对一副图像采取磁滞门限操作。</p>
+<ol>
+<li>nonmax_suppression_amp</li>
+</ol>
+<p>  功能：抑制一幅图像上的非最大值点。</p>
+<ol>
+<li>nonmax_suppression_dir</li>
+</ol>
+<p>  功能：利用指定图像抑制一幅图像上的非最大值点。</p>
+<p> </p>
+<h2>15.3 Regiongrowing</h2>
+<ol>
+<li>expand_gray</li>
+</ol>
+<p>  功能：依据灰度值或颜色填充两个区域的间隙或分割重叠区域。</p>
+<ol>
+<li>expand_gray_ref</li>
+</ol>
+<p>  功能：依据灰度值或颜色填充两个区域的间隙或分割重叠区域。</p>
+<ol>
+<li>expand_line</li>
+</ol>
+<p>  功能：从给定线开始扩充区域。</p>
+<ol>
+<li>regiongrowing</li>
+</ol>
+<p>  功能：利用区域增长分割图像。</p>
+<ol>
+<li>regiongrowing_mean</li>
+</ol>
+<p>  功能：利用平均灰度值执行区域增长。</p>
+<ol>
+<li>regiongrowing_n</li>
+</ol>
+<p>  功能：利用区域增长为多通道图像分割图像。</p>
+<p> </p>
+<h2>15.4 Threshold</h2>
+<ol>
+<li>auto_threshold</li>
+</ol>
+<p>  功能：根据直方图决定的阀值分割图像。</p>
+<ol>
+<li>bin_threshold</li>
+</ol>
+<p>  功能：根据自动产生的阀值分割图像。</p>
+<ol>
+<li>char_threshold</li>
+</ol>
+<p>  功能：为提取的字符产生一个分割阀值。</p>
+<ol>
+<li>check_difference</li>
+</ol>
+<p>  功能：一个像素一个像素的比较两幅图像。</p>
+<ol>
+<li>dual_threshold</li>
+</ol>
+<p>  功能：对标记的图像做门限操作。</p>
+<ol>
+<li>dyn_threshold</li>
+</ol>
+<p>  功能：利用局域阀值分割图像。</p>
+<ol>
+<li>fast_threshold</li>
+</ol>
+<p>  功能：利用全局阀值快速将图像二值化。</p>
+<ol>
+<li>histo_to_thresh</li>
+</ol>
+<p>  功能：根据直方图决定灰度值门限。</p>
+<ol>
+<li>threshold</li>
+</ol>
+<p>  功能：利用全局阀值分割图像。</p>
+<ol>
+<li>threshold_sub_pix</li>
+</ol>
+<p>   功能：根据子像素的准确性从一副图像中提取水平（平坦）交叉口。</p>
+<ol>
+<li>var_threshold</li>
+</ol>
+<p>   功能：根据局域平均标准偏差分析将图像二值化。</p>
+<ol>
+<li>zero_crossing</li>
+</ol>
+<p>   功能：从一幅图像中提取零相交。</p>
+<ol>
+<li>zero_crossing_sub_pix</li>
+</ol>
+<p>   功能：根据子像素准确性从一幅图像中提取零相交。</p>
+<p> </p>
+<h2>15.5 Topography</h2>
+<ol>
+<li>critical_points_sub_pix</li>
+</ol>
+<p>  功能：一幅图像中主要点的子像素精确度检测。</p>
+<ol>
+<li>local_max</li>
+</ol>
+<p>  功能：检测一幅图像中所有的最大数。</p>
+<ol>
+<li>local_max_sub_pix</li>
+</ol>
+<p>  功能：一幅图像中局域最大数的子像素精确度检测。</p>
+<p>4 .local_min</p>
+<p>  功能：检测一幅图像中所有的最小数。</p>
+<ol>
+<li>local_min_sub_pix</li>
+</ol>
+<p>  功能：一幅图像中局域最小数的子像素精确度检测。</p>
+<ol>
+<li>lowlands</li>
+</ol>
+<p>  功能：检测凹地所有灰度值。</p>
+<ol>
+<li>lowlands_center</li>
+</ol>
+<p>  功能：检测凹地所有灰度值的中心。</p>
+<ol>
+<li>plateaus</li>
+</ol>
+<p>  功能：检测所有平稳状态灰度值。</p>
+<ol>
+<li>plateaus_center</li>
+</ol>
+<p>  功能：检测所有平稳状态灰度值的中心。</p>
+<ol>
+<li>pouring</li>
+</ol>
+<p>   功能：根据大于“pouringwater”分割图像。</p>
+<ol>
+<li>saddle_points_sub_pix</li>
+</ol>
+<p>   功能：一幅图像中底部点的子像素精确度检测。</p>
+<ol>
+<li>watersheds</li>
+</ol>
+<p>   功能：从一副图像中提取分界线和“盆地”。</p>
+<ol>
+<li>watersheds_threshold</li>
+</ol>
+<p>   功能：利用阀值从一幅图像中提取“分水岭盆地”。</p>
+<p> </p>
+<h1>Chapter 16:System</h1>
+<h2>16.1 Database</h2>
+<ol>
+<li>count_relation</li>
+</ol>
+<p>  功能：在HALCON数据库中实体的数目。</p>
+<ol>
+<li>get_modules</li>
+</ol>
+<p>  功能：查询已使用模块和模块关键码。</p>
+<ol>
+<li>reset_obj_db</li>
+</ol>
+<p>  功能：HALCON系统的初始化。</p>
+<p> </p>
+<h2>16.2 Error-Handling</h2>
+<ol>
+<li>get_check</li>
+</ol>
+<p>  功能：HALCON控制模式的说明。</p>
+<ol>
+<li>get_error_text</li>
+</ol>
+<p>  功能：查询HALCON错误测试后错误数目。</p>
+<ol>
+<li>get_spy</li>
+</ol>
+<p>  功能：HALCON调试工具当前配置。</p>
+<ol>
+<li>query_spy</li>
+</ol>
+<p>  功能：查询HALCON调试工具可能的设置。</p>
+<ol>
+<li>set_check</li>
+</ol>
+<p>  功能：激活和钝化HALCON控制模式。</p>
+<ol>
+<li>set_spy</li>
+</ol>
+<p>  功能：HALCON调试工具的控制。</p>
+<p> </p>
+<h2>16.3 Information</h2>
+<ol>
+<li>get_chapter_info</li>
+</ol>
+<p>  功能：获取程序有关章节的信息。</p>
+<ol>
+<li>get_keywords</li>
+</ol>
+<p>  功能：获取指定给程序的关键字。</p>
+<ol>
+<li>get_operator_info</li>
+</ol>
+<p>  功能：获取关于HALCON程序的信息。</p>
+<ol>
+<li>get_operator_name</li>
+</ol>
+<p>  功能：获取由给定字符串作为它们的名字的程序。</p>
+<ol>
+<li>get_param_info</li>
+</ol>
+<p>  功能：获取关于程序参数的信息。</p>
+<ol>
+<li>get_param_names</li>
+</ol>
+<p>  功能：获取一个HALCON程序参数的名字。</p>
+<ol>
+<li>get_param_num</li>
+</ol>
+<p>  功能：获取一个HALCON程序不同参数类的数目。</p>
+<ol>
+<li>get_param_types</li>
+</ol>
+<p>  功能：获取一个HALCON程序控制参数的缺省数据类型。</p>
+<ol>
+<li>query_operator_info</li>
+</ol>
+<p>  功能：联合操作get_operator_info查询空档相关信息。</p>
+<ol>
+<li>query_param_info</li>
+</ol>
+<p>   功能：查询关于操作get_param_info的空档的在线信息。</p>
+<ol>
+<li>search_operator</li>
+</ol>
+<p>   功能：寻找一个关键字所有进程的名字。</p>
+<p> </p>
+<h2>16.4 Operating-System</h2>
+<ol>
+<li>count_seconds</li>
+</ol>
+<p>  功能：衡量时间。</p>
+<ol>
+<li>system_call</li>
+</ol>
+<p>  功能：执行系统请求。</p>
+<ol>
+<li>wait_seconds</li>
+</ol>
+<p>  功能：延迟操作的执行。</p>
+<p> </p>
+<h2>16.5 Parallelization</h2>
+<ol>
+<li>check_par_hw_potential</li>
+</ol>
+<p>  功能：检测硬件进行并行处理的潜力。</p>
+<ol>
+<li>load_par_knowledge</li>
+</ol>
+<p>  功能：从文件中导入自动平行化信息。</p>
+<ol>
+<li>store_par_knowledge</li>
+</ol>
+<p>  功能：在文件中存储关于自动平行化的信息。</p>
+<p> </p>
+<h2>16.6 Parameters</h2>
+<ol>
+<li>get_system</li>
+</ol>
+<p>  功能：根据HALCON系统参数获取关于当前的信息。</p>
+<ol>
+<li>set_system</li>
+</ol>
+<p>  功能：HALCON系统参数的设置。</p>
+<p> </p>
+<h2>16.7 Serial</h2>
+<ol>
+<li>clear_serial</li>
+</ol>
+<p>  功能：清除一个串行连接的缓冲。</p>
+<ol>
+<li>close_all_serials</li>
+</ol>
+<p>  功能：关闭所有的串行设备。</p>
+<ol>
+<li>close_serial</li>
+</ol>
+<p>  功能：关闭一个串行设备。</p>
+<ol>
+<li>get_serial_param</li>
+</ol>
+<p>  功能：获取一个串行设备的参数。</p>
+<ol>
+<li>open_serial</li>
+</ol>
+<p>  功能：打开一个串行设备。</p>
+<ol>
+<li>read_serial</li>
+</ol>
+<p>  功能：读取一个串行设备。</p>
+<ol>
+<li>set_serial_param</li>
+</ol>
+<p>  功能：设置一个串行设备的参数。</p>
+<ol>
+<li>write_serial</li>
+</ol>
+<p>  功能：写入一个串行设备。</p>
+<p> </p>
+<h2>16.8 Sockets</h2>
+<ol>
+<li>close_socket</li>
+</ol>
+<p>  功能：关闭一个插口（接口）。</p>
+<ol>
+<li>get_next_socket_data_type</li>
+</ol>
+<p>  功能：决定下一个插口（接口）数据的HALCON数据类型。</p>
+<ol>
+<li>get_socket_timeout</li>
+</ol>
+<p>  功能：获取一个插口（接口）的超时。</p>
+<ol>
+<li>open_socket_accept</li>
+</ol>
+<p>  功能：打开一个接受连接请求的插口（接口）。</p>
+<ol>
+<li>open_socket_connect</li>
+</ol>
+<p>  功能：打开一个插口到一个已存在的插口。</p>
+<ol>
+<li>receive_image</li>
+</ol>
+<p>  功能：通过插口连接接收一副图像。</p>
+<ol>
+<li>receive_region</li>
+</ol>
+<p>  功能：通过插口连接接收区域。</p>
+<ol>
+<li>receive_tuple</li>
+</ol>
+<p>  功能：通过插口连接接收一个元组。</p>
+<ol>
+<li>receive_xld</li>
+</ol>
+<p>  功能：通过插口连接接收一个XLD对象。</p>
+<ol>
+<li>send_image</li>
+</ol>
+<p>   功能：通过插口连接发送一副图像。</p>
+<ol>
+<li>send_region</li>
+</ol>
+<p>   功能：通过插口连接发送区域。</p>
+<ol>
+<li>send_tuple</li>
+</ol>
+<p>   功能：通过插口连接发送一个元组。</p>
+<ol>
+<li>send_xld</li>
+</ol>
+<p>   功能：通过插口连接发送一个XLD对象。</p>
+<ol>
+<li>set_socket_timeout</li>
+</ol>
+<p>   功能：设置一个插口的超时。</p>
+<ol>
+<li>socket_accept_connect</li>
+</ol>
+<p>   功能：接受一个监听插口的连接请求。</p>
+<p> </p>
+<h1>Chapter 17:Tools</h1>
+<h2>17.1 2D-Transformations</h2>
+<ol>
+<li>affine_trans_pixel</li>
+</ol>
+<p>  功能：对像素坐标轴进行任意的仿射二维变换。</p>
+<ol>
+<li>affine_trans_point_2d</li>
+</ol>
+<p>  功能：对点进行任意的最简二维变换</p>
+<ol>
+<li>bundle_adjust_mosaic</li>
+</ol>
+<p>  功能：对一幅图像的嵌合体采取一系列调整。</p>
+<ol>
+<li>hom_mat2d_compose</li>
+</ol>
+<p>  功能：将两种相同类型二维变换矩阵相乘。</p>
+<ol>
+<li>hom_mat2d_determinant</li>
+</ol>
+<p>  功能：计算一个同质的二维变换矩阵的行列式。</p>
+<ol>
+<li>hom_mat2d_identity</li>
+</ol>
+<p>  功能：构建二维变换同样的同质变换矩阵。</p>
+<ol>
+<li>hom_mat2d_invert</li>
+</ol>
+<p>  功能：插入一个同质二维变换矩阵。</p>
+<ol>
+<li>hom_mat2d_rotate</li>
+</ol>
+<p>  功能：为一个同质二维变换矩阵添加一个循环。</p>
+<ol>
+<li>hom_mat2d_rotate_local</li>
+</ol>
+<p>  功能：为一个同质二维变换矩阵添加一个循环。</p>
+<ol>
+<li>hom_mat2d_scale</li>
+</ol>
+<p>   功能：为一个同质二维变换矩阵添加一个缩放。</p>
+<ol>
+<li>hom_mat2d_scale_local</li>
+</ol>
+<p>   功能：为一个同质二维变换矩阵添加一个缩放。</p>
+<ol>
+<li>hom_mat2d_slant</li>
+</ol>
+<p>   功能：为一个同质二维变换矩阵添加一个斜面。</p>
+<ol>
+<li>hom_mat2d_slant_local</li>
+</ol>
+<p>   功能：为一个同质二维变换矩阵添加一个斜面。</p>
+<ol>
+<li>hom_mat2d_to_affine_par</li>
+</ol>
+<p>   功能：计算一个来自一个同质二维变换矩阵的仿射变换参数。</p>
+<ol>
+<li>hom_mat2d_translate</li>
+</ol>
+<p>   功能：为一个同质二维变换矩阵添加一个旋转。</p>
+<ol>
+<li>hom_mat2d_translate_local</li>
+</ol>
+<p>   功能：为一个同质二维变换矩阵添加一个旋转。</p>
+<ol>
+<li>hom_mat2d_transpose</li>
+</ol>
+<p>   功能：将一个同质二维变换矩阵转置。</p>
+<ol>
+<li>hom_mat3d_project</li>
+</ol>
+<p>   功能：给一个二维投影变换矩阵投影一个仿射三维变换矩阵。</p>
+<ol>
+<li>hom_vector_to_proj_hom_mat2d</li>
+</ol>
+<p>   功能：根据给定点的映射计算一个同质变换矩阵。</p>
+<ol>
+<li>proj_match_points_ransack</li>
+</ol>
+<p>   功能：通过找到两副图像中点与点之间的映射计算一个投影变换矩阵。</p>
+<ol>
+<li>projective_trans_pixel</li>
+</ol>
+<p>   功能：利用一个同质投影变换矩阵表示像素坐标轴。</p>
+<ol>
+<li>projective_trans_point_2d</li>
+</ol>
+<p>   功能：利用一个投影变换矩阵表示一个同质二维点。</p>
+<ol>
+<li>vector_angle_to_rigid</li>
+</ol>
+<p>   功能：从点和角度方面计算一个严格的仿射变换。</p>
+<ol>
+<li>vector_field_to_hom_mat2d</li>
+</ol>
+<p>   功能：根据位移矢量字段获取一个最接近的近似图。</p>
+<ol>
+<li>vector_to_hom_mat2d</li>
+</ol>
+<p>   功能：根据点与点间的映射获取一个最接近的近似图</p>
+<ol>
+<li>vector_to_proj_hom_mat2d</li>
+</ol>
+<p>   功能：利用给定点的映射计算一个映射变换矩阵。</p>
+<ol>
+<li>vector_to_rigid</li>
+</ol>
+<p>   功能：根据点的映射获取一个近似严格的仿射变换。</p>
+<ol>
+<li>vector_to_similarity</li>
+</ol>
+<p>   功能：根据点的映射获取一个近似的相似变换。</p>
+<p> </p>
+<h2>17.2 3D-Transformations</h2>
+<ol>
+<li>affine_trans_point_3d</li>
+</ol>
+<p>  功能：对点运用一个随即仿射三维变换。</p>
+<ol>
+<li>convert_pose_type</li>
+</ol>
+<p>  功能：改变一个三维模式的表示类型。</p>
+<ol>
+<li>create_pose</li>
+</ol>
+<p>  功能：创建一个三维模式。</p>
+<ol>
+<li>get_pose_type</li>
+</ol>
+<p>  功能：获取一个三维模式的表示类型。</p>
+<ol>
+<li>hom_mat3d_compose</li>
+</ol>
+<p>  功能：将两个同质三维变换矩阵相乘。</p>
+<ol>
+<li>hom_mat3d_identity</li>
+</ol>
+<p>  功能：构建三维变换同样的同质变换矩阵。</p>
+<ol>
+<li>hom_mat3d_invert</li>
+</ol>
+<p>  功能：插入一个同质三维变换矩阵。</p>
+<ol>
+<li>hom_mat3d_rotate</li>
+</ol>
+<p>  功能：为一个同质三维变换矩阵添加一个循环。</p>
+<ol>
+<li>hom_mat3d_rotate_local</li>
+</ol>
+<p>  功能：为一个同质三维变换矩阵添加一个循环。</p>
+<ol>
+<li>hom_mat3d_scale</li>
+</ol>
+<p>  功能：为一个同质三维变换矩阵添加一个缩放。</p>
+<ol>
+<li>hom_mat3d_scale_local</li>
+</ol>
+<p>  功能：为一个同质三维变换矩阵添加一个缩放。</p>
+<ol>
+<li>hom_mat3d_to_pose</li>
+</ol>
+<p>   功能：将一个同质变换矩阵转换为一个三维模式。</p>
+<ol>
+<li>hom_mat3d_translate</li>
+</ol>
+<p>   功能：为一个同质三维变换矩阵添加一个旋转。</p>
+<ol>
+<li>hom_mat3d_translate_local</li>
+</ol>
+<p>   功能：为一个同质三维变换矩阵添加一个旋转。</p>
+<p>15 .pose_to_hom_mat3d</p>
+<p>   功能：将一个三位模式转换为一个同质变换矩阵。</p>
+<ol>
+<li>read_pose</li>
+</ol>
+<p>   功能：从一个文本文件中读取一个三维模式。</p>
+<ol>
+<li>set_origin_pose</li>
+</ol>
+<p>   功能：转换一个三位模式的原点。</p>
+<ol>
+<li>write_pose</li>
+</ol>
+<p>   功能：将一个三维模式写入一个文本文件。</p>
+<p> </p>
+<h2>17.3 Background-Estimator</h2>
+<ol>
+<li>close_all_bg_esti</li>
+</ol>
+<p>  功能：清除所有的背景评估数据集。</p>
+<ol>
+<li>close_bg_esti</li>
+</ol>
+<p>  功能：清除背景估测数据集。</p>
+<ol>
+<li>create_bg_esti</li>
+</ol>
+<p>  功能：为背景评估创建和初始化一个数据集。</p>
+<ol>
+<li>get_bg_esti_params</li>
+</ol>
+<p>  功能：返回数据集的参数。</p>
+<ol>
+<li>give_bg_esti</li>
+</ol>
+<p>  功能：返回估测背景图像。</p>
+<ol>
+<li>run_bg_esti</li>
+</ol>
+<p>  功能：评估背景并返回前景区域。</p>
+<ol>
+<li>set_bg_esti_params</li>
+</ol>
+<p>  功能：改变数据集的参数。</p>
+<ol>
+<li>update_bg_esti</li>
+</ol>
+<p>  功能：改变估测背景图像。</p>
+<p> </p>
+<h2>17.4 Barcode</h2>
+<ol>
+<li>clear_all_bar_code_models</li>
+</ol>
+<p>  功能：清除所有条形码模型，释放其分配的存储空间。</p>
+<ol>
+<li>clear_bar_code_model</li>
+</ol>
+<p>  功能：清除一个条形码模型，释放相应的存储空间。</p>
+<ol>
+<li>create_bar_code_model</li>
+</ol>
+<p>  功能：创建一个条形码阅读器模型。</p>
+<ol>
+<li>find_bar_code</li>
+</ol>
+<p>  功能：检测和读取一幅图像中条形码符号。</p>
+<ol>
+<li>get_bar_code_object</li>
+</ol>
+<p>  功能：访问创建在搜寻或条形码符号解码过程中的对象图标。</p>
+<ol>
+<li>get_bar_code_param</li>
+</ol>
+<p>  功能：获取一个或多个描述条形码模式的参数。</p>
+<ol>
+<li>get_bar_code_result</li>
+</ol>
+<p>  功能：获取字母数字混合编码的结果，其是在条形码符号解码过程中累计的。</p>
+<ol>
+<li>set_bar_code_param</li>
+</ol>
+<p>  功能：设置条形码模型的选定参数。</p>
+<p> </p>
+<h2>17.5 Calibration</h2>
+<ol>
+<li>caltab_points</li>
+</ol>
+<p>  功能：从校准板说明文件中读取标志中心点。</p>
+<ol>
+<li>cam_mat_to_cam_par</li>
+</ol>
+<p>  功能：计算从一个相机矩阵获取的内部相机参数。</p>
+<ol>
+<li>cam_par_to_cam_mat</li>
+</ol>
+<p>  功能：从相机内部参数计算一个相机矩阵。</p>
+<ol>
+<li>camera_calibration</li>
+</ol>
+<p>  功能：决定同时发生的最小化程序的所有相机参数。</p>
+<ol>
+<li>change_radial_distortion_cam_par</li>
+</ol>
+<p>  功能：根据与特殊放射失真相一致决定新的相机参数。</p>
+<ol>
+<li>change_radial_distortion_contours_xld</li>
+</ol>
+<p>  功能：改变了轮廓(contour)的放射失真。</p>
+<ol>
+<li>change_radial_distortion_image</li>
+</ol>
+<p>  功能：改变一幅图像的放射失真。</p>
+<ol>
+<li>contour_to_world_plane_xld</li>
+</ol>
+<p>  功能：将一个XLD轮廓(contour)转换为一个坐标系统中平面Z为零。</p>
+<ol>
+<li>create_caltab</li>
+</ol>
+<p>  功能：创建一个描述文件和附文件的校准板。</p>
+<ol>
+<li>disp_caltab</li>
+</ol>
+<p>   功能：投射和视觉化图像中校准板的三维模型。</p>
+<ol>
+<li>find_caltab</li>
+</ol>
+<p>   功能：分割和标准化图像中的校准板区域。</p>
+<ol>
+<li>find_marks_and_pose</li>
+</ol>
+<p>   功能：从图像中提取二维校准标志和为外部计算机参数计算内部数值。</p>
+<ol>
+<li>gen_caltab</li>
+</ol>
+<p>   功能：创建一个校准板说明文件和相应的附文件。</p>
+<ol>
+<li>gen_image_to_world_plane_map</li>
+</ol>
+<p>   功能：创建一个投射图，其描述图像平面与坐标轴系统中平面Z为零之间的映射。</p>
+<ol>
+<li>gen_radial_distortion_map</li>
+</ol>
+<p>  功能：创建一个投射图，其描述图像与其相应正在改变的放射失真间的映射。</p>
+<ol>
+<li>get_circle_pose</li>
+</ol>
+<p>   功能：从一个圆周相应的二维投射中决定它的三维模式。</p>
+<ol>
+<li>get_line_of_sight</li>
+</ol>
+<p>   功能：计算相应于图像中一个点的视线。</p>
+<ol>
+<li>get_rectangle_pose</li>
+</ol>
+<p>   功能：从一个矩形相应的二维投射中决定它的三维模式。</p>
+<ol>
+<li>hand_eye_calibration</li>
+</ol>
+<p>   功能：执行一个手---眼校准。</p>
+<ol>
+<li>image_points_to_world_plane</li>
+</ol>
+<p>   功能：将图像中的点转换到坐标轴平面Z为零上。</p>
+<ol>
+<li>image_to_world_plane</li>
+</ol>
+<p>   功能：通过将一副图像转换为坐标轴系统中平面Z为零而矫正图像。</p>
+<ol>
+<li>project_3d_point</li>
+</ol>
+<p>   功能：将三维点投射到子像素图像坐标。</p>
+<ol>
+<li>radiometric_self_calibration</li>
+</ol>
+<p>   功能：执行一个相机的辐射测量的自校准。</p>
+<ol>
+<li>read_cam_par</li>
+</ol>
+<p>   功能：从文本文件中读取内部相机参数。</p>
+<ol>
+<li>sim_caltab</li>
+</ol>
+<p>   功能：根据校准板模拟一幅图像。</p>
+<ol>
+<li>stationary_camera_self_calibration</li>
+</ol>
+<p>   功能：投射一个静止投射相机的自校准。</p>
+<ol>
+<li>write_cam_par</li>
+</ol>
+<p>   功能：将内部相机参数写入文本文件中。</p>
+<p> </p>
+<h2>17.6 Datacode</h2>
+<ol>
+<li>clear_all_data_code_2d_models</li>
+</ol>
+<p>  功能：清除所有的二维数据模型并释放它们分配的存储空间。</p>
+<ol>
+<li>clear_data_code_2d_model</li>
+</ol>
+<p>  功能：清除一个二维数据模型并释放它分配的存储空间。</p>
+<ol>
+<li>create_data_code_2d_model</li>
+</ol>
+<p>  功能：创建一个二维数据编码类的模式。</p>
+<ol>
+<li>find_data_code_2d</li>
+</ol>
+<p>  功能：检测和读取一副图像或测试的二维数据编码模式中的二维数据编码符号。</p>
+<ol>
+<li>get_data_code_2d_objects</li>
+</ol>
+<p>  功能：查询搜索二维数据编码符号过程中创建的对象的图标。</p>
+<ol>
+<li>get_data_code_2d_param</li>
+</ol>
+<p>  功能：获取一个或多个描述二维数据编码模型的参数。</p>
+<ol>
+<li>get_data_code_2d_results</li>
+</ol>
+<p>  功能：获取字母数字混合编码的结果，其是在搜索二维数据编码符号过程中累计的。</p>
+<ol>
+<li>query_data_code_2d_params</li>
+</ol>
+<p>  功能：为一个给定二维数据编码模型获取通用参数或对象的名字，其也可用于其他的二维数据编码模型中。</p>
+<ol>
+<li>read_data_code_2d_model</li>
+</ol>
+<p>  功能：从一个文件中读取一个二维数据编码模型并新建一个模型。</p>
+<ol>
+<li>set_data_code_2d_param</li>
+</ol>
+<p>   功能：设置二维数据编码模型的选定参数。</p>
+<ol>
+<li>write_data_code_2d_model</li>
+</ol>
+<p>   功能：将一个二维数据编码模型写入一个文件。</p>
+<p> </p>
+<h2>17.7 Fourier-Descriptor</h2>
+<ol>
+<li>abs_invar_fourier_coeff</li>
+</ol>
+<p>  功能：根据起始点的位移标准化傅里叶系数。</p>
+<ol>
+<li>fourier_1dim</li>
+</ol>
+<p>  功能：计算一个参数化的元组的傅里叶系数。</p>
+<ol>
+<li>fourier_1dim_inv</li>
+</ol>
+<p>  功能：空间傅里叶变换（傅里叶逆变换）。</p>
+<ol>
+<li>invar_fourier_coeff</li>
+</ol>
+<p>  功能：傅里叶系数标准化。</p>
+<ol>
+<li>match_fourier_coeff</li>
+</ol>
+<p>  功能：两个元组的相似性。</p>
+<ol>
+<li>move_contour_orig</li>
+</ol>
+<p>  功能：将原点变换到引力的中心。</p>
+<ol>
+<li>prep_contour_fourier</li>
+</ol>
+<p>  功能：参数化传输的元组。</p>
+<p> </p>
+<h2>17.8 Function</h2>
+<ol>
+<li>abs_funct_1d</li>
+</ol>
+<p>  功能：Y值的绝对值。</p>
+<ol>
+<li>compose_funct_1d</li>
+</ol>
+<p>  功能：组合两个函数。</p>
+<ol>
+<li>create_funct_1d_array</li>
+</ol>
+<p>  功能：从Y值的序列中创建一个函数。</p>
+<ol>
+<li>create_funct_1d_pairs</li>
+</ol>
+<p>  功能：从（X，Y）集合中创建一个函数。</p>
+<ol>
+<li>derivate_funct_1d</li>
+</ol>
+<p>  功能：计算一个函数的派生物。</p>
+<ol>
+<li>distance_funct_1d</li>
+</ol>
+<p>  功能：计算两个函数的间隔。</p>
+<ol>
+<li>funct_1d_to_pairs</li>
+</ol>
+<p>  功能：查询一个函数的（X，Y）值。</p>
+<ol>
+<li>get_pair_funct_1d</li>
+</ol>
+<p>  功能：根据控制点的索引查询一个函数值。</p>
+<ol>
+<li>get_y_value_funct_1d</li>
+</ol>
+<p>  功能：返回任意位置函数的值。</p>
+<ol>
+<li>integrate_funct_1d</li>
+</ol>
+<p>   功能：计算一个函数的正区域和负区域。</p>
+<ol>
+<li>invert_funct_1d</li>
+</ol>
+<p>   功能：计算一个函数的反转。</p>
+<ol>
+<li>local_min_max_funct_1d</li>
+</ol>
+<p>   功能：计算一个函数的局域最小和最大值点。</p>
+<ol>
+<li>match_funct_1d_trans</li>
+</ol>
+<p>   功能：计算两个函数传递参数。</p>
+<ol>
+<li>negate_funct_1d</li>
+</ol>
+<p>   功能：对Y值取非（反）。</p>
+<ol>
+<li>num_points_funct_1d</li>
+</ol>
+<p>   功能：函数控制点的数目。</p>
+<ol>
+<li>read_funct_1d</li>
+</ol>
+<p>   功能：从文件中读取一个函数。</p>
+<ol>
+<li>sample_funct_1d</li>
+</ol>
+<p>   功能：再间隔区等距取样。</p>
+<ol>
+<li>scale_y_funct_1d</li>
+</ol>
+<p>   功能：将Y值相乘和相加。</p>
+<ol>
+<li>smooth_funct_1d_gauss</li>
+</ol>
+<p>   功能：采用高斯函数平滑一个等距一维函数。</p>
+<ol>
+<li>smooth_funct_1d_mean</li>
+</ol>
+<p>   功能：采用平均值将一个等距一维函数平滑化。</p>
+<ol>
+<li>transform_funct_1d</li>
+</ol>
+<p>   功能：根据给定传递参数变换你一个函数。</p>
+<ol>
+<li>write_funct_1d</li>
+</ol>
+<p>   功能：将一个函数写入一个文件。</p>
+<ol>
+<li>x_range_funct_1d</li>
+</ol>
+<p>   功能：函数的最小和最大X值。</p>
+<ol>
+<li>y_range_funct_1d</li>
+</ol>
+<p>   功能：函数的最小和最大Y值。</p>
+<ol>
+<li>zero_crossings_funct_1d</li>
+</ol>
+<p>   功能：计算一个函数的零点。</p>
+<p> </p>
+<h2>17.9 Geometry</h2>
+<ol>
+<li>angle_ll</li>
+</ol>
+<p>  功能：计算两条线的夹角。</p>
+<ol>
+<li>angle_lx</li>
+</ol>
+<p>  功能：计算一条线与垂直轴之间的角度。</p>
+<ol>
+<li>distance_cc</li>
+</ol>
+<p>  功能：计算两个轮廓(contour)间的距离。</p>
+<ol>
+<li>distance_cc_min</li>
+</ol>
+<p>  功能：计算两个轮廓(contour)间的最小距离。</p>
+<ol>
+<li>distance_lc</li>
+</ol>
+<p>  功能：计算一条线和一个轮廓(contour)间的距离。</p>
+<ol>
+<li>distance_lr</li>
+</ol>
+<p>  功能：计算一条线和一个区域间的距离。</p>
+<ol>
+<li>distance_pc</li>
+</ol>
+<p>  功能：计算一个点和一个轮廓(contour)间的距离。</p>
+<ol>
+<li>distance_pl</li>
+</ol>
+<p>  功能：计算一个点和一条线间的距离。</p>
+<ol>
+<li>distance_pp</li>
+</ol>
+<p>  功能：计算两个点之间的距离。</p>
+<ol>
+<li>distance_pr</li>
+</ol>
+<p>   功能：计算一个点和一个区域间的距离。</p>
+<ol>
+<li>distance_ps</li>
+</ol>
+<p>   功能：计算一个点和一条分割线间的距离。</p>
+<ol>
+<li>distance_rr_min</li>
+</ol>
+<p>   功能：两个相邻区域的相同像素间的最小距离。</p>
+<ol>
+<li>distance_rr_min_dil</li>
+</ol>
+<p>   功能：膨胀时两个区域间的最小距离。</p>
+<ol>
+<li>distance_sc</li>
+</ol>
+<p>   功能：计算一条分割线和一个轮廓(contour)间的距离。</p>
+<ol>
+<li>distance_sl</li>
+</ol>
+<p>   功能：计算一条分割线和一条线间的距离。</p>
+<ol>
+<li>distance_sr</li>
+</ol>
+<p>   功能：计算一条分割线和一个区域间的距离。</p>
+<ol>
+<li>distance_ss</li>
+</ol>
+<p>   功能：计算两条分割线间的距离。</p>
+<ol>
+<li>get_points_ellipse</li>
+</ol>
+<p>   功能：计算椭圆上特定角度的一个点。</p>
+<ol>
+<li>intersection_ll</li>
+</ol>
+<p>   功能：计算两条线的交集点（相交点）。</p>
+<ol>
+<li>projection_pl</li>
+</ol>
+<p>   功能：计算一条线上一个点的投影。</p>
+<p> </p>
+<h2>17.10 Grid-Rectiﬁcation</h2>
+<ol>
+<li>connect_grid_points</li>
+</ol>
+<p>  功能：建立矫正网格的矫正点间的连接。</p>
+<ol>
+<li>create_rectification_grid</li>
+</ol>
+<p>  功能：建立一个附文件，描述矫正网格。</p>
+<ol>
+<li>find_rectification_grid</li>
+</ol>
+<p>  功能：分割图像中矫正网格区域。</p>
+<ol>
+<li>gen_arbitrary_distortion_map</li>
+</ol>
+<p>  功能：产生一个投射图，其描述随意扭曲图像与正确图像间的映射。</p>
+<ol>
+<li>gen_grid_rectification_map</li>
+</ol>
+<p>  功能：计算扭曲图像与基于规律的网格的正确的图像的映射。</p>
+<p> </p>
+<h2>17.11 Hough</h2>
+<ol>
+<li>hough_circle_trans</li>
+</ol>
+<p>  功能：返回指定半径的圆周的Hough变换。</p>
+<ol>
+<li>hough_circles</li>
+</ol>
+<p>  功能：特定半径的圆周的中心。</p>
+<ol>
+<li>hough_line_trans</li>
+</ol>
+<p>  功能：对区域中的线进行Hough变换。</p>
+<ol>
+<li>hough_line_trans_dir</li>
+</ol>
+<p>  功能：利用局部方向梯度对线进行Hough变换。</p>
+<ol>
+<li>hough_lines</li>
+</ol>
+<p>  功能：借助Hough变化查询图像中的线，并将其返回到HNF中。</p>
+<ol>
+<li>hough_lines_dir</li>
+</ol>
+<p>  功能：借助采用局部方向梯度的Hough变换查询图像中的线，并将它们以正常形式返回。</p>
+<ol>
+<li>select_matching_lines</li>
+</ol>
+<p>  功能：选取HNF中线的集合中匹配区域最好的线。</p>
+<p> </p>
+<h2>17.12 Image-Comparison</h2>
+<ol>
+<li>clear_all_variation_models</li>
+</ol>
+<p>  功能：释放所有变化模型（variationmodel）的存储空间。</p>
+<ol>
+<li>clear_train_data_variation_model</li>
+</ol>
+<p>  功能：释放变化模型（variationmodel）的测试数据的存储空间。</p>
+<ol>
+<li>clear_variation_model</li>
+</ol>
+<p>  功能：释放一个变化模型（variationmodel）的存储空间。</p>
+<ol>
+<li>compare_ext_variation_model</li>
+</ol>
+<p>  功能：将一副图像与一个变化模型（variationmodel）相比较。</p>
+<ol>
+<li>compare_variation_model</li>
+</ol>
+<p>  功能：将一副图像与一个变化模型（variationmodel）相比较。</p>
+<ol>
+<li>create_variation_model</li>
+</ol>
+<p>  功能：为图像对比创建一个变化模型。</p>
+<ol>
+<li>get_thresh_images_variation_model</li>
+</ol>
+<p>  功能：返回阀值图像用于图像对比。</p>
+<ol>
+<li>get_variation_model</li>
+</ol>
+<p>  功能：返回图像用于图像对比。</p>
+<ol>
+<li>prepare_direct_variation_model</li>
+</ol>
+<p>  功能：为图像对比准备一个变化模型。</p>
+<ol>
+<li>prepare_variation_model</li>
+</ol>
+<p>   功能：为图像对比准备一个变化模型。
+11. read_variation_model</p>
+<p>   功能：从一个文件中读取一个变化模型。</p>
+<ol>
+<li>train_variation_model</li>
+</ol>
+<p>   功能：测试一个变化模型。</p>
+<ol>
+<li>write_variation_model</li>
+</ol>
+<p>   功能：将一个变化模型写入文件。</p>
+<p> </p>
+<h2>17.13 Kalman-Filter</h2>
+<ol>
+<li>filter_kalman</li>
+</ol>
+<p>  功能：借助Kalman（卡尔曼）滤波器估测系统的当前状态。</p>
+<ol>
+<li>read_kalman</li>
+</ol>
+<p>  功能：读取一个卡尔曼滤波器的说明文件。</p>
+<ol>
+<li>sensor_kalman</li>
+</ol>
+<p>  功能：卡尔曼滤波器测量值的交互式输入。</p>
+<ol>
+<li>update_kalman</li>
+</ol>
+<p>  功能：读取一个卡尔曼滤波器的更新文件。</p>
+<p> </p>
+<h2>17.14 Measure</h2>
+<ol>
+<li>close_all_measures</li>
+</ol>
+<p>  功能：清除所有测试对象。</p>
+<ol>
+<li>close_measure</li>
+</ol>
+<p>  功能：清除一个测试对象。</p>
+<ol>
+<li>fuzzy_measure_pairing</li>
+</ol>
+<p>  功能：提取与矩形或环状弧垂直的直线边缘。</p>
+<ol>
+<li>fuzzy_measure_pairs</li>
+</ol>
+<p>  功能：提取与矩形或环状弧垂直的直线边缘。</p>
+<ol>
+<li>fuzzy_measure_pos</li>
+</ol>
+<p>  功能：提取与矩形或环状弧垂直的直线边缘。</p>
+<ol>
+<li>gen_measure_arc</li>
+</ol>
+<p>  功能：垂直与环状弧的直线边缘的提取。</p>
+<ol>
+<li>gen_measure_rectangle2</li>
+</ol>
+<p>  功能：垂直与矩形的直线边缘的提取。</p>
+<ol>
+<li>measure_pairs</li>
+</ol>
+<p>  功能：提取与矩形或环状弧垂直的直线边缘。</p>
+<ol>
+<li>measure_pos</li>
+</ol>
+<p>  功能：提取与矩形或环状弧垂直的直线边缘。</p>
+<ol>
+<li>measure_projection</li>
+</ol>
+<p>   功能：提取垂直于一个矩形或环状弧的灰度值轮廓(contour)。</p>
+<ol>
+<li>measure_thresh</li>
+</ol>
+<p>   功能：提取沿着一个矩形或环状弧，特殊灰度值的点。</p>
+<ol>
+<li>reset_fuzzy_measure</li>
+</ol>
+<p>   功能：重置一个模糊元函数。</p>
+<ol>
+<li>set_fuzzy_measure</li>
+</ol>
+<p>   功能：指定一个模糊元函数。</p>
+<ol>
+<li>set_fuzzy_measure_norm_pair</li>
+</ol>
+<p>   功能：为边缘匹配指定一个规范化模糊元函数。</p>
+<ol>
+<li>translate_measure</li>
+</ol>
+<p>   功能：转化（解释）一个测试对象。</p>
+<p> </p>
+<h2>17.15 OCV（OpenCircuit Voltage |光学字符校验）</h2>
+<ol>
+<li>close_all_ocvs</li>
+</ol>
+<p>  功能：关闭所有OCV工具。</p>
+<ol>
+<li>close_ocv</li>
+</ol>
+<p>  功能：关闭一个OCV工具。</p>
+<ol>
+<li>create_ocv_proj</li>
+</ol>
+<p>  功能：创建一个基于灰度值突出的新的OCV工具。</p>
+<ol>
+<li>do_ocv_simple</li>
+</ol>
+<p>  功能：利用一个OCV工具查证一个模式。</p>
+<ol>
+<li>read_ocv</li>
+</ol>
+<p>  功能：从文件中读取一个OCV工具。</p>
+<ol>
+<li>traind_ocv_proj</li>
+</ol>
+<p>  功能：测试一个OCV工具。</p>
+<ol>
+<li>write_ocv</li>
+</ol>
+<p>  功能：将一个OCV工具保存到文件。</p>
+<p> </p>
+<h2>17.16 Shape-from</h2>
+<ol>
+<li>depth_from_focus</li>
+</ol>
+<p>  功能：利用多倍聚焦灰度级提取高度（厚度）。</p>
+<ol>
+<li>estimate_al_am</li>
+</ol>
+<p>  功能：估测一个平面的反射率和反射光的数目。</p>
+<ol>
+<li>estimate_sl_al_lr</li>
+</ol>
+<p>  功能：估测一个光源的倾斜度和一个平面的反射率。</p>
+<ol>
+<li>estimate_sl_al_zc</li>
+</ol>
+<p>  功能：估测一个光源的倾斜度和一个平面的反射率。</p>
+<ol>
+<li>estimate_tilt_lr</li>
+</ol>
+<p>  功能：估测一个光源的倾斜。</p>
+<ol>
+<li>estimate_tilt_zc</li>
+</ol>
+<p>  功能：估测一个光源的倾斜。</p>
+<ol>
+<li>phot_stereo</li>
+</ol>
+<p>  功能：根据至少三个灰度值的图像来重建一个平面。</p>
+<ol>
+<li>select_grayvalues_from_channels</li>
+</ol>
+<p>  功能：利用索引图像选择一个多通道图像的灰度值。</p>
+<ol>
+<li>sfs_mod_lr</li>
+</ol>
+<p>  功能：从一个灰度值图像重建一个平面。</p>
+<ol>
+<li>sfs_orig_lr</li>
+</ol>
+<p>   功能：从一个灰度值图像重建一个平面。</p>
+<ol>
+<li>sfs_pentland</li>
+</ol>
+<p>   功能：从一个灰度值图像重建一个平面。</p>
+<ol>
+<li>shade_height_field</li>
+</ol>
+<p>   功能：遮蔽一个突起的字段。</p>
+<p> </p>
+<h2>17.17 Stereo</h2>
+<ol>
+<li>binocular_calibration</li>
+</ol>
+<p>  功能：决定一个双目视觉立体系统的所有相机参数。</p>
+<ol>
+<li>binocular_disparity</li>
+</ol>
+<p>  功能：计算一个矫正图像对的不均衡。</p>
+<ol>
+<li>binocular_distance</li>
+</ol>
+<p>  功能：计算一个矫正立体图像对的间隔值。</p>
+<ol>
+<li>disparity_to_distance</li>
+</ol>
+<p>  功能：将不均衡值转换为矫正双目视觉立体系统中的间隔值。</p>
+<ol>
+<li>disparity_to_point_3d</li>
+</ol>
+<p>  功能：将一个图像点和它的不均衡值转换为一个矫正立体系统中的三维点。</p>
+<p>6.distance_to_disparity</p>
+<p>  功能：将一个间隔值转换为一个矫正立体系统中的一个不均衡值。</p>
+<ol>
+<li>essential_to_fundamental_matrix</li>
+</ol>
+<p>  功能：计算一个从原始矩阵衍生而来的基本矩阵。</p>
+<ol>
+<li>gen_binocular_proj_rectification</li>
+</ol>
+<p>  功能：计算弱双目视觉立体系统图像的投射矫正值。</p>
+<ol>
+<li>gen_binocular_rectification_map</li>
+</ol>
+<p>  功能：创建传输图，其描述从一个双目相机到一个普通的矫正图像面的图像的映射。</p>
+<ol>
+<li>gen_binocular_rectification_map</li>
+</ol>
+<p>   功能：从一个双目相机系统视觉中两条线的交点中获取一个三维点。</p>
+<ol>
+<li>match_essential_matrix_ransack</li>
+</ol>
+<p>   功能：通过自动发掘图像点间对应关系来计算立体图像对的原始（本质）矩阵。</p>
+<ol>
+<li>match_fundamental_matrix_ransack</li>
+</ol>
+<p>   功能：通过自动发掘图像点间对应关系来计算立体图像对的基本矩阵。</p>
+<ol>
+<li>match_rel_pose_ransack</li>
+</ol>
+<p>   功能：通过自动发掘图像点间对应关系来计算两个相机间的相对方位。</p>
+<ol>
+<li>reconst3d_from_fundamental_matrix</li>
+</ol>
+<p>   功能：计算基于基本矩阵的点的投影的三维重建。</p>
+<ol>
+<li>rel_pose_to_fundamental_matrix</li>
+</ol>
+<p>   功能：计算两个相机相关方向中获取的基本矩阵。</p>
+<ol>
+<li>vector_to_essential_matrix</li>
+</ol>
+<p>   功能：计算给定图像点间映射和已知相机矩阵的原始矩阵，重建三维点。</p>
+<ol>
+<li>vector_to_fundamental_matrix</li>
+</ol>
+<p>  功能：计算给定图像点间映射的集合的基本矩阵，重建三维点。</p>
+<ol>
+<li>vector_to_fundamental_matrix</li>
+</ol>
+<p>   功能：计算给定图像点间对应关系和已知相机参数的两个相机的相对方位，重建三维点。</p>
+<p> </p>
+<h2>17.18 Tools-Legacy</h2>
+<ol>
+<li>decode_1d_bar_code</li>
+</ol>
+<p>  功能：一个条形码的顺序解码。</p>
+<ol>
+<li>decode_2d_bar_code</li>
+</ol>
+<p>  功能：解码二维条形码数据。</p>
+<ol>
+<li>discrete_1d_bar_code</li>
+</ol>
+<p>  功能：从元素宽度创建一个离散条形码。</p>
+<ol>
+<li>find_1d_bar_code</li>
+</ol>
+<p>  功能：搜索一幅图像中的一个条形码。</p>
+<ol>
+<li>find_1d_bar_code_region</li>
+</ol>
+<p>  功能：搜索一幅图像中的多种条形码。</p>
+<ol>
+<li>find_1d_bar_code_scanline</li>
+</ol>
+<p>  功能：搜索一幅图像中的一个条形码。</p>
+<ol>
+<li>find_2d_bar_code</li>
+</ol>
+<p>  功能：搜索可能包括一个二维条形码的区域。</p>
+<ol>
+<li>gen_1d_bar_code_descry</li>
+</ol>
+<p>  功能：创建一个一维条形码的说明。</p>
+<ol>
+<li>gen_1d_bar_code_descr_gen</li>
+</ol>
+<p>  功能：创建一个一维条形码的类属描述。</p>
+<ol>
+<li>gen_2d_bar_code_descry</li>
+</ol>
+<p>   功能：创建一个二维条形码的类属描述。</p>
+<ol>
+<li>get_1d_bar_code</li>
+</ol>
+<p>   功能：提取一个条形码中元素的宽度。</p>
+<ol>
+<li>get_1d_bar_code_scanline</li>
+</ol>
+<p>   功能：提取一个条形码区域中元素的宽度。</p>
+<ol>
+<li>get_2d_bar_code</li>
+</ol>
+<p>   功能：提取一个条形码区域（“数据矩阵符号”）中数据元素（在ECC200：“模块”中）的值。</p>
+<ol>
+<li>get_2d_bar_code_pos</li>
+</ol>
+<p>   功能：提取一个条形码区域（“数据矩阵符号”）中数据元素（在ECC200：“模块”中）的数值和它们在图像中的位置。</p>
+<p> </p>
+<h1>Chapter 18:Tuple</h1>
+<h2>18.1 Arithmetic</h2>
+<ol>
+<li>tuple_abs</li>
+</ol>
+<p>  功能：计算一个元组的绝对值。</p>
+<ol>
+<li>tuple_acos</li>
+</ol>
+<p>  功能：计算一个元组的反余弦。</p>
+<ol>
+<li>tuple_add</li>
+</ol>
+<p>  功能：两个元组相加。</p>
+<ol>
+<li>tuple_asin</li>
+</ol>
+<p>  功能：计算一个元组的反余弦。</p>
+<ol>
+<li>tuple_atan</li>
+</ol>
+<p>  功能：计算一个元组的反正切。</p>
+<ol>
+<li>tuple_atan2</li>
+</ol>
+<p>  功能：计算一个元组四个象限的反正切。</p>
+<ol>
+<li>tuple_ceil</li>
+</ol>
+<p>  功能：计算一个元组的上限函数。</p>
+<ol>
+<li>tuple_cos</li>
+</ol>
+<p>  功能：计算一个元组的余弦。</p>
+<ol>
+<li>tuple_cosh</li>
+</ol>
+<p>  功能：计算一个元组的双曲余弦。</p>
+<ol>
+<li>tuple_cumul</li>
+</ol>
+<p>   功能：计算一个元组的累计和。</p>
+<ol>
+<li>tuple_deg</li>
+</ol>
+<p>   功能：将一个元组从弧度转换为角度。</p>
+<ol>
+<li>tuple_div</li>
+</ol>
+<p>   功能：将两个元组相除。</p>
+<ol>
+<li>tuple_exp</li>
+</ol>
+<p>   功能：元组的指数运算。</p>
+<ol>
+<li>tuple_fabs</li>
+</ol>
+<p>   功能：计算一个元组（例如浮点数）的绝对值。</p>
+<ol>
+<li>tuple_floor</li>
+</ol>
+<p>   功能：计算一个元组的“地板函数”。</p>
+<ol>
+<li>tuple_fmod</li>
+</ol>
+<p>   功能：计算两个元组浮点数相除的余数。</p>
+<ol>
+<li>tuple_ldexp</li>
+</ol>
+<p>   功能：计算两个元组的返回长双精度指数函数。</p>
+<ol>
+<li>tuple_log</li>
+</ol>
+<p>   功能：计算一个元组的自然对数。</p>
+<ol>
+<li>tuple_log10</li>
+</ol>
+<p>   功能：计算一个元组底为10的对数。</p>
+<ol>
+<li>tuple_max2</li>
+</ol>
+<p>   功能：计算两个元组的元素宽度的最大值。</p>
+<ol>
+<li>tuple_min2</li>
+</ol>
+<p>   功能：计算两个元组的元素宽度的最小值。</p>
+<ol>
+<li>tuple_mod</li>
+</ol>
+<p>   功能：计算两个元组整型数相除的余数。</p>
+<ol>
+<li>tuple_mult</li>
+</ol>
+<p>   功能：两个元组相乘。</p>
+<ol>
+<li>tuple_neg</li>
+</ol>
+<p>   功能：将一个元组取反。</p>
+<ol>
+<li>tuple_pow</li>
+</ol>
+<p>   功能：计算两个元组的冥函数。</p>
+<ol>
+<li>tuple_rad</li>
+</ol>
+<p>   功能：将一个元组从角度转换为弧度。</p>
+<ol>
+<li>tuple_sgn</li>
+</ol>
+<p>   功能：计算一个元组的正负。</p>
+<ol>
+<li>tuple_sin</li>
+</ol>
+<p>   功能：计算一个元组的正弦。</p>
+<ol>
+<li>tuple_sinh</li>
+</ol>
+<p>   功能：计算一个元组的双曲正弦。</p>
+<ol>
+<li>tuple_sqrt</li>
+</ol>
+<p>   功能：计算一个元组的平方根（二次方根）。</p>
+<ol>
+<li>tuple_sub</li>
+</ol>
+<p>   功能：两个元组相减。</p>
+<ol>
+<li>tuple_tan</li>
+</ol>
+<p>   功能：计算一个元组的正切。</p>
+<ol>
+<li>tuple_tanh</li>
+</ol>
+<p>   功能：计算一个远足的双曲正切。</p>
+<p> </p>
+<p> </p>
+<h2>18.2 Bit-Operations</h2>
+<ol>
+<li>tuple_band</li>
+</ol>
+<p>  功能：计算两个元组的按位运算。</p>
+<ol>
+<li>tuple_bnot</li>
+</ol>
+<p>  功能：两个元组逐位取逻辑非。</p>
+<ol>
+<li>tuple_bor</li>
+</ol>
+<p>  功能：计算两个元组的按位运算。</p>
+<ol>
+<li>tuple_bxor</li>
+</ol>
+<p>  功能：两个元组逐位进行互斥逻辑或运算。</p>
+<ol>
+<li>tuple_lsh</li>
+</ol>
+<p>  功能：元组逐位左移。</p>
+<ol>
+<li>tuple_rsh</li>
+</ol>
+<p>  功能：元组逐位右移。</p>
+<p> </p>
+<h2>18.3 Comparison</h2>
+<ol>
+<li>tuple_equal</li>
+</ol>
+<p>  功能：测试两个元组是否相同。</p>
+<ol>
+<li>tuple_greater</li>
+</ol>
+<p>  功能：测试一个元组是否大于另一个元组。</p>
+<ol>
+<li>tuple_greater_equal</li>
+</ol>
+<p>  功能：测试一个元组是否大于等于另一个。</p>
+<ol>
+<li>tuple_less</li>
+</ol>
+<p>  功能：测试一个元组是否小于另一个元组。</p>
+<ol>
+<li>tuple_less_equal</li>
+</ol>
+<p>  功能：测试一个元组是否小于等于另一个。</p>
+<ol>
+<li>tuple_not_equal</li>
+</ol>
+<p>  功能：测试两个元组是不是不等。</p>
+<p> </p>
+<h2>18.4 Conversion</h2>
+<ol>
+<li>tuple_chr</li>
+</ol>
+<p>  功能：根据ASCII码将整型元组转换为字符串。</p>
+<ol>
+<li>tuple_chrt</li>
+</ol>
+<p>  功能：根据ASCII码将整型元组转换为字符串。</p>
+<ol>
+<li>tuple_int</li>
+</ol>
+<p>  功能：讲一个元组转换为一个整型元组。</p>
+<ol>
+<li>tuple_is_number</li>
+</ol>
+<p>  功能：检测一个字符串元组是否表示数字。</p>
+<ol>
+<li>tuple_number</li>
+</ol>
+<p>  功能：将一个字符串元组转换为一个数字元组。</p>
+<ol>
+<li>tuple_ord</li>
+</ol>
+<p>  功能：将长度为1的字符串的元组转换为它们相应的ASCII码元组。</p>
+<ol>
+<li>tuple_ords</li>
+</ol>
+<p>  功能：将一个字符串的元组转换为它们ASCII码的元组。</p>
+<ol>
+<li>tuple_real</li>
+</ol>
+<p>  功能：将一个元组转换为一个浮点数的元组。</p>
+<ol>
+<li>tuple_round</li>
+</ol>
+<p>  功能：将一个元组转换为一个整型数的元组。</p>
+<ol>
+<li>tuple_string</li>
+</ol>
+<p>   功能：将一个元组转换为一个字符串元组。</p>
+<p> </p>
+<h2>18.5 Creation</h2>
+<ol>
+<li>tuple_concat</li>
+</ol>
+<p>  功能：合并两个元组为一个新的。</p>
+<ol>
+<li>tuple_gen_const</li>
+</ol>
+<p>  功能：创建一个特殊长度的元组和初始化它的元素。</p>
+<ol>
+<li>tuple_rand</li>
+</ol>
+<p>  功能：返回任意值为0或1的元组。</p>
+<p> </p>
+<h2>18.6 Element-Order</h2>
+<ol>
+<li>tuple_inverse</li>
+</ol>
+<p>  功能：将一个元组反置（反转）。</p>
+<ol>
+<li>tuple_sort</li>
+</ol>
+<p>  功能：按照升序分类（排列）元组的元素。</p>
+<ol>
+<li>tuple_sort_index</li>
+</ol>
+<p>  功能：将元组的元素分类并返回分类元组的目录。</p>
+<p> </p>
+<h2>18.7 Features</h2>
+<ol>
+<li>tuple_deviation</li>
+</ol>
+<p>  功能：返回一个元组元素的标准差。</p>
+<ol>
+<li>tuple_length</li>
+</ol>
+<p>  功能：返回一个元组元素数目。</p>
+<ol>
+<li>tuple_max</li>
+</ol>
+<p>  功能：返回一个元组的最大元素。</p>
+<ol>
+<li>tuple_mean</li>
+</ol>
+<p>  功能：返回一定数量元组的平均值。</p>
+<ol>
+<li>tuple_median</li>
+</ol>
+<p>  功能：返回一个元组元素的中值。</p>
+<ol>
+<li>tuple_min</li>
+</ol>
+<p>  功能：返回一个元组的最小元素。</p>
+<ol>
+<li>tuple_sum</li>
+</ol>
+<p>  功能：返回一个元组所有元素的和。</p>
+<p> </p>
+<h2>18.8 Logical-Operations</h2>
+<ol>
+<li>tuple_and</li>
+</ol>
+<p>  功能：两个元组的逻辑与。</p>
+<ol>
+<li>tuple_not</li>
+</ol>
+<p>  功能：两个元组的逻辑非。</p>
+<ol>
+<li>tuple_or</li>
+</ol>
+<p>  功能：两个元组的逻辑或。</p>
+<ol>
+<li>tuple_xor</li>
+</ol>
+<p>  功能：两个元组的逻辑互斥或。</p>
+<p> </p>
+<h2>18.9 Selection</h2>
+<ol>
+<li>tuple_find</li>
+</ol>
+<p>  功能：返回一个元组所有出现的符号，同时位于另一个元组内。</p>
+<ol>
+<li>tuple_first_n</li>
+</ol>
+<p>  功能：选取一个元组的第一个元素。</p>
+<ol>
+<li>tuple_last_n</li>
+</ol>
+<p>  功能：选择从符号“n”开始到元组末尾的所有元素。</p>
+<ol>
+<li>tuple_remove</li>
+</ol>
+<p>  功能：从一个元组中移出元素。</p>
+<ol>
+<li>tuple_select</li>
+</ol>
+<p>  功能：选择一个元组中单一元素。</p>
+<ol>
+<li>tuple_select_range</li>
+</ol>
+<p>  功能：选择一个元组中的一些元素。</p>
+<ol>
+<li>tuple_select_rank</li>
+</ol>
+<p>  功能：选择一个元组中序号为n的元素。</p>
+<ol>
+<li>tuple_str_bit_select</li>
+</ol>
+<p>  功能：选择一个元组中单一符号或位。</p>
+<ol>
+<li>tuple_uniq</li>
+</ol>
+<p>  功能：丢弃元组中除成功归类的元素外的所有元素。</p>
+<p> </p>
+<h2>18.10 String-Operators</h2>
+<ol>
+<li>tuple_environment</li>
+</ol>
+<p>  功能：读取一个或多个环境变量。</p>
+<ol>
+<li>tuple_regexp_match</li>
+</ol>
+<p>  功能：利用公式提取子链。</p>
+<ol>
+<li>tuple_regexp_replace</li>
+</ol>
+<p>  功能：用有规律的公式代替一个子链。</p>
+<ol>
+<li>tuple_regexp_select</li>
+</ol>
+<p>  功能：选择符合公式的元组元素。</p>
+<ol>
+<li>tuple_regexp_test</li>
+</ol>
+<p>  功能：测试一个字符串是否满足一个规则公式的要求。</p>
+<ol>
+<li>tuple_split</li>
+</ol>
+<p>  功能：在预定义的独立字符间将字符串分离为子链。</p>
+<ol>
+<li>tuple_str_first_n</li>
+</ol>
+<p>  功能：分割从第一个字符直到字符串元组外的位置“n”处。</p>
+<ol>
+<li>tuple_str_last_n</li>
+</ol>
+<p>  功能：从字符串元组外位置“n”处开始分割所有的字符。</p>
+<ol>
+<li>tuple_strchr</li>
+</ol>
+<p>  功能：前向搜索一个位于字符串元组内的字符。</p>
+<ol>
+<li>tuple_strlen</li>
+</ol>
+<p>   功能：字符串元组中每个字符串的长度。</p>
+<ol>
+<li>tuple_strrchr</li>
+</ol>
+<p>   功能：后向搜索一个位于字符串元组内的字符。</p>
+<ol>
+<li>tuple_strrstr</li>
+</ol>
+<p>   功能：后向搜索一个位于字符串元组内的字符串。</p>
+<ol>
+<li>tuple_strstr</li>
+</ol>
+<p>   功能：前向搜索一个位于字符串元组内的字符串。</p>
+<p> </p>
+<h1>Chapter 19:XLD</h1>
+<h2>19.1 Access</h2>
+<ol>
+<li>get_contour_xld</li>
+</ol>
+<p>  功能：返回XLD轮廓(contour)的坐标。</p>
+<ol>
+<li>get_lines_xld</li>
+</ol>
+<p>  功能：返回一个XLD多边形（polygon）数据。</p>
+<ol>
+<li>get_parallels_xld</li>
+</ol>
+<p>  功能：返回一个XLD并行数据。</p>
+<ol>
+<li>get_polygon_xld</li>
+</ol>
+<p>  功能：返回一个XLD多边形（polygon）数据。</p>
+<p> </p>
+<h2>19.2 Creation</h2>
+<ol>
+<li>gen_contour_nurbs_xld</li>
+</ol>
+<p>  功能：将一个NURBS曲线转换为一个XLD（密度？）轮廓(contour)。</p>
+<ol>
+<li>gen_contour_polygon_rounded_xld</li>
+</ol>
+<p>  功能：根据一个多边形（polygon）（以元组形式给出）的圆形角点创建一个XLD轮廓(contour)。</p>
+<ol>
+<li>gen_contour_polygon_xld</li>
+</ol>
+<p>  功能：根据一个多边形（polygon）（以元组形式给出）创建一个XLD轮廓(contour)。</p>
+<ol>
+<li>gen_contour_region_xld</li>
+</ol>
+<p>  功能：根据区域创建XLD轮廓(contour)。</p>
+<ol>
+<li>gen_contours_skeleton_xld</li>
+</ol>
+<p>  功能：将框架转换为XLD轮廓(contour)。</p>
+<ol>
+<li>gen_cross_contour_xld</li>
+</ol>
+<p>  功能：根据每个输入点交叉的形状创键一个XLD轮廓(contour)。</p>
+<ol>
+<li>gen_ellipse_contour_xld</li>
+</ol>
+<p>  功能：根据相应的椭圆弧创建一个XLD轮廓(contour)。</p>
+<ol>
+<li>gen_parallels_xld</li>
+</ol>
+<p>  功能：提取并行XLD多边形（polygon）。</p>
+<ol>
+<li>gen_polygons_xld</li>
+</ol>
+<p>  功能：根据多边形近似创建XLD轮廓(contour)。</p>
+<ol>
+<li>gen_rectangle2_contour_xld</li>
+</ol>
+<p>   功能：创建一个矩形XLD轮廓(contour)。</p>
+<ol>
+<li>mod_parallels_xld</li>
+</ol>
+<p>   功能：提取一个包括同质区域的并行XLD多边形（polygon）。</p>
+<p> </p>
+<h2>19.3 Features</h2>
+<ol>
+<li>area_center_points_xld</li>
+</ol>
+<p>  功能：被看做点云的轮廓(contour)和多边形（polygon）的面积和重心。</p>
+<ol>
+<li>area_center_xld</li>
+</ol>
+<p>  功能：轮廓(contour)和多边形（polygon）的面积和重心。</p>
+<ol>
+<li>circularity_xld</li>
+</ol>
+<p>  功能：影响轮廓(contour)或多边形（polygon）圆度（与圆相近的程度）的形状系数。</p>
+<ol>
+<li>compactness_xld</li>
+</ol>
+<p>  功能：影响轮廓(contour)或多边形（polygon）致密性的形状系数。</p>
+<ol>
+<li>contour_point_num_xld</li>
+</ol>
+<p>  功能：返回一个XLD轮廓(contour)中点的数目。</p>
+<ol>
+<li>convexity_xld</li>
+</ol>
+<p>  功能：影响轮廓(contour)或多边形（polygon）凹凸性的形状系数。</p>
+<ol>
+<li>diameter_xld</li>
+</ol>
+<p>  功能：两个轮廓(contour)或多边形（polygon）点间的最大距离。</p>
+<ol>
+<li>dist_ellipse_contour_points_xld</li>
+</ol>
+<p>  功能：计算所有轮廓(contour)内的点到一个椭圆的距离。</p>
+<ol>
+<li>dist_ellipse_contour_xld</li>
+</ol>
+<p>  功能：轮廓到一个椭圆的距离。</p>
+<ol>
+<li>dist_rectangle2_contour_points_xld</li>
+</ol>
+<p>   功能：计算所有轮廓(contour)内的点到一个矩形的距离。</p>
+<ol>
+<li>eccentricity_points_xld</li>
+</ol>
+<p>   功能：被看做点云的轮廓(contour)或多变形（polygon）的Anisometry。</p>
+<ol>
+<li>eccentricity_xld</li>
+</ol>
+<p>   功能：源自轮廓(contour)或多边形（polygon）的椭圆参数的形状系数。</p>
+<ol>
+<li>elliptic_axis_points_xld</li>
+</ol>
+<p>   功能：被看做点云的轮廓(contour)或多边形（polygon）的等价椭圆参数。</p>
+<ol>
+<li>elliptic_axis_xld</li>
+</ol>
+<p>   功能：轮廓(contour)或多变形（polygon）的等价椭圆参数。</p>
+<ol>
+<li>fit_circle_contour_xld</li>
+</ol>
+<p>   功能：根据圆周近似获取XLD轮廓(contour)。</p>
+<ol>
+<li>fit_ellipse_contour_xld</li>
+</ol>
+<p>   功能：根据椭圆或椭圆弧近似获取XLD轮廓(contour)。</p>
+<ol>
+<li>fit_line_contour_xld</li>
+</ol>
+<p>   功能：根据分割线近似获取XLD轮廓(contour)。</p>
+<ol>
+<li>fit_rectangle2_contour_xld</li>
+</ol>
+<p>   功能：用矩形来匹配XLD轮廓(contour)。</p>
+<ol>
+<li>get_contour_angle_xld</li>
+</ol>
+<p>   功能：为每个轮廓(contour)点计算一个XLD轮廓(contour)方向。</p>
+<ol>
+<li>get_contour_attrib_xld</li>
+</ol>
+<p>   功能：返回一个XLD轮廓(contour)的点的特征值。</p>
+<ol>
+<li>get_contour_global_attrib_xld</li>
+</ol>
+<p>   功能：返回一个XLD轮廓(contour)的全局特征值。</p>
+<ol>
+<li>get_regress_params_xld</li>
+</ol>
+<p>   功能：返回XLD轮廓(contour)参数。</p>
+<ol>
+<li>info_parallels_xld</li>
+</ol>
+<p>   功能：返回被XLD多边形（polygon）包围的区域的灰度值的信息。</p>
+<ol>
+<li>length_xld</li>
+</ol>
+<p>   功能：轮廓(contour)或多边形（polygon）的长度。</p>
+<ol>
+<li>local_max_contours_xld</li>
+</ol>
+<p>   功能：选择局域最大灰度值的XLD轮廓(contour)。</p>
+<ol>
+<li>max_parallels_xld</li>
+</ol>
+<p>   功能：合并具有相同多边形（polygon）的重建XLD并行。</p>
+<ol>
+<li>moments_any_points_xld</li>
+</ol>
+<p>   功能：被看做点云的轮廓(contour)或多变形（polygon）的任意几何时刻（moments）。</p>
+<ol>
+<li>moments_any_xld</li>
+</ol>
+<p>   功能：轮廓(contour)或多变形（polygon）的任意集合时刻（moments）。</p>
+<ol>
+<li>moments_points_xld</li>
+</ol>
+<p>   功能：被看做点云的轮廓(contour)或多变形（polygon）的几何时刻（moments）M20, M02, 和 M11。</p>
+<ol>
+<li>moments_xld</li>
+</ol>
+<p>   功能：轮廓(contour)或多变形的几何时刻（moments）M20, M02, and M11。</p>
+<ol>
+<li>orientation_points_xld</li>
+</ol>
+<p>   功能：被看做点云的轮廓(contour)或多变形（polygon）的方向。</p>
+<ol>
+<li>orientation_xld</li>
+</ol>
+<p>   功能：轮廓(contour)或多变形（polygon）的方向。</p>
+<ol>
+<li>query_contour_attribs_xld</li>
+</ol>
+<p>   功能：返回一个XLD轮廓(contour)定义的属性的名字。</p>
+<ol>
+<li>query_contour_global_attribs_xld</li>
+</ol>
+<p>   功能：返回一个XLD轮廓(contour)定义的全局属性的名字。</p>
+<ol>
+<li>select_contours_xld</li>
+</ol>
+<p>   功能：根据一些特征选择XLD轮廓(contour)。</p>
+<ol>
+<li>select_shape_xld</li>
+</ol>
+<p>   功能：根据形状特征选择轮廓(contour)或多边形（polygon）。</p>
+<ol>
+<li>select_xld_point</li>
+</ol>
+<p>   功能：选择包括给定点在内的所有的轮廓(contour)或多边形（polygon）。</p>
+<ol>
+<li>smallest_circle_xld</li>
+</ol>
+<p>   功能：轮廓(contour)或多边形（polygon）的最小封闭圆。</p>
+<ol>
+<li>smallest_rectangle1_xld</li>
+</ol>
+<p>   功能：平行与轮廓(contour)或多边形（polygon）的坐标轴的封闭矩形。</p>
+<ol>
+<li>smallest_rectangle2_xld</li>
+</ol>
+<p>   功能：轮廓(contour)或多边形（polygon）任意方向的最小封闭矩形。</p>
+<ol>
+<li>test_self_intersection_xld</li>
+</ol>
+<p>   功能：测试轮廓(contour)或多边形（polygon）自身相交性。</p>
+<ol>
+<li>test_xld_point</li>
+</ol>
+<p>   功能：测试一个或多个包括给定点在内的轮廓(contour)或多边形（polygon）。</p>
+<p> </p>
+<h2>19.4 Geometric-Transformations</h2>
+<ol>
+<li>affine_trans_contour_xld</li>
+</ol>
+<p>  功能：对XLD轮廓(contour)进行一个任意二维仿射变换。</p>
+<ol>
+<li>affine_trans_polygon_xld</li>
+</ol>
+<p>  功能：对XLD多边形（polygon）进行一个任意仿射变换。</p>
+<ol>
+<li>gen_parallel_contour_xld</li>
+</ol>
+<p>  功能：计算一个XLD轮廓(contour)的平行轮廓(contour)。</p>
+<ol>
+<li>polar_trans_contour_xld</li>
+</ol>
+<p>  功能：将一个环状弧中的轮廓(contour)转换为极坐标形式。</p>
+<ol>
+<li>polar_trans_contour_xld_inv</li>
+</ol>
+<p>  功能：将极坐标下的轮廓(contour)转换为笛卡尔坐标下的形式。</p>
+<ol>
+<li>projective_trans_ontour_xld</li>
+</ol>
+<p>  功能：对一个XLD轮廓(contour)进行射影变换。</p>
+<p> </p>
+<h2>19.5 Sets</h2>
+<ol>
+<li>difference_closed_contours_xld</li>
+</ol>
+<p>  功能：闭合轮廓(contour)的差异。</p>
+<ol>
+<li>difference_closed_polygons_xld</li>
+</ol>
+<p>  功能：闭合多边形（polygon）的差异。</p>
+<ol>
+<li>intersection_closed_contours_xld</li>
+</ol>
+<p>  功能：闭合轮廓(contour)的交集。</p>
+<ol>
+<li>intersection_closed_polygons_xld</li>
+</ol>
+<p>  功能：闭合多边形（polygon）的交集。</p>
+<ol>
+<li>symm_difference_closed_contours_xld</li>
+</ol>
+<p>  功能：闭合轮廓(contour)的对称差异。</p>
+<ol>
+<li>symm_difference_closed_polygons_xld</li>
+</ol>
+<p>  功能：闭合多边形（polygon）的对称差异。</p>
+<ol>
+<li>union2_closed_contours_xld</li>
+</ol>
+<p>  功能：闭合轮廓(contour)的并集。</p>
+<ol>
+<li>union2_closed_polygons_xld</li>
+</ol>
+<p>  功能：闭合多边形（polygon）的并集。</p>
+<p> </p>
+<h2>19.6 Transformation</h2>
+<ol>
+<li>add_noise_white_contour_xld</li>
+</ol>
+<p>  功能：向XLD轮廓(contour)中加入噪声。</p>
+<ol>
+<li>clip_contours_xld</li>
+</ol>
+<p>  功能：修剪一个XLD轮廓(contour)。</p>
+<ol>
+<li>close_contours_xld</li>
+</ol>
+<p>  功能：关闭一个XLD轮廓(contour)。</p>
+<ol>
+<li>combine_roads_xld</li>
+</ol>
+<p>  功能：合并两个等级分辨率中的路（road）。</p>
+<ol>
+<li>crop_contours_xld</li>
+</ol>
+<p>  功能：切割一个XLD轮廓(contour)。</p>
+<ol>
+<li>merge_cont_line_scan_xld</li>
+</ol>
+<p>  功能：合并连续线扫描图像中的XLD轮廓(contour)。</p>
+<ol>
+<li>regress_contours_xld</li>
+</ol>
+<p>  功能：计算一个XLD轮廓(contour)回归线的参数。</p>
+<ol>
+<li>segment_contours_xld</li>
+</ol>
+<p>  功能：将XLD轮廓(contour)分割为分割线和圆周或椭圆弧。</p>
+<ol>
+<li>shape_trans_xld</li>
+</ol>
+<p>  功能：改变轮廓(contour)或多边形（polygon）的形状。</p>
+<ol>
+<li>smooth_contours_xld</li>
+</ol>
+<p>   功能：XLD轮廓(contour)的平滑。</p>
+<ol>
+<li>sort_contours_xld</li>
+</ol>
+<p>   功能：根据相关位置分类轮廓(contour)。</p>
+<ol>
+<li>split_contours_xld</li>
+</ol>
+<p>   功能：在主要点分割XLD轮廓(contour)。</p>
+<ol>
+<li>union_adjacent_contours_xld</li>
+</ol>
+<p>   功能：合并终点连接在一起的轮廓(contour)。</p>
+<ol>
+<li>union_cocircular_contours_xld</li>
+</ol>
+<p>   功能：合并属于同一个圆周的轮廓(contour)。</p>
+<ol>
+<li>union_collinear_contours_ext_xld</li>
+</ol>
+<p>   功能：合并位于同一条直线上的轮廓(contour)（由附加函数操作）。</p>
+<ol>
+<li>union_collinear_contours_xld</li>
+</ol>
+<p>   功能：合并位于同一条直线上的轮廓(contour)。</p>
+<ol>
+<li>union_straight_contours_histo_xld</li>
+</ol>
+<p>   功能：合并到给定线有相似距离的相邻直线轮廓(contour)。</p>
+<ol>
+<li>union_straight_contours_xld</li>
+</ol>
+<p>   功能：合并具有相似方向的相邻直线轮廓(contour)。</p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
