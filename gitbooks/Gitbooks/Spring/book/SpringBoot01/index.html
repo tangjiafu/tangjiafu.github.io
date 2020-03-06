@@ -1,0 +1,334 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>SpringBoot入门 · Spring全系列</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Laglangyue">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-code/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-page-footer-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism-tomorrow.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-comscore/test.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/vue.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../SpringBoot02/README.md" />
+    
+    
+    <link rel="prev" href="../" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        <li class="header">Summary</li>
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    SpringBoot入门
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../SpringBoot02/README.md">
+            
+                <span>
+            
+                    
+                    SpringBoot整合数据库
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >SpringBoot入门</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="chapter01-springboot&#x5165;&#x95E8;">Chapter01. SpringBoot&#x5165;&#x95E8;</h2>
+<h3 id="1-&#x5F15;&#x8A00;">1. &#x5F15;&#x8A00;</h3>
+<h4 id="11-&#x5F00;&#x53D1;&#x5DE5;&#x5177;&#x6F14;&#x53D8;">1.1 &#x5F00;&#x53D1;&#x5DE5;&#x5177;&#x6F14;&#x53D8;</h4>
+<p>&#x5F00;&#x53D1;&#x6F14;&#x53D8;&#x6D41;&#x7A0B;</p>
+<p>javase:OOP</p>
+<p>mysql:&#x6301;&#x4E45;&#x5316;</p>
+<p>html+css+js+jquery+&#x6846;&#x67B6;&#xFF1A;view</p>
+<p>javaweb:&#x57FA;&#x672C;mvc&#x4E09;&#x5C42;&#x67B6;&#x6784;&#x7F51;&#x7AD9;</p>
+<p>ssm:&#x7B80;&#x5316;&#x5F00;&#x53D1;&#x6D41;&#x7A0B;</p>
+<p>war&#x5305;&#xFF1A;tomcat&#x8FD0;&#x884C;</p>
+<p>spring&#x518D;&#x7B80;&#x5316;&#xFF1A;SpringBoot,&#x5185;&#x5D4C;tomcat</p>
+<p>springcloud</p>
+<h4 id="12-&#x5FAE;&#x670D;&#x52A1;&#x6280;&#x672F;&#x6808;">1.2 &#x5FAE;&#x670D;&#x52A1;&#x6280;&#x672F;&#x6808;</h4>
+<ul>
+<li><p><strong>&#x6982;&#x5FF5;&#xFF1A;</strong>&#x628A;&#x4E00;&#x4E2A;&#x5927;&#x578B;&#x7684;&#x5355;&#x4E2A;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x548C;&#x670D;&#x52A1;&#x62C6;&#x5206;&#x4E3A;&#x6570;&#x4E2A;&#x751A;&#x81F3;&#x6570;&#x5341;&#x4E2A;&#x7684;&#x652F;&#x6301;&#x5FAE;&#x670D;&#x52A1;&#xFF0C;&#x5B83;&#x53EF;&#x6269;&#x5C55;&#x5355;&#x4E2A;&#x7EC4;&#x4EF6;&#x800C;&#x4E0D;&#x662F;&#x6574;&#x4E2A;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x5806;&#x6808;&#xFF0C;&#x4ECE;&#x800C;&#x6EE1;&#x8DB3;&#x670D;&#x52A1;&#x7B49;&#x7EA7;&#x534F;&#x8BAE;&#x3002;</p>
+</li>
+<li><p><strong>&#x5B9A;&#x4E49;&#xFF1A;</strong>&#x56F4;&#x7ED5;&#x4E1A;&#x52A1;&#x9886;&#x57DF;&#x7EC4;&#x4EF6;&#x6765;&#x521B;&#x5EFA;&#x5E94;&#x7528;&#xFF0C;&#x8FD9;&#x4E9B;&#x5E94;&#x7528;&#x53EF;&#x72EC;&#x7ACB;&#x5730;&#x8FDB;&#x884C;&#x5F00;&#x53D1;&#x3001;&#x7BA1;&#x7406;&#x548C;&#x8FED;&#x4EE3;&#x3002;&#x5728;&#x5206;&#x6563;&#x7684;&#x7EC4;&#x4EF6;&#x4E2D;&#x4F7F;&#x7528;&#x4E91;&#x67B6;&#x6784;&#x548C;&#x5E73;&#x53F0;&#x5F0F;&#x90E8;&#x7F72;&#x3001;&#x7BA1;&#x7406;&#x548C;&#x670D;&#x52A1;&#x529F;&#x80FD;&#xFF0C;&#x4F7F;&#x4EA7;&#x54C1;&#x4EA4;&#x4ED8;&#x53D8;&#x5F97;&#x66F4;&#x52A0;&#x7B80;&#x5355;&#x3002;</p>
+</li>
+<li><p><strong>&#x672C;&#x8D28;&#xFF1A;</strong>&#x7528;&#x4E00;&#x4E9B;&#x529F;&#x80FD;&#x6BD4;&#x8F83;&#x660E;&#x786E;&#x3001;&#x4E1A;&#x52A1;&#x6BD4;&#x8F83;&#x7CBE;&#x7EC3;&#x7684;&#x670D;&#x52A1;&#x53BB;&#x89E3;&#x51B3;&#x66F4;&#x5927;&#x3001;&#x66F4;&#x5B9E;&#x9645;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+</li>
+</ul>
+<p><img src="springboot.png" alt="springcloud"></p>
+<p><img src="springcloud.png" alt="springcloud"></p>
+<h3 id="2&#x7B2C;&#x4E00;&#x4E2A;springboot&#x7A0B;&#x5E8F;">2.&#x7B2C;&#x4E00;&#x4E2A;SpringBoot&#x7A0B;&#x5E8F;</h3>
+<ul>
+<li><p>&#x65B9;&#x5F0F;&#x4E00;&#xFF1A;Spring&#x5B98;&#x7F51;quickStart&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x9879;&#x76EE;</p>
+</li>
+<li><p>&#x65B9;&#x5F0F;&#x4E8C;&#xFF1A;(<strong>&#x63A8;&#x8350;</strong>)&#x901A;&#x8FC7;IDEA&#x65B0;&#x5EFA;&#x9879;&#x76EE;&#xFF0C;Spring Initializr&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#x9879;&#x76EE;&#xFF0C;&#x6839;&#x636E;&#x9700;&#x8981;&#x9009;&#x62E9;&#x5404;&#x7C7B;&#x7EC4;&#x4EF6;&#x3002;</p>
+</li>
+</ul>
+<p><img src="ideaInit01.png" alt="springInit"></p>
+<p><img src="ideaInit02.png" alt="springInit02"></p>
+<p><strong>&#x6CE8;&#x610F;</strong>&#xFF1A;&#x5728;Applictaion&#x540C;&#x7EA7;&#x76EE;&#x5F55;&#x4E0B;&#x5EFA;&#x5305;&#xFF0C;pojo&#xFF0C;dao&#xFF0C;service,controller&#x7B49;</p>
+<p>&#x7A0B;&#x5E8F;&#x5165;&#x53E3;&#xFF1A;application&#x7C7B;</p>
+<p>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF1A;resource/</p>
+<p>&#x5728;application.properties&#x6587;&#x4EF6;&#x53EF;&#x4EE5;&#x4FEE;&#x6539;&#x7AEF;&#x53E3;&#x7B49;</p>
+<pre class="language-"><code class="lang-properties"><span class="token comment"># &#x914D;&#x7F6E;&#x6587;&#x4EF6;</span>
+<span class="token comment">#&#x4FEE;&#x6539;&#x7AEF;&#x53E3;&#x53F7;</span>
+<span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8081</span>
+</code></pre>
+<h3 id="13-springboot&#x81EA;&#x52A8;&#x914D;&#x7F6E;&#x539F;&#x7406;">1.3 Springboot&#x81EA;&#x52A8;&#x914D;&#x7F6E;&#x539F;&#x7406;</h3>
+<p>&#x81EA;&#x52A8;&#x914D;&#x7F6E;</p>
+<p>pom.xml</p>
+<ul>
+<li><p>spring-boot-dependencies:&#x6838;&#x5FC3;&#x4F9D;&#x8D56;&#x5728;&#x7236;&#x5DE5;&#x7A0B;&#x4E2D;&#xFF01;</p>
+</li>
+<li><p>&#x5F15;&#x5165;SpringBoot&#x4F9D;&#x8D56;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x6307;&#x5B9A;&#x7248;&#x672C;&#xFF0C;&#x56E0;&#x4E3A;&#x5B58;&#x5728;&#x7248;&#x672C;&#x4ED3;&#x5E93;</p>
+</li>
+<li><p>&#x542F;&#x52A8;&#x5668;&#xFF1A;start,&#x81EA;&#x52A8;&#x5BFC;&#x5165;SpringBoot&#x7684;&#x542F;&#x52A8;&#x573A;&#x666F;</p>
+<p>  Spring-boot-starter-web&#x4F1A;&#x5E26;&#x5165;web&#x73AF;&#x5883;&#x6240;&#x6709;&#x4F9D;&#x8D56;&#xFF0C;&#x6839;&#x636E;&#x6240;&#x9700;&#x529F;&#x80FD;&#x7EC4;&#x4EF6;&#xFF0C;&#x5BFC;&#x5165;start&#x5373;&#x53EF;</p>
+<pre class="language-"><code class="lang-xml">          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">&gt;</span></span>
+              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">&gt;</span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">&gt;</span></span>
+              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">&gt;</span></span>spring-boot-starter-web<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">&gt;</span></span>
+          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+</li>
+</ul>
+<footer class="page-footer-ex"> <span class="page-footer-ex-copyright"> &#xA9; All Rights Reserved </span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; <span class="page-footer-ex-footer-update"> updated 2020-02-21 04:20:13 </span> </footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../" class="navigation navigation-prev " aria-label="Previous page: Introduction">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../SpringBoot02/README.md" class="navigation navigation-next " aria-label="Next page: SpringBoot整合数据库">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"SpringBoot入门","level":"1.2","depth":1,"next":{"title":"SpringBoot整合数据库","level":"1.3","depth":1,"path":"SpringBoot02/README.md","ref":"./SpringBoot02/README.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["splitter","code","page-footer-ex","-sharing","sharing-plus","theme-comscore","prism","-highlight"],"styles":{"website":"styles/vue.css"},"pluginsConfig":{"prism":{"css":["prismjs/themes/prism-tomorrow.css"]},"page-footer-ex":{"copyright":"© All Rights Reserved","markdown":false,"update_format":"YYYY-MM-DD HH:mm:ss","update_label":"updated"},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-comscore":{},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin","qzone","douban"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":true,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Laglangyue","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Spring全系列","language":"zh-hans","gitbook":"3.2.3","description":"Spring全系列"},"file":{"path":"SpringBoot01/README.md","mtime":"2020-02-20T20:20:13.661Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-06T15:48:31.749Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-theme-comscore/test.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -1,0 +1,60 @@
+{
+    "title": "Docker",
+    "author": "Laglangyue",
+    "description": "Docker",
+    "language": "zh-hans",
+    "gitbook": "3.2.3",
+    "structure": {
+        "readme": "README.md"
+    },
+"styles": {
+        "website": "styles/vue.css"
+    },
+    "plugins": ["splitter",
+		"code",
+		"page-footer-ex",
+     		"-sharing",
+        	"sharing-plus",
+		"theme-comscore",
+		"prism", 
+		"-highlight"
+    	       ],
+   "pluginsConfig": {
+  	"prism": {
+    	"css": ["prismjs/themes/prism-tomorrow.css"]    	
+  	},
+        "theme-default": {
+            "showLevel": false
+        },
+	
+        "sharing": {
+            "douban": false,
+            "facebook": false,
+            "google": false,
+            "hatenaBookmark": false,
+            "instapaper": false,
+            "line": false,
+            "linkedin": false,
+            "messenger": false,
+            "pocket": false,
+            "qq": true,
+            "qzone": true,
+            "stumbleupon": false,
+            "twitter": false,
+            "viber": false,
+            "vk": false,
+            "weibo": true,
+            "whatsapp": false,
+            "all": [
+                "facebook",
+                "google",
+                "twitter",
+                "weibo",
+                "qq",
+                "linkedin",
+                "qzone",
+                "douban"
+            ]
+        }
+   }
+}

@@ -1,0 +1,730 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>java基本类型与包装类 · SQL数据结构</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Laglangyue">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-code/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-page-footer-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism-tomorrow.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-comscore/test.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/vue.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../chapter03/JDSChapter03.html" />
+    
+    
+    <link rel="prev" href="../chapter01/JDSChapter01.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../chapter01/JDSChapter01.html">
+            
+                <a href="../chapter01/JDSChapter01.html">
+            
+                    
+                    数据结构理论
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.3" data-path="JDSChapter02.html">
+            
+                <a href="JDSChapter02.html">
+            
+                    
+                    java基本类型与包装类
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../chapter03/JDSChapter03.html">
+            
+                <a href="../chapter03/JDSChapter03.html">
+            
+                    
+                    java数据结构
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../chapter04/JDSChapter04.html">
+            
+                <a href="../chapter04/JDSChapter04.html">
+            
+                    
+                    java容器类源码分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../chapter05/JDSChapter05.html">
+            
+                <a href="../chapter05/JDSChapter05.html">
+            
+                    
+                    JUC并发编程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../chapter06/JDSChapter06.html">
+            
+                <a href="../chapter06/JDSChapter06.html">
+            
+                    
+                    java图论实践
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >java基本类型与包装类</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h2 id="chapter01-java&#x57FA;&#x672C;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x4E0E;&#x5305;&#x88C5;&#x7C7B;">Chapter01. java&#x57FA;&#x672C;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x4E0E;&#x5305;&#x88C5;&#x7C7B;</h2>
+<h3 id="11-&#x5185;&#x7F6E;&#x57FA;&#x672C;&#x6570;&#x636E;&#x7C7B;&#x578B;">1.1 &#x5185;&#x7F6E;&#x57FA;&#x672C;&#x6570;&#x636E;&#x7C7B;&#x578B;</h3>
+<p>java&#x6709;8&#x79CD;&#x57FA;&#x672C;&#x6570;&#x636E;&#x7C7B;&#x578B;&#xFF0C;4&#x79CD;&#x6574;&#x6570;&#x7C7B;&#x578B;,2&#x79CD;&#x6D6E;&#x70B9;&#x6570;&#x7C7B;&#x578B;&#xFF0C;1&#x79CD;&#x5B57;&#x7B26;&#x578B;&#xFF0C;1&#x4E2D;&#x5E03;&#x5C14;&#x578B;</p>
+<table>
+<thead>
+<tr>
+<th>&#x7C7B;&#x578B;</th>
+<th>&#x4F4D;&#x6570;</th>
+<th>&#x9ED8;&#x8BA4;&#x503C;</th>
+<th>&#x8303;&#x56F4;</th>
+<th>&#x5B9E;&#x4F8B;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>byte(&#x4F4D;)</td>
+<td>8</td>
+<td>0</td>
+<td>-2^7 &#x2013;2^7-1</td>
+<td>byte b = 100;</td>
+</tr>
+<tr>
+<td>short(&#x77ED;&#x6574;&#x6570;)</td>
+<td>16</td>
+<td>0</td>
+<td>-2^15 --2^15-1</td>
+<td>short s = 100;</td>
+</tr>
+<tr>
+<td>int(&#x6574;&#x6570;)</td>
+<td>32</td>
+<td>0</td>
+<td>-2^31 --2^31-1</td>
+<td>int i = 100;</td>
+</tr>
+<tr>
+<td>long(&#x957F;&#x6574;&#x6570;)</td>
+<td>64</td>
+<td>0</td>
+<td>-2^63 &#x2013; 2^63-1</td>
+<td>long l = 100l;</td>
+</tr>
+<tr>
+<td>float(&#x5355;&#x7CBE;&#x5EA6;)</td>
+<td>32</td>
+<td>0.0</td>
+<td>-2^31 &#x2014;2^31-1</td>
+<td>float f = 100.0f;</td>
+</tr>
+<tr>
+<td>double(&#x53CC;&#x7CBE;&#x5EA6;)</td>
+<td>64</td>
+<td>0.0</td>
+<td>-2^63 &#x2013; 2^63-1</td>
+<td>double d = 100.0d;</td>
+</tr>
+<tr>
+<td>char(&#x5B57;&#x7B26;)</td>
+<td>16</td>
+<td>&#x7A7A;</td>
+<td>0 &#x2013; 2^16-1</td>
+<td>char c= &apos;c&apos;;</td>
+</tr>
+<tr>
+<td>boolean(&#x5E03;&#x5C14;&#x503C;)</td>
+<td>8</td>
+<td>false</td>
+<td>true&#x3001;false</td>
+<td>boolean b = true;</td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-&#x5305;&#x88C5;&#x7C7B;">1.2 &#x5305;&#x88C5;&#x7C7B;</h3>
+<p>&#x5305;&#x88C5;&#x7C7B;&#x7684;&#x7EE7;&#x627F;&#x5173;&#x7CFB;</p>
+<p><img src="2020-02-19 00-22-58 &#x7684;&#x5C4F;&#x5E55;&#x622A;&#x56FE;.png" alt="2020-02-19 00-22-58 &#x7684;&#x5C4F;&#x5E55;&#x622A;&#x56FE;"></p>
+<p>&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x4E0E;&#x5305;&#x88C5;&#x7C7B;&#x7684;&#x8F6C;&#x5316;&#x5173;&#x7CFB;:</p>
+<table>
+<thead>
+<tr>
+<th>&#x57FA;&#x672C;&#x7C7B;&#x578B;</th>
+<th>byte</th>
+<th>short</th>
+<th>int</th>
+<th>long</th>
+<th>float</th>
+<th>double</th>
+<th>char</th>
+<th>boolean</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x5305;&#x88C5;&#x7C7B;</td>
+<td>Byte</td>
+<td>Short</td>
+<td>Integer</td>
+<td>Long</td>
+<td>Float</td>
+<td>Double</td>
+<td>Character</td>
+<td>Boolean</td>
+</tr>
+</tbody>
+</table>
+<p>JDK5&#x65B0;&#x7279;&#x6027; &#x81EA;&#x52A8;&#x88C5;&#x7BB1;&#xFF0C;&#x81EA;&#x52A8;&#x62C6;&#x7BB1;&#xFF0C;&#x5C06;&#x5305;&#x88C5;&#x7C7B;&#x5F53;&#x4F5C;&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x4F7F;&#x7528;</p>
+<ul>
+<li><p>&#x81EA;&#x52A8;&#x88C5;&#x7BB1;&#xFF1A;&#x628A;&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#x4E3A;&#x5305;&#x88C5;&#x7C7B;&#x7C7B;&#x578B;</p>
+</li>
+<li><p>&#x81EA;&#x52A8;&#x62C6;&#x7BB1;&#xFF1A;&#x628A;&#x5305;&#x88C5;&#x7C7B;&#x7C7B;&#x578B;&#x8F6C;&#x6362;&#x4E3A;&#x57FA;&#x672C;&#x7C7B;&#x578B;</p>
+</li>
+</ul>
+<blockquote>
+<h6 id="&#x6CE8;&#x610F;">&#x6CE8;&#x610F;</h6>
+</blockquote>
+<p>&#x5BF9;&#x4E8E;Integer&#x6D3E;&#x522B;(&#x5982;&#x4E0B;&#x8868;)&#x7684;&#x6784;&#x9020;&#xFF0C;&#x5728;(-128,128)&#x8303;&#x56F4;&#x5185;&#xFF0C;&#x81EA;&#x52A8;&#x88C5;&#x7BB1;&#x4F1A;&#x4ECE;&#x5E38;&#x91CF;&#x6C60;&#x4E2D;&#x53D6;&#x5F97;&#xFF0C;&#x800C;&#x8D85;&#x8FC7;&#x8303;&#x56F4;&#x5219;&#x4F1A;New&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;,&#x5176;&#x5185;&#x90E8;&#x901A;&#x8FC7;valueOf&#x65B9;&#x6CD5;&#x5B9E;&#x73B0;</p>
+<table>
+<thead>
+<tr>
+<th>&#x5305;&#x88C5;&#x7C7B;</th>
+<th>Short</th>
+<th>Interget</th>
+<th>Long</th>
+<th>Charater</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&#x8303;&#x56F4;</td>
+<td>&#xFF08;-128,128&#xFF09;</td>
+<td>&#xFF08;-128,128&#xFF09;</td>
+<td>&#xFF08;-128,128&#xFF09;</td>
+<td>[0,128)</td>
+</tr>
+</tbody>
+</table>
+<pre class="language-"><code class="lang-java"><span class="token class-name">Integer</span> int1<span class="token operator">=</span> <span class="token number">127</span><span class="token punctuation">;</span>
+
+<span class="token class-name">Integer</span> int2 <span class="token operator">=</span> <span class="token number">127</span><span class="token punctuation">;</span>
+
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>int1 <span class="token operator">==</span> int2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>int1<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>int2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;-----------&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token class-name">Integer</span> int3 <span class="token operator">=</span> <span class="token number">128</span><span class="token punctuation">;</span>
+
+<span class="token class-name">Integer</span> int4 <span class="token operator">=</span> <span class="token number">128</span><span class="token punctuation">;</span>
+
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>int3 <span class="token operator">==</span> int4<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>i3<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>i4<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<pre class="language-"><code class="lang-java"><span class="token comment">//equals&#x65B9;&#x6CD5;&#x6E90;&#x7801; </span>
+<span class="token annotation punctuation">@Override</span>
+ <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">equals</span><span class="token punctuation">(</span><span class="token class-name">Object</span> o<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span>o <span class="token keyword">instanceof</span> <span class="token class-name">Integer</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">Integer</span><span class="token punctuation">)</span> o<span class="token punctuation">)</span><span class="token punctuation">.</span>value <span class="token operator">==</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+</code></pre>
+<blockquote>
+<h6 id="&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x4EE5;interger&#x4E3A;&#x4F8B;">&#x6784;&#x9020;&#x65B9;&#x6CD5;(&#x4EE5;Interger&#x4E3A;&#x4F8B;)</h6>
+</blockquote>
+<p><code>Integer( int value)</code>&#xFF1A;&#x6784;&#x9020;&#x4E00;&#x4E2A;&#x65B0;&#x5206;&#x914D;&#x7684; Integer &#x5BF9;&#x8C61;&#xFF0C;&#x5B83;&#x8868;&#x793A;&#x6307;&#x5B9A;&#x7684; int &#x503C;&#x3002;</p>
+<p><code>Integer(String s)</code>&#xFF1A;&#x6784;&#x9020;&#x4E00;&#x4E2A;&#x65B0;&#x5206;&#x914D;&#x7684; Integer &#x5BF9;&#x8C61;&#xFF0C;&#x5B83;&#x8868;&#x793A; String`&#x53C2;&#x6570;&#x6240;&#x6307;&#x793A;&#x7684; int &#x503C;&#x3002;</p>
+<blockquote>
+<h6 id="&#x5E38;&#x7528;&#x65B9;&#x6CD5;&#x4EE5;interger&#x4E3A;&#x4F8B;">&#x5E38;&#x7528;&#x65B9;&#x6CD5;(&#x4EE5;Interger&#x4E3A;&#x4F8B;)</h6>
+</blockquote>
+<p>public static Integer valueOf(int i)&#xFF1A; &#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x8868;&#x793A;&#x6307;&#x5B9A;int&#x503C;&#x5F97;Integer&#x5B9E;&#x4F8B;&#x3002;&#x624B;&#x52A8;&#x88C5;&#x7BB1;</p>
+<p>public static Integer valueOf(String s)&#xFF1A; &#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x8868;&#x793A;&#x6307;&#x5B9A;String&#x503C;&#x5F97;Integer&#x5B9E;&#x4F8B;&#x3002;</p>
+<p>public int intvalue()&#xFF1A;&#x4EE5;int&#x7C7B;&#x578B;&#x8FD4;&#x56DE;&#x8BE5;Integer&#x7684;&#x503C;&#x3002;&#x624B;&#x52A8;&#x62C6;&#x7BB1;</p>
+<p>public static String toString(int i)&#xFF1A; &#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x8868;&#x793A;&#x6307;&#x5B9A;&#x6574;&#x6570;&#x7684;String&#x5BF9;&#x8C61;&#x3002;</p>
+<p>public String toString()&#xFF1A; &#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x8868;&#x793A;&#x8BE5;Integer&#x503C;&#x7684;String&#x5BF9;&#x8C61;&#x3002;</p>
+<h3 id="13-string&#x7C7B;">1.3 String&#x7C7B;</h3>
+<p>&#x58F0;&#x660E;&#xFF0C;&#x521D;&#x59CB;&#x5316;String&#xFF1A;</p>
+<pre class="language-"><code class="lang-java"><span class="token class-name">String</span> hello<span class="token operator">=</span> <span class="token string">&quot;hello world&quot;</span><span class="token punctuation">;</span>
+</code></pre>
+<p>&#x683C;&#x5F0F;&#x5316;&#x8F93;&#x51FA;&#x5B57;&#x7B26;&#x4E32;</p>
+<pre class="language-"><code class="lang-java"><span class="token class-name">String</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">&quot;&#x6D6E;&#x70B9;&#x578B;&#x53D8;&#x91CF;&#x7684;&#x503C;&#x4E3A; &quot;</span> <span class="token operator">+</span>
+                   <span class="token string">&quot;%f, &#x6574;&#x578B;&#x53D8;&#x91CF;&#x7684;&#x503C;&#x4E3A; &quot;</span> <span class="token operator">+</span>
+                   <span class="token string">&quot; %d, &#x5B57;&#x7B26;&#x4E32;&#x53D8;&#x91CF;&#x7684;&#x503C;&#x4E3A; &quot;</span> <span class="token operator">+</span>
+                   <span class="token string">&quot; %s&quot;</span><span class="token punctuation">,</span> floatVar<span class="token punctuation">,</span> intVar<span class="token punctuation">,</span> stringVar<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<blockquote>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x5B57;&#x7B26;&#x4E32;+&#x5177;&#x4F53;&#x5B9E;&#x73B0;&#x7531;StringBuild&#x5B9E;&#x73B0;</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>&#x65B9;&#x6CD5;</th>
+<th>&#x65B9;&#x6CD5;&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>char charAt(int index)</td>
+<td>&#x8FD4;&#x56DE;&#x6307;&#x5B9A;&#x7D22;&#x5F15;&#x5904;&#x7684;char&#x503C;</td>
+</tr>
+<tr>
+<td>int compareTo(Object o)<br>int compareTo(String anotherString)<br>int compareToIgnoreCase(String str)</td>
+<td>&#x5B57;&#x7B26;&#x4E32;&#x6BD4;&#x8F83;</td>
+</tr>
+<tr>
+<td>String concat(String Str)</td>
+<td>&#x5B57;&#x7B26;&#x4E32;&#x8FDE;&#x63A5;</td>
+</tr>
+<tr>
+<td>boolean contentEquals(StringBuffer sb)</td>
+<td>&#x5B57;&#x7B26;&#x4E32;&#x5339;&#x914D;&#x67E5;&#x627E;</td>
+</tr>
+<tr>
+<td>static String copyValueOf(char[] data)</td>
+<td>&#x5B57;&#x7B26;&#x6570;&#x7EC4;&#x8F6C;&#x5B57;&#x7B26;&#x4E32;</td>
+</tr>
+<tr>
+<td>boolean endsWith(String s)</td>
+<td>&#x5339;&#x914D;&#x5B57;&#x7B26;&#x4E32;&#x5C3E;&#x90E8;</td>
+</tr>
+<tr>
+<td>boolean startWith(String s)</td>
+<td>&#x5339;&#x914D;&#x5B57;&#x7B26;&#x4E32;&#x9996;&#x90E8;</td>
+</tr>
+<tr>
+<td>boolean contains(String s)</td>
+<td>&#x5B57;&#x7B26;&#x4E32;&#x67E5;&#x627E;</td>
+</tr>
+<tr>
+<td>boolean equalsIgnoreCase(String)</td>
+<td>&#x5FFD;&#x7565;&#x5927;&#x5C0F;&#x5199;&#x7684;&#x6BD4;&#x8F83;&#x4E24;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;</td>
+</tr>
+<tr>
+<td>String substring(int beginIndex,int endIndex)</td>
+<td>&#x622A;&#x53D6;&#x5B57;&#x7B26;&#x4E32;</td>
+</tr>
+<tr>
+<td>int length()</td>
+<td>&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x957F;&#x5EA6;</td>
+</tr>
+<tr>
+<td>boolean equals(Object anObject)</td>
+<td>&#x5B57;&#x7B26;&#x4E32;&#x5185;&#x5BB9;&#x5BF9;&#x6BD4;&#x662F;&#x5426;&#x76F8;&#x7B49;</td>
+</tr>
+<tr>
+<td>int indexOf( )</td>
+<td>&#x8FD4;&#x56DE;&#x6307;&#x5B9A;&#x5B57;&#x7B26;&#x5728;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x7B2C;&#x4E00;&#x6B21;&#x51FA;&#x73B0;&#x5904;&#x7684;&#x7D22;&#x5F15;</td>
+</tr>
+<tr>
+<td>int lastIndexOf)</td>
+<td>&#x8FD4;&#x56DE;&#x5B57;&#x7B26;&#x5728;&#x6B64;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x6700;&#x540E;&#x4E00;&#x6B21;&#x51FA;&#x73B0;&#x5904;&#x7684;&#x7D22;&#x5F15;</td>
+</tr>
+<tr>
+<td>int hashCode()</td>
+<td>&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x54C8;&#x5E0C;&#x7801;</td>
+</tr>
+<tr>
+<td>boolean matches(String regex)</td>
+<td>&#x68C0;&#x6D4B;&#x5B57;&#x7B26;&#x4E32;&#x662F;&#x5426;&#x5339;&#x914D;&#x7ED9;&#x5B9A;&#x7684;&#x6B63;&#x5219;&#x8868;&#x8FBE;&#x5F0F;</td>
+</tr>
+<tr>
+<td>regionMatches()</td>
+<td>&#x68C0;&#x6D4B;&#x4E24;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x5728;&#x4E00;&#x4E2A;&#x533A;&#x57DF;&#x5185;&#x662F;&#x5426;&#x76F8;&#x7B49;</td>
+</tr>
+<tr>
+<td>String replace(char oldChar, char newChar)</td>
+<td>&#x5B57;&#x7B26;&#x4E32;&#x66FF;&#x6362;</td>
+</tr>
+<tr>
+<td>String[] split(String regex, int limit)</td>
+<td>&#x5B57;&#x7B26;&#x4E32;&#x5206;&#x5272;</td>
+</tr>
+<tr>
+<td>String substring(int beginIndex, int endIndex)</td>
+<td>&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x5B50;&#x5B57;&#x7B26;&#x4E32;</td>
+</tr>
+<tr>
+<td>char[] toCharArray()</td>
+<td>&#x5B57;&#x7B26;&#x4E32;&#x8F6C;&#x6362;&#x4E3A;&#x5B57;&#x7B26;&#x6570;&#x7EC4;</td>
+</tr>
+<tr>
+<td>String trim()</td>
+<td>&#x5220;&#x9664;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x5934;&#x5C3E;&#x7A7A;&#x767D;&#x7B26;</td>
+</tr>
+<tr>
+<td>String intern()</td>
+<td>&#x5B57;&#x7B26;&#x4E32;&#x5E38;&#x91CF;&#x6C60;&#x7684;&#x6B64;&#x5B57;&#x7B26;&#x4E32;</td>
+</tr>
+<tr>
+<td>String toLowerCase()</td>
+<td>&#x8F6C;&#x5C0F;&#x5199;</td>
+</tr>
+<tr>
+<td>String toUpperCase()</td>
+<td>&#x8F6C;&#x5927;&#x5199;</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<h6 id="&#x6CE8;&#x610F;&#xFF1A;&#x4E0A;&#x8FF0;&#x6240;&#x7F57;&#x5217;&#x65B9;&#x6CD5;&#x5305;&#x542B;&#x4E86;">&#x6CE8;&#x610F;&#xFF1A;&#x4E0A;&#x8FF0;&#x6240;&#x7F57;&#x5217;&#x65B9;&#x6CD5;&#x5305;&#x542B;&#x4E86;</h6>
+</blockquote>
+<h3 id="14-stringbuild&#x548C;stringbuffer">1.4 StringBuild&#x548C;StringBuffer</h3>
+<ul>
+<li><p>String&#x662F;&#x53EA;&#x8BFB;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x6240;&#x5F15;&#x7528;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x4E0D;&#x80FD;&#x88AB;&#x6539;&#x53D8;&#xFF0C;Stringbuffer&#x548C;Stringbuilder&#x5B9A;&#x4E49;&#x7684;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5404;&#x79CD;&#x65B9;&#x6CD5;&#x6765;&#x8FBE;&#x5230;&#x7B80;&#x5355;&#x7684;&#x589E;&#x5220;&#x6539;&#xFF1B;</p>
+</li>
+<li><p>String&#x548C;Stringbuilder&#x5728;&#x5355;&#x7EBF;&#x7A0B;&#x73AF;&#x5883;&#x4E0B;&#x4F7F;&#x7528;&#xFF1B;</p>
+</li>
+<li><p>StringBuffer&#x5728;&#x591A;&#x7EBF;&#x7A0B;&#x73AF;&#x5883;&#x4E0B;&#x4F7F;&#x7528;&#xFF0C;&#x53EF;&#x4EE5;&#x4FDD;&#x8BC1;&#x7EBF;&#x7A0B;&#x540C;&#x6B65;&#xFF1B;</p>
+</li>
+<li><p>Stringbuilder &#x548C;StringBuffer &#x5B9E;&#x73B0;&#x65B9;&#x6CD5;&#x7C7B;&#x4F3C;&#xFF0C;&#x5747;&#x8868;&#x793A;&#x53EF;&#x53D8;&#x5B57;&#x7B26;&#x5E8F;&#x5217;&#xFF0C;&#x4E0D;&#x8FC7;StringBuffer &#x7528;synchronized&#x5173;&#x952E;&#x5B57;&#x4FEE;&#x9970;&#xFF08;&#x4FDD;&#x8BC1;&#x7EBF;&#x7A0B;&#x540C;&#x6B65;&#xFF09;</p>
+</li>
+</ul>
+<blockquote>
+<h6 id="&#x6784;&#x9020;&#x65B9;&#x6CD5;&#xFF1A;">&#x6784;&#x9020;&#x65B9;&#x6CD5;&#xFF1A;</h6>
+</blockquote>
+<ul>
+<li>StringBuffer() &#xFF1A;&#x6784;&#x9020;&#x4E00;&#x4E2A;&#x5176;&#x4E2D;&#x4E0D;&#x5E26;&#x5B57;&#x7B26;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x7F13;&#x51B2;&#x533A;&#xFF0C;&#x521D;&#x59CB;&#x5BB9;&#x91CF;&#x4E3A; 16 &#x4E2A;&#x5B57;&#x7B26;&#x3002;</li>
+<li>StringBuffer(CharSequence seq)&#xFF1A;&#x6784;&#x9020;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x7F13;&#x51B2;&#x533A;&#xFF0C;&#x5B83;&#x5305;&#x542B;&#x4E0E;&#x6307;&#x5B9A;CharSequence &#x76F8;&#x540C;&#x7684;&#x5B57;&#x7B26;&#x3002;</li>
+<li>StringBuffer(int capacity) &#xFF1A;&#x6784;&#x9020;&#x4E00;&#x4E2A;&#x4E0D;&#x5E26;&#x5B57;&#x7B26;&#xFF0C;&#x4F46;&#x5177;&#x6709;&#x6307;&#x5B9A;&#x521D;&#x59CB;&#x5BB9;&#x91CF;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x7F13;&#x51B2;&#x533A;&#x3002;</li>
+<li>StringBuffer(String str)&#xFF1A;&#x6784;&#x9020;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x7F13;&#x51B2;&#x533A;&#xFF0C;&#x5E76;&#x5C06;&#x5176;&#x5185;&#x5BB9;&#x521D;&#x59CB;&#x5316;&#x4E3A;&#x6307;&#x5B9A;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x5185;&#x5BB9;&#x3002;</li>
+</ul>
+<blockquote>
+<h6 id="&#x6210;&#x5458;&#x65B9;&#x6CD5;&#xFF1A;">&#x6210;&#x5458;&#x65B9;&#x6CD5;&#xFF1A;</h6>
+</blockquote>
+<ul>
+<li><p>&#x589E; &#xFF1A;
+  StringBuffer append(String str)
+  StringBuffer insert(int offset, String str&#xFF09;</p>
+</li>
+<li><p>&#x5220; &#xFF1A;
+  StringBuffer deleteCharAt(int index)
+  StringBuffer delete(int start, int end)</p>
+</li>
+<li><p>&#x6539;&#xFF1A;
+  public StringBuffer replace(int start,int end,String str)</p>
+</li>
+<li><p>&#x5176;&#x4ED6;&#xFF1A;</p>
+<p>  public StringBuffer reverse() &#x5B57;&#x7B26;&#x4E32;&#x53CD;&#x8F6C;</p>
+</li>
+<li><p>&#x4E0E;String&#x7C7B;&#x7C7B;&#x4F3C;&#x65B9;&#x6CD5;</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x65B9;&#x6CD5;&#x540D;</th>
+<th style="text-align:left">&#x65B9;&#x6CD5;&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">int capacity()</td>
+<td style="text-align:left">&#x8FD4;&#x56DE;&#x5F53;&#x524D;&#x5BB9;&#x91CF;&#x3002;</td>
+</tr>
+<tr>
+<td style="text-align:left">char charAt(int index)</td>
+<td style="text-align:left">&#x8FD4;&#x56DE;&#x6B64;&#x5E8F;&#x5217;&#x4E2D;&#x6307;&#x5B9A;&#x7D22;&#x5F15;&#x5904;&#x7684; char&#x503C;&#x3002;</td>
+</tr>
+<tr>
+<td style="text-align:left">void ensureCapacity(int minimumCapacity)</td>
+<td style="text-align:left">&#x786E;&#x4FDD;&#x5BB9;&#x91CF;&#x81F3;&#x5C11;&#x7B49;&#x4E8E;&#x6307;&#x5B9A;&#x7684;&#x6700;&#x5C0F;&#x503C;&#x3002;</td>
+</tr>
+<tr>
+<td style="text-align:left">void getChars(int srcBegin, int srcEnd, char[] dst, int dstBegin)</td>
+<td style="text-align:left">&#x5C06;&#x5B57;&#x7B26;&#x4ECE;&#x6B64;&#x5E8F;&#x5217;&#x590D;&#x5236;&#x5230;&#x76EE;&#x6807;&#x5B57;&#x7B26;&#x6570;&#x7EC4; dst&#x3002;</td>
+</tr>
+<tr>
+<td style="text-align:left">int indexOf()</td>
+<td style="text-align:left">&#x8FD4;&#x56DE;&#x7B2C;&#x4E00;&#x6B21;&#x51FA;&#x73B0;&#x7684;&#x6307;&#x5B9A;&#x5B50;&#x5B57;&#x7B26;&#x4E32;&#x5728;&#x8BE5;&#x5B57;&#x7B26;&#x4E32;&#x4E2D;&#x7684;&#x7D22;&#x5F15;&#x3002;</td>
+</tr>
+<tr>
+<td style="text-align:left">int lastIndexOf()</td>
+<td style="text-align:left">&#x8FD4;&#x56DE; String &#x5BF9;&#x8C61;&#x4E2D;&#x5B50;&#x5B57;&#x7B26;&#x4E32;&#x6700;&#x540E;&#x51FA;&#x73B0;&#x7684;&#x4F4D;&#x7F6E;&#x3002;</td>
+</tr>
+<tr>
+<td style="text-align:left">int length()</td>
+<td style="text-align:left">&#x8FD4;&#x56DE;&#x957F;&#x5EA6;&#xFF08;&#x5B57;&#x7B26;&#x6570;&#xFF09;&#x3002;</td>
+</tr>
+<tr>
+<td style="text-align:left">void setCharAt(int index, char ch)</td>
+<td style="text-align:left">&#x5C06;&#x7ED9;&#x5B9A;&#x7D22;&#x5F15;&#x5904;&#x7684;&#x5B57;&#x7B26;&#x8BBE;&#x7F6E;&#x4E3A; ch&#x3002;</td>
+</tr>
+<tr>
+<td style="text-align:left">void setLength(int newLength)</td>
+<td style="text-align:left">&#x8BBE;&#x7F6E;&#x5B57;&#x7B26;&#x5E8F;&#x5217;&#x7684;&#x957F;&#x5EA6;&#x3002;</td>
+</tr>
+<tr>
+<td style="text-align:left">CharSequence subSequence(int start, int end)</td>
+<td style="text-align:left">&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x5B57;&#x7B26;&#x5E8F;&#x5217;&#x7684;&#x5B50;&#x5E8F;&#x5217;&#x3002;</td>
+</tr>
+<tr>
+<td style="text-align:left">String substring(int start)</td>
+<td style="text-align:left">&#x5B50;&#x5B57;&#x7B26;&#x4E32;&#x5207;&#x7247;</td>
+</tr>
+<tr>
+<td style="text-align:left">String substring(int start, int end)</td>
+<td style="text-align:left">&#x5B50;&#x5B57;&#x7B26;&#x4E32;&#x5207;&#x7247;</td>
+</tr>
+<tr>
+<td style="text-align:left">String toString()</td>
+<td style="text-align:left">&#x8FD4;&#x56DE;&#x6B64;&#x5E8F;&#x5217;&#x4E2D;&#x6570;&#x636E;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x8868;&#x793A;&#x5F62;&#x5F0F;&#x3002;</td>
+</tr>
+</tbody>
+</table>
+<h3 id="15-java&#x5E8F;&#x5217;&#x5316;">1.5. java&#x5E8F;&#x5217;&#x5316;</h3>
+<p><img src="JDSChapter02.assets/4153190-0b0ed01eec4185b4.webp" alt="img"></p>
+<footer class="page-footer-ex"> <span class="page-footer-ex-copyright"> &#xA9; All Rights Reserved </span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; <span class="page-footer-ex-footer-update"> updated 2020-03-04 23:33:19 </span> </footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../chapter01/JDSChapter01.html" class="navigation navigation-prev " aria-label="Previous page: 数据结构理论">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../chapter03/JDSChapter03.html" class="navigation navigation-next " aria-label="Next page: java数据结构">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"java基本类型与包装类","level":"1.3","depth":1,"next":{"title":"java数据结构","level":"1.4","depth":1,"path":"chapter03/JDSChapter03.md","ref":"./chapter03/JDSChapter03.md","articles":[]},"previous":{"title":"数据结构理论","level":"1.2","depth":1,"path":"chapter01/JDSChapter01.md","ref":"./chapter01/JDSChapter01.md","articles":[]},"dir":"ltr"},"config":{"plugins":["splitter","code","page-footer-ex","-sharing","sharing-plus","theme-comscore","prism","-highlight"],"styles":{"website":"styles/vue.css"},"pluginsConfig":{"prism":{"css":["prismjs/themes/prism-tomorrow.css"]},"page-footer-ex":{"copyright":"© All Rights Reserved","markdown":false,"update_format":"YYYY-MM-DD HH:mm:ss","update_label":"updated"},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-comscore":{},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin","qzone","douban"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":true,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Laglangyue","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"SQL数据结构","language":"zh-hans","gitbook":"3.2.3","description":"SQL数据结构"},"file":{"path":"chapter02/JDSChapter02.md","mtime":"2020-03-04T15:33:19.728Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-06T15:45:30.302Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-theme-comscore/test.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -1,0 +1,351 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Docker基本概念与理论 · Docker</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Laglangyue">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-code/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-page-footer-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism-tomorrow.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-comscore/test.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/vue.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../chapter02/" />
+    
+    
+    <link rel="prev" href="../" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Docker基本概念与理论
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../chapter02/">
+            
+                <a href="../chapter02/">
+            
+                    
+                    Docker命令大全与阿里云容器镜像
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../chapter03/README.md">
+            
+                <span>
+            
+                    
+                    Docker命令详解集群
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Docker基本概念与理论</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="chapter01-docker&#x6982;&#x8FF0;">Chapter01. Docker&#x6982;&#x8FF0;</h1>
+<h3 id="1-&#x7B80;&#x4ECB;">1. &#x7B80;&#x4ECB;</h3>
+<p>&#x5B9A;&#x4E49;&#xFF1A;Docker &#x662F;&#x4E00;&#x4E2A;&#x5F00;&#x6E90;&#x7684;&#x5E94;&#x7528;&#x5BB9;&#x5668;&#x5F15;&#x64CE;&#xFF0C;&#x57FA;&#x4E8E; <a href="https://www.runoob.com/go/go-tutorial.html" target="_blank">Go &#x8BED;&#x8A00;</a> &#x5E76;&#x9075;&#x4ECE; Apache2.0 &#x534F;&#x8BAE;&#x5F00;&#x6E90;&#x3002;</p>
+<p>Docker &#x53EF;&#x4EE5;&#x8BA9;&#x5F00;&#x53D1;&#x8005;&#x6253;&#x5305;&#x4ED6;&#x4EEC;&#x7684;&#x5E94;&#x7528;&#x4EE5;&#x53CA;&#x4F9D;&#x8D56;&#x5305;&#x5230;&#x4E00;&#x4E2A;&#x8F7B;&#x91CF;&#x7EA7;&#x3001;&#x53EF;&#x79FB;&#x690D;&#x7684;&#x5BB9;&#x5668;&#x4E2D;&#xFF0C;&#x7136;&#x540E;&#x53D1;&#x5E03;&#x5230;&#x4EFB;&#x4F55;&#x6D41;&#x884C;&#x7684; Linux &#x673A;&#x5668;&#x4E0A;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x865A;&#x62DF;&#x5316;&#x3002;</p>
+<p>&#x5BB9;&#x5668;&#x662F;&#x5B8C;&#x5168;&#x4F7F;&#x7528;&#x6C99;&#x7BB1;&#x673A;&#x5236;&#xFF0C;&#x76F8;&#x4E92;&#x4E4B;&#x95F4;&#x4E0D;&#x4F1A;&#x6709;&#x4EFB;&#x4F55;&#x63A5;&#x53E3;&#xFF08;&#x7C7B;&#x4F3C; iPhone &#x7684; app&#xFF09;,&#x66F4;&#x91CD;&#x8981;&#x7684;&#x662F;&#x5BB9;&#x5668;&#x6027;&#x80FD;&#x5F00;&#x9500;&#x6781;&#x4F4E;&#x3002;</p>
+<p><img src="docker01.png" alt="docker01"></p>
+<h4 id="docker&#x7684;&#x5E94;&#x7528;&#x573A;&#x666F;">Docker&#x7684;&#x5E94;&#x7528;&#x573A;&#x666F;</h4>
+<ul>
+<li>Web &#x5E94;&#x7528;&#x7684;&#x81EA;&#x52A8;&#x5316;&#x6253;&#x5305;&#x548C;&#x53D1;&#x5E03;&#x3002;</li>
+<li>&#x81EA;&#x52A8;&#x5316;&#x6D4B;&#x8BD5;&#x548C;&#x6301;&#x7EED;&#x96C6;&#x6210;&#x3001;&#x53D1;&#x5E03;&#x3002;</li>
+<li>&#x5728;&#x670D;&#x52A1;&#x578B;&#x73AF;&#x5883;&#x4E2D;&#x90E8;&#x7F72;&#x548C;&#x8C03;&#x6574;&#x6570;&#x636E;&#x5E93;&#x6216;&#x5176;&#x4ED6;&#x7684;&#x540E;&#x53F0;&#x5E94;&#x7528;&#x3002;</li>
+<li>&#x4ECE;&#x5934;&#x7F16;&#x8BD1;&#x6216;&#x8005;&#x6269;&#x5C55;&#x73B0;&#x6709;&#x7684; OpenShift &#x6216; Cloud Foundry &#x5E73;&#x53F0;&#x6765;&#x642D;&#x5EFA;&#x81EA;&#x5DF1;&#x7684; PaaS &#x73AF;&#x5883;&#x3002;</li>
+</ul>
+<h4 id="&#x4F18;&#x70B9;&#xFF1A;">&#x4F18;&#x70B9;&#xFF1A;</h4>
+<ul>
+<li>&#x5FEB;&#x901F;&#xFF0C;&#x4E00;&#x81F4;&#x5730;&#x4EA4;&#x4ED8;&#x60A8;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;</li>
+<li>&#x54CD;&#x5E94;&#x5F0F;&#x90E8;&#x7F72;&#x548C;&#x6269;&#x5C55;</li>
+<li>&#x5728;&#x540C;&#x4E00;&#x786C;&#x4EF6;&#x4E0A;&#x8FD0;&#x884C;&#x66F4;&#x591A;&#x5DE5;&#x4F5C;&#x8D1F;&#x8F7D;</li>
+</ul>
+<h3 id="2-&#x67B6;&#x6784;">2. &#x67B6;&#x6784;</h3>
+<h4 id="&#x57FA;&#x672C;&#x6982;&#x5FF5;">&#x57FA;&#x672C;&#x6982;&#x5FF5;</h4>
+<p>Docker &#x5305;&#x62EC;&#x4E09;&#x4E2A;&#x57FA;&#x672C;&#x6982;&#x5FF5;:</p>
+<ul>
+<li><strong>&#x955C;&#x50CF;&#xFF08;Image&#xFF09;</strong>&#xFF1A;Docker &#x955C;&#x50CF;&#xFF08;Image&#xFF09;&#xFF0C;&#x5C31;&#x76F8;&#x5F53;&#x4E8E;&#x662F;&#x4E00;&#x4E2A; root &#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x3002;&#x6BD4;&#x5982;&#x5B98;&#x65B9;&#x955C;&#x50CF; ubuntu:16.04 &#x5C31;&#x5305;&#x542B;&#x4E86;&#x5B8C;&#x6574;&#x7684;&#x4E00;&#x5957; Ubuntu16.04 &#x6700;&#x5C0F;&#x7CFB;&#x7EDF;&#x7684; root &#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x3002;</li>
+<li><strong>&#x5BB9;&#x5668;&#xFF08;Container&#xFF09;</strong>&#xFF1A;&#x955C;&#x50CF;&#xFF08;Image&#xFF09;&#x548C;&#x5BB9;&#x5668;&#xFF08;Container&#xFF09;&#x7684;&#x5173;&#x7CFB;&#xFF0C;&#x5C31;&#x50CF;&#x662F;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7A0B;&#x5E8F;&#x8BBE;&#x8BA1;&#x4E2D;&#x7684;&#x7C7B;&#x548C;&#x5B9E;&#x4F8B;&#x4E00;&#x6837;&#xFF0C;&#x955C;&#x50CF;&#x662F;&#x9759;&#x6001;&#x7684;&#x5B9A;&#x4E49;&#xFF0C;&#x5BB9;&#x5668;&#x662F;&#x955C;&#x50CF;&#x8FD0;&#x884C;&#x65F6;&#x7684;&#x5B9E;&#x4F53;&#x3002;&#x5BB9;&#x5668;&#x53EF;&#x4EE5;&#x88AB;&#x521B;&#x5EFA;&#x3001;&#x542F;&#x52A8;&#x3001;&#x505C;&#x6B62;&#x3001;&#x5220;&#x9664;&#x3001;&#x6682;&#x505C;&#x7B49;&#x3002;</li>
+<li><strong>&#x4ED3;&#x5E93;&#xFF08;Repository&#xFF09;</strong>&#xFF1A;&#x4ED3;&#x5E93;&#x53EF;&#x770B;&#x7740;&#x4E00;&#x4E2A;&#x4EE3;&#x7801;&#x63A7;&#x5236;&#x4E2D;&#x5FC3;&#xFF0C;&#x7528;&#x6765;&#x4FDD;&#x5B58;&#x955C;&#x50CF;&#x3002;</li>
+</ul>
+<p><img src="Docker02.png" alt="Docker02"></p>
+<h4 id="&#x5176;&#x4ED6;&#x6982;&#x5FF5;">&#x5176;&#x4ED6;&#x6982;&#x5FF5;</h4>
+<p>Docker &#x4F7F;&#x7528;&#x5BA2;&#x6237;&#x7AEF;-&#x670D;&#x52A1;&#x5668; (C/S) &#x67B6;&#x6784;&#x6A21;&#x5F0F;&#xFF0C;&#x4F7F;&#x7528;&#x8FDC;&#x7A0B;API&#x6765;&#x7BA1;&#x7406;&#x548C;&#x521B;&#x5EFA;Docker&#x5BB9;&#x5668;&#x3002;</p>
+<p>Docker &#x5BB9;&#x5668;&#x901A;&#x8FC7; Docker &#x955C;&#x50CF;&#x6765;&#x521B;&#x5EFA;&#x3002;</p>
+<p>&#x5BB9;&#x5668;&#x4E0E;&#x955C;&#x50CF;&#x7684;&#x5173;&#x7CFB;&#x7C7B;&#x4F3C;&#x4E8E;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7F16;&#x7A0B;&#x4E2D;&#x7684;&#x5BF9;&#x8C61;&#x4E0E;&#x7C7B;&#x3002;&#x5BB9;&#x5668;&#x5BF9;&#x5E94;&#x5BF9;&#x8C61;&#xFF0C;&#x955C;&#x50CF;&#x5219;&#x662F;&#x7C7B;</p>
+<ul>
+<li><p>Docker &#x955C;&#x50CF;(Images)</p>
+<p>  Docker &#x955C;&#x50CF;&#x662F;&#x7528;&#x4E8E;&#x521B;&#x5EFA; Docker &#x5BB9;&#x5668;&#x7684;&#x6A21;&#x677F;&#xFF0C;&#x6BD4;&#x5982; Ubuntu &#x7CFB;&#x7EDF;&#x3002;</p>
+</li>
+<li><p>Docker &#x5BB9;&#x5668;(Container)</p>
+<p>  &#x5BB9;&#x5668;&#x662F;&#x72EC;&#x7ACB;&#x8FD0;&#x884C;&#x7684;&#x4E00;&#x4E2A;&#x6216;&#x4E00;&#x7EC4;&#x5E94;&#x7528;&#xFF0C;&#x662F;&#x955C;&#x50CF;&#x8FD0;&#x884C;&#x65F6;&#x7684;&#x5B9E;&#x4F53;&#x3002;</p>
+</li>
+<li><p>Docker &#x5BA2;&#x6237;&#x7AEF;(Client)</p>
+<p>  Docker &#x5BA2;&#x6237;&#x7AEF;&#x901A;&#x8FC7;&#x547D;&#x4EE4;&#x884C;&#x6216;&#x8005;&#x5176;&#x4ED6;&#x5DE5;&#x5177;&#x4F7F;&#x7528; Docker SDK (<a href="https://docs.docker.com/develop/sdk/" target="_blank">https://docs.docker.com/develop/sdk/</a>) &#x4E0E; Docker &#x7684;&#x5B88;&#x62A4;&#x8FDB;&#x7A0B;&#x901A;&#x4FE1;&#x3002;</p>
+</li>
+<li><p>Docker &#x4E3B;&#x673A;(Host)</p>
+<p>  &#x4E00;&#x4E2A;&#x7269;&#x7406;&#x6216;&#x8005;&#x865A;&#x62DF;&#x7684;&#x673A;&#x5668;&#x7528;&#x4E8E;&#x6267;&#x884C; Docker &#x5B88;&#x62A4;&#x8FDB;&#x7A0B;&#x548C;&#x5BB9;&#x5668;&#x3002;</p>
+</li>
+<li><p>Docker &#x4ED3;&#x5E93;(Registry)</p>
+<p>  Docker &#x4ED3;&#x5E93;&#x7528;&#x6765;&#x4FDD;&#x5B58;&#x955C;&#x50CF;&#xFF0C;&#x53EF;&#x4EE5;&#x7406;&#x89E3;&#x4E3A;&#x4EE3;&#x7801;&#x63A7;&#x5236;&#x4E2D;&#x7684;&#x4EE3;&#x7801;&#x4ED3;&#x5E93;&#x3002;</p>
+<p>  Docker Hub(<a href="https://hub.docker.com/" target="_blank">https://hub.docker.com</a>) &#x63D0;&#x4F9B;&#x4E86;&#x5E9E;&#x5927;&#x7684;&#x955C;&#x50CF;&#x96C6;&#x5408;&#x4F9B;&#x4F7F;&#x7528;&#x3002;</p>
+<p>  &#x4E00;&#x4E2A; Docker Registry &#x4E2D;&#x53EF;&#x4EE5;&#x5305;&#x542B;&#x591A;&#x4E2A;&#x4ED3;&#x5E93;&#xFF08;Repository&#xFF09;&#xFF1B;&#x6BCF;&#x4E2A;&#x4ED3;&#x5E93;&#x53EF;&#x4EE5;&#x5305;&#x542B;&#x591A;&#x4E2A;&#x6807;&#x7B7E;&#xFF08;Tag&#xFF09;&#xFF1B;&#x6BCF;&#x4E2A;&#x6807;&#x7B7E;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;&#x955C;&#x50CF;&#x3002;</p>
+<p>  &#x901A;&#x5E38;&#xFF0C;&#x4E00;&#x4E2A;&#x4ED3;&#x5E93;&#x4F1A;&#x5305;&#x542B;&#x540C;&#x4E00;&#x4E2A;&#x8F6F;&#x4EF6;&#x4E0D;&#x540C;&#x7248;&#x672C;&#x7684;&#x955C;&#x50CF;&#xFF0C;&#x800C;&#x6807;&#x7B7E;&#x5C31;&#x5E38;&#x7528;&#x4E8E;&#x5BF9;&#x5E94;&#x8BE5;&#x8F6F;&#x4EF6;&#x7684;&#x5404;&#x4E2A;&#x7248;&#x672C;&#x3002;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; <strong>&lt;&#x4ED3;&#x5E93;&#x540D;&gt;:&lt;&#x6807;&#x7B7E;&gt;</strong> &#x7684;&#x683C;&#x5F0F;&#x6765;&#x6307;&#x5B9A;&#x5177;&#x4F53;&#x662F;&#x8FD9;&#x4E2A;&#x8F6F;&#x4EF6;&#x54EA;&#x4E2A;&#x7248;&#x672C;&#x7684;&#x955C;&#x50CF;&#x3002;&#x5982;&#x679C;&#x4E0D;&#x7ED9;&#x51FA;&#x6807;&#x7B7E;&#xFF0C;&#x5C06;&#x4EE5; <strong>latest</strong> &#x4F5C;&#x4E3A;&#x9ED8;&#x8BA4;&#x6807;&#x7B7E;&#x3002;</p>
+</li>
+<li><p>Docker Machine</p>
+<p>  Docker Machine&#x662F;&#x4E00;&#x4E2A;&#x7B80;&#x5316;Docker&#x5B89;&#x88C5;&#x7684;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;&#xFF0C;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x547D;&#x4EE4;&#x884C;&#x5373;&#x53EF;&#x5728;&#x76F8;&#x5E94;&#x7684;&#x5E73;&#x53F0;&#x4E0A;&#x5B89;&#x88C5;Docker&#xFF0C;&#x6BD4;&#x5982;VirtualBox&#x3001; Digital Ocean&#x3001;Microsoft Azure&#x3002;</p>
+</li>
+</ul>
+<h3 id="3&#x963F;&#x91CC;&#x4E91;&#x5BB9;&#x5668;&#x955C;&#x50CF;&#x670D;&#x52A1;">3.&#x963F;&#x91CC;&#x4E91;&#x5BB9;&#x5668;&#x955C;&#x50CF;&#x670D;&#x52A1;</h3>
+<p>&#x672C;&#x5C0F;&#x8282;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x963F;&#x91CC;&#x4E91;&#x955C;&#x50CF;&#x670D;&#x52A1;&#x7684;demo&#x6F14;&#x793A;docker&#x5982;&#x4F55;&#x8FD0;&#x884C;&#x3002;</p>
+<p>&#x6CE8;&#x518C;&#x963F;&#x91CC;&#x4E91;&#x5BB9;&#x5668;&#x955C;&#x50CF;&#x670D;&#x52A1;<a href="https://www.aliyun.com/product/acr?" target="_blank">https://www.aliyun.com/product/acr?</a>&#xFF0C;&#x5E76;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x4ED3;&#x5E93;</p>
+<ul>
+<li>&#x521B;&#x5EFA;&#x672C;&#x5730;&#x955C;&#x50CF;</li>
+<li>push&#x5230;&#x963F;&#x91CC;&#x4E91;&#x8FDC;&#x7A0B;&#x4ED3;&#x5E93;</li>
+</ul>
+<p><img src="2020-02-26 23-26-47 &#x7684;&#x5C4F;&#x5E55;&#x622A;&#x56FE;.png" alt="2020-02-26 23-26-47 &#x7684;&#x5C4F;&#x5E55;&#x622A;&#x56FE;"></p>
+<footer class="page-footer-ex"> <span class="page-footer-ex-copyright"> &#xA9; All Rights Reserved </span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; <span class="page-footer-ex-footer-update"> updated 2020-02-26 23:27:35 </span> </footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../" class="navigation navigation-prev " aria-label="Previous page: Introduction">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../chapter02/" class="navigation navigation-next " aria-label="Next page: Docker命令大全与阿里云容器镜像">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Docker基本概念与理论","level":"1.2","depth":1,"next":{"title":"Docker命令大全与阿里云容器镜像","level":"1.3","depth":1,"path":"chapter02/README.md","ref":"./chapter02/README.md","articles":[]},"previous":{"title":"Introduction","level":"1.1","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["splitter","code","page-footer-ex","-sharing","sharing-plus","theme-comscore","prism","-highlight"],"styles":{"website":"styles/vue.css"},"pluginsConfig":{"prism":{"css":["prismjs/themes/prism-tomorrow.css"]},"page-footer-ex":{"copyright":"© All Rights Reserved","markdown":false,"update_format":"YYYY-MM-DD HH:mm:ss","update_label":"updated"},"splitter":{},"search":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-comscore":{},"sharing":{"qq":true,"all":["facebook","google","twitter","weibo","qq","linkedin","qzone","douban"],"douban":false,"facebook":false,"weibo":true,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"google":false,"viber":false,"stumbleupon":false,"qzone":true,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"Laglangyue","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Docker","language":"zh-hans","gitbook":"3.2.3","description":"Docker"},"file":{"path":"chapter01/README.md","mtime":"2020-02-26T15:27:35.894Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-06T15:45:03.723Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-theme-comscore/test.js"></script>
+        
+    
+
+    </body>
+</html>
+
